@@ -1,11 +1,14 @@
 /**
- * Gjeneron ikonat PNG të PWA-së nga i njëjti motiv si favicon-i: kryq i bardhë
- * mbi katror të kaltër.
+ * Gjeneron ikonat PNG të PWA-së dhe imazhin e ndarjes, nga i njëjti motiv si
+ * favicon-i: kryq i bardhë mbi fushë të kaltër.
  *
  * Përdorimi:  node scripts/gjenero-ikonat.mjs
  *
  * Nuk kërkon varësi — PNG-të shkruhen me dorë (IHDR/IDAT/IEND me deflate nga
  * zlib-i i Node-it), sepse për një kryq gjeometrik nuk vlen të shtohet Sharp.
+ * Kjo do të thotë edhe se nuk ka si të vizatohet tekst: imazhi i ndarjes mban
+ * vetëm shenjën, kurse titullin dhe përshkrimin i shkruan vetë shfletuesi nga
+ * `og:title` e `og:description`.
  */
 import { deflateSync } from 'node:zlib';
 import { writeFileSync, mkdirSync } from 'node:fs';
@@ -14,6 +17,7 @@ import { dirname, join } from 'node:path';
 
 const KALTER = [0x0f, 0x5a, 0xa8];
 const BARDH = [0xff, 0xff, 0xff];
+const HAPUR = [0x1d, 0xc4, 0x7d]; // jeshilja e „e hapur tani"
 
 /**
  * Ikonat janë katrore e me sfond të plotë: sistemi operativ i pret vetë qoshet
@@ -72,10 +76,10 @@ function copa(tipi, tedhenat) {
   return Buffer.concat([gjatesia, trupi, crc]);
 }
 
-function png(madhesia, pikselat) {
+function png(gjeresia, lartesia, pikselat) {
   const ihdr = Buffer.alloc(13);
-  ihdr.writeUInt32BE(madhesia, 0);
-  ihdr.writeUInt32BE(madhesia, 4);
+  ihdr.writeUInt32BE(gjeresia, 0);
+  ihdr.writeUInt32BE(lartesia, 4);
   ihdr[8] = 8; // 8 bit për kanal
   ihdr[9] = 2; // RGB
   return Buffer.concat([
@@ -84,6 +88,48 @@ function png(madhesia, pikselat) {
     copa('IDAT', deflateSync(pikselat, { level: 9 })),
     copa('IEND', Buffer.alloc(0)),
   ]);
+}
+
+/**
+ * Imazhi që shfaqet kur lidhja ndahet në WhatsApp, Viber ose Facebook.
+ *
+ * Motivi është i njëjtë me ikonën e instaluar, që kartela në bisedë dhe ikona
+ * në ekranin kryesor të njihen si një gjë e vetme. Fusha ka një kalim të lehtë
+ * nga e kaltra e ndritshme te e thella, dhe në fund një vijë jeshile — ngjyra që
+ * faqja përdor për „e hapur tani".
+ */
+function vizatoNdarjen(gjeresia, lartesia) {
+  const qendraX = gjeresia / 2;
+  const qendraY = lartesia / 2;
+  const gjysma = lartesia * 0.29; // gjysma e gjatësisë së krahut
+  const trashesia = gjysma * (6 / 18);
+  const vija = Math.round(lartesia * 0.018); // vija jeshile në fund
+
+  const rreshtat = [];
+  for (let y = 0; y < lartesia; y++) {
+    const rreshti = Buffer.alloc(1 + gjeresia * 3);
+    // Kalimi vertikal: sipër më e ndritshme, poshtë më e thellë.
+    const pjesa = y / lartesia;
+    const sfondi = [
+      Math.round(KALTER[0] + (0x18 - KALTER[0] * 0.08) * (1 - pjesa) - 4 * pjesa),
+      Math.round(KALTER[1] + 0x12 * (1 - pjesa) - 8 * pjesa),
+      Math.round(KALTER[2] + 0x14 * (1 - pjesa) - 10 * pjesa),
+    ];
+
+    for (let x = 0; x < gjeresia; x++) {
+      const brendaKryqit =
+        (Math.abs(x - qendraX) <= trashesia && Math.abs(y - qendraY) <= gjysma) ||
+        (Math.abs(y - qendraY) <= trashesia && Math.abs(x - qendraX) <= gjysma);
+
+      const ngjyra = y >= lartesia - vija ? HAPUR : brendaKryqit ? BARDH : sfondi;
+      const pozita = 1 + x * 3;
+      rreshti[pozita] = ngjyra[0];
+      rreshti[pozita + 1] = ngjyra[1];
+      rreshti[pozita + 2] = ngjyra[2];
+    }
+    rreshtat.push(rreshti);
+  }
+  return Buffer.concat(rreshtat);
 }
 
 const publiku = join(dirname(fileURLToPath(import.meta.url)), '..', 'public');
@@ -100,6 +146,11 @@ const ikonat = [
 
 for (const [emri, madhesia, kryqi] of ikonat) {
   const skedari = join(publiku, emri);
-  writeFileSync(skedari, png(madhesia, vizatoIkonen(madhesia, kryqi)));
+  writeFileSync(skedari, png(madhesia, madhesia, vizatoIkonen(madhesia, kryqi)));
   console.log(`${emri}  ${madhesia}×${madhesia}`);
 }
+
+// 1200×630 është përmasa që pritet nga `og:image`.
+const NDARJA = [1200, 630];
+writeFileSync(join(publiku, 'ndarje.png'), png(...NDARJA, vizatoNdarjen(...NDARJA)));
+console.log(`ndarje.png  ${NDARJA[0]}×${NDARJA[1]}`);

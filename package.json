@@ -3,11 +3,12 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Orari i kujdestaris\u00eb s\u00eb barnatoreve p\u00ebr qytetin e Ka\u00e7anikut",
+  "description": "Orari i kujdestarisë së barnatoreve për qytetin e Kaçanikut",
   "scripts": {
     "dev": "vite",
     "build": "vite build && node scripts/pergatit-sw.mjs",
     "preview": "vite preview",
+    "test": "node --test",
     "gjenero": "node scripts/gjenero-orarin.mjs",
     "ikonat": "node scripts/gjenero-ikonat.mjs"
   },

@@ -31,7 +31,9 @@
   --teksti-zbehte: #57647a;
 
   --kufiri: #e0e6f0;
-  --kufiri-forte: #c9d3e2;
+  /* Kufi i elementeve që klikohen. WCAG 1.4.11 kërkon 3:1 për të dallohet një
+     kontroll; ky arrin 3.6:1 mbi të bardhën dhe 3.2:1 mbi sfondin e faqes. */
+  --kufiri-veprues: #7a889e;
 
   --theks: #0f5aa8;
   --theks-zbehte: #e8f1fb;
@@ -63,7 +65,8 @@
     --teksti-zbehte: #93a1b6;
 
     --kufiri: #202b3a;
-    --kufiri-forte: #2d3a4c;
+    /* 3.3:1 mbi sipërfaqe, 3.6:1 mbi sfond. */
+    --kufiri-veprues: #5a6a80;
 
     --theks: #74b4ff;
     --theks-zbehte: #14253b;
@@ -449,7 +452,7 @@ h3 {
   gap: 0.45rem;
   min-height: 2.75rem;
   padding: 0.55rem 1.1rem;
-  border: 1px solid var(--kufiri-forte);
+  border: 1px solid var(--kufiri-veprues);
   border-radius: 999px;
   background: var(--siperfaqe);
   color: var(--teksti);
@@ -620,7 +623,7 @@ h3 {
   flex: none;
   scroll-snap-align: start;
   padding: 0.4rem 0.9rem;
-  border: 1px solid var(--kufiri);
+  border: 1px solid var(--kufiri-veprues);
   border-radius: 999px;
   background: var(--siperfaqe);
   color: var(--teksti-zbehte);
@@ -636,7 +639,7 @@ h3 {
 
 .muaj-buton:hover {
   color: var(--teksti);
-  border-color: var(--kufiri-forte);
+  border-color: var(--theks);
 }
 
 /* Muajt që mbulohen vetëm nga projeksioni, jo nga dokumenti. */

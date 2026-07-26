@@ -3,20 +3,22 @@ import { inject } from '@vercel/analytics';
 import {
   orari,
   barnatorja,
-  dataSot,
-  dataShkurt,
-  dataShqip,
-  ditaShkurt,
-  emriIMuajit,
-  emriIMuajitShkurt,
   kaHarta,
-  kohaShkurt,
   kujdestariaTani,
   netNeCikel,
   sipasMuajve,
   tëArdhshmet,
   tëGjithaBarnatoret,
 } from './orari.js';
+import {
+  dataSot,
+  dataShkurt,
+  dataShqip,
+  ditaShkurt,
+  emriIMuajit,
+  emriIMuajitShkurt,
+  kohaShkurt,
+} from './koha.js';
 import { ikona, shenjaEFaqes, zemra } from './ikonat.js';
 import {
   instalo,
