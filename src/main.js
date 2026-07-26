@@ -691,7 +691,9 @@ function tikuIMinutes() {
   const tani = new Date();
   const deriNeMinuten = 60_000 - (tani.getSeconds() * 1000 + tani.getMilliseconds());
   setTimeout(() => {
-    vizato();
+    // Faqja e lënë hapur tërë natën nuk ka pse të vizatohet në një skedë që nuk
+    // shihet; `visibilitychange` e rifreskon sapo kthehet.
+    if (!document.hidden) vizato();
     tikuIMinutes();
   }, deriNeMinuten + 50);
 }
