@@ -210,11 +210,19 @@ function shiritiIVeprimeve() {
 
 /** Teksti që dërgohet kur ndahet faqja — i dobishëm edhe pa e hapur lidhjen. */
 function tekstiPërNdarje(gjendja) {
-  const { faza, dita } = gjendja;
-  if (!dita) return 'Kujdestaria e barnatoreve në Kaçanik';
-  return faza === 'nate'
-    ? `Kujdestare tani në Kaçanik: ${dita.barnatorja} — e hapur deri në ora ${orariINates.deri}.`
-    : `Kujdestare sonte në Kaçanik: ${dita.barnatorja} — prej ora ${orariINates.prej} deri në ${orariINates.deri}.`;
+  const { dita, natenIsFilloi } = gjendja;
+  if (!dita) return `Kujdestaria e barnatoreve në ${orari.komuna}`;
+
+  // Pa datën, „kujdestare tani" bëhet e pasaktë sapo mesazhi lexohet një orë më
+  // vonë. Nata e shënuar e bën tekstin të vlefshëm kurdo që të hapet.
+  const nata = `${dataShkurt(natenIsFilloi)} → ${dataShkurt(dita.kujdestaria.mbaronMe)}`;
+  const vendi = barnatorja(dita.barnatorja).adresa;
+
+  return (
+    `Barnatorja kujdestare në ${orari.komuna}, nata ${nata}: ` +
+    `${dita.barnatorja}${vendi ? ` (${vendi})` : ''}, ` +
+    `e hapur ${orariINates.prej}–${orariINates.deri}.`
+  );
 }
 
 /** Netët pas asaj që është në fuqi tani — jo pas datës së sotme, që pas mesnate të mos e humbasë një natë. */
