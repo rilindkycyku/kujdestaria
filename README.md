@@ -1,7 +1,8 @@
 # kujdestaria
 
 Orari i kujdestarisë së barnatoreve për qytetin e Kaçanikut — faqe e vogël Vite që tregon
-menjëherë **cila barnatore është kujdestare sot**, plus orarin e plotë sipas muajve.
+menjëherë **cila barnatore është kujdestare tani**, sa i ka mbetur kujdestarisë, si
+shkohet atje, plus orarin e plotë sipas muajve.
 
 ## Zhvillimi
 
@@ -10,12 +11,108 @@ npm install
 npm run dev       # serveri i zhvillimit
 npm run build     # ndërton në dist/ dhe përgatit sw.js
 npm run preview   # shikon ndërtimin
+npm test          # provat e logjikës së kohës dhe të të dhënave
 npm run gjenero   # rigjeneron src/data/orari-2026.json
-npm run ikonat    # rigjeneron ikonat PNG te public/
+npm run ikonat    # rigjeneron ikonat PNG dhe imazhin e ndarjes te public/
 ```
 
 Faqja është statike pas `npm run build` — `dist/` mund të vendoset kudo (GitHub Pages,
 Netlify, Vercel, ose një server i thjeshtë).
+
+## Ndërfaqja
+
+Rasti i përdorimit është një person në ora 02:00 me pyetjen „ku shkoj tani". Prandaj
+hierarkia është e prerë: emri i barnatores është elementi më i madh në ekran, **Hape në
+Maps** është buton i plotë me ngjyrën e gjendjes, dhe orari i plotë me bazën ligjore vjen
+pas, me kontrast më të ulët. Tema e errët nuk është shtojcë — është gjendja e pritur në
+atë orë.
+
+### Kartela e gjendjes
+
+Kartela ka tri gjendje, dhe ngjyra e saj (`--gjendja`) i ndjek:
+
+| Gjendja | Kur | Ngjyra | Teksti |
+| --- | --- | --- | --- |
+| `tani--nate` | 22:00–08:00, kujdestaria në fuqi | jeshile | „E hapur tani" + sa i ka mbetur |
+| `tani--dite` | 08:00–22:00, orari i rregullt | e kaltër | „Kujdestare sonte" + pas sa kohe fillon |
+| `tani--jashte` | data jashtë periudhës së orarit | e kaltër | shpjegim + lidhja te shpalljet |
+
+Numërimi i kohës thotë **kujdestaria** mbaron/fillon, jo barnatorja mbyllet/hapet — në
+ora 08:00 barnatorja nuk mbyllet, kalon në orarin e rregullt bashkë me të gjitha të
+tjerat. Shiriti nën tekst tregon sa e ka kaluar nata rrugën prej 22:00 në 08:00.
+
+Ndërrimi bëhet pikërisht në kufirin e minutës (`tikuIMinutes`), jo 60 sekonda pas hapjes,
+përndryshe numërimi qëndron i ngrirë sa mbushet intervali i parë.
+
+### Vizatimi sipas pjesëve
+
+Kartela rifreskohet çdo minutë. Nëse do të rishkruhej `app.innerHTML` i tërë — si më parë
+— çdo minutë do të humbte rrëshqitja e tabelës, `<details>`-i i hapur dhe fokusi i
+tastierës. Prandaj skeleti vendoset një herë dhe `cakto()` shkruan vetëm pjesën që ka
+ndryshuar vërtet, duke kthyer fokusin mbi elementin me të njëjtin `data-fokus`. Në një
+minutë të zakonshme ndryshon vetëm kartela e gjendjes.
+
+Ndërrimi i muajit nuk e rivizaton shiritin e muajve: përditësohet `aria-pressed`, dhe
+stili i butonit aktiv varet nga ai atribut, prandaj fokusi mbetet mbi butonin e shtypur.
+
+### Stilet dhe CSP-ja
+
+CSP-ja e faqes është `style-src 'self'`, pa `unsafe-inline` — asnjë atribut `style` nuk
+kalon. Kjo e vendos një kufi: gjerësia e shiritit të natës është vlerë dinamike, prandaj
+vizatohet me SVG, ku gjerësia është **atribut** i `<rect>`, jo stil. E provuar me
+pikërisht headers-at e [`vercel.json`](vercel.json).
+
+Ikonat janë SVG inline te [`src/ikonat.js`](src/ikonat.js) e nuk janë emoji: emoji-t
+vizatohen nga fonti i sistemit, dalin me ngjyra e madhësi të ndryshme sipas pajisjes dhe
+nuk marrin ngjyrën e tekstit përreth.
+
+### Ekranet e vogla
+
+Nën 30rem dita e javës shkurtohet („E mërkurë" → „Mër") në vend që të fshihet, kështu
+tabela mbetet e plotë edhe në 320px. Shiriti i muajve rrëshqet horizontalisht dhe hapet
+te muaji aktual. `env(safe-area-inset-*)` bashkë me `viewport-fit=cover` mbajnë faqen
+larg qosheve të rrumbullakuara kur ekzekutohet e instaluar. Ka edhe stil për shtypje.
+
+### Kontrasti
+
+Të gjitha çiftet e tekstit kalojnë WCAG AA në dritë e në terr; më i ngushti është pilula
+jeshile e natës me 4.63:1 dhe teksti i zbehtë mbi sfond me 5.29:1.
+
+Kufijtë e kartelave janë vija të holla dekorative (`--kufiri`), kurse elementet që
+klikohen kanë `--kufiri-veprues` — 3.6:1 mbi të bardhën dhe 3.2:1 mbi sfondin e faqes,
+sepse WCAG 1.4.11 kërkon 3:1 për të dallohet një kontroll. Butonat me vetëm një vijë të
+holluar dukeshin të pandashëm nga sfondi.
+
+### Njoftimi për gabim
+
+Orari transkriptohet me dorë nga një skanim, dhe rotacioni pas 31.08.2026 është i
+llogaritur — prandaj një datë e shkëmbyer është e mundshme. Fundfaqja ka një kartelë me
+lidhjen te [kontaktet e autorit](https://www.rilindkycyku.dev/contacts), që personi i
+cili e vë re gabimin të ketë ku ta thotë pa hapur GitHub. Adresa ndryshohet te `AUTORI`
+në [`src/main.js`](src/main.js).
+
+## Provat
+
+```bash
+npm test          # node --test, pa varësi
+```
+
+Logjika e kohës është e ndarë te [`src/koha.js`](src/koha.js), pa `import` të JSON-it,
+pikërisht që `node --test` t'i ekzekutojë provat pa bundler. Ajo është pjesa që gabon pa
+u dukur: një gabim në kalimin e mesnatës nuk rrëzon faqen — vetëm dërgon dikë te
+barnatorja e gabuar në ora 02:00.
+
+[`test/koha.test.mjs`](test/koha.test.mjs) mbulon kufijtë (21:59 → 22:00 → 00:00 → 07:59
+→ 08:00), natën që kalon fundvitin, ndërrimin e orës verore, dhe një kalim mbi të gjitha
+1440 minutat e ditës që kontrollon se `kaluar + mbeten = gjatësia` gjatë natës — pikërisht
+thyesa me të cilën vizatohet shiriti. Provat vendosin `TZ = Europe/Belgrade`, që të dalin
+njësoj në çdo makinë.
+
+[`test/orari-2026.test.mjs`](test/orari-2026.test.mjs) provon të dhënat e gjeneruara: data
+të njëpasnjëshme pa hapësira, dita e javës që i përgjigjet datës, `mbaronMe` një ditë pas,
+rotacioni 10-ditor sipas radhës së shpallur, flamuri `zyrtare` vetëm brenda dokumentit,
+sezoni që ndërron te data e duhur, dhe lidhjet e hartave që kalojnë validimin. Kështu një
+`npm run gjenero` i gabuar bie te provat, jo te faqja.
 
 ## PWA — instalim dhe punë pa internet
 
@@ -43,18 +140,30 @@ Strategjia: navigimet janë **rrjeti i pari** me kthim te kopja e ruajtur (orari
 merret sapo ka lidhje), kurse gjithçka tjetër është **cache-i i pari** (emrat me hash
 nuk vjetrohen kurrë gabimisht).
 
-### Butoni „Shto në ekran"
+### Butoni „Instalo si aplikacion"
 
-Chrome dhe Edge japin `beforeinstallprompt`; e kapim dhe butoni shfaqet vetëm atëherë.
-Safari në iOS nuk e ka atë ngjarje, prandaj atje butoni shfaqet gjithsesi dhe tregon
-udhëzimet me dorë (Share → Add to Home Screen). Nëse faqja po ekzekutohet tashmë e
-instaluar, butoni fshihet.
+Butoni shfaqet **kudo**, veç kur faqja është tashmë e instaluar (`display-mode:
+standalone`, ose `navigator.standalone` në iOS). Më parë varej nga
+`beforeinstallprompt`, prandaj në Safari të kompjuterit, në Firefox dhe në Chrome-in që
+ende nuk e ka nisur ngjarjen nuk shfaqej fare — dhe puna pa internet, që është arsyeja
+kryesore e kësaj faqeje, mbetej e pazbuluar.
+
+Kur ngjarja ekziston, butoni hap ftesën e shfletuesit. Kur nuk ekziston, shpalos
+udhëzimet e platformës (`platformaEInstalimit()` → `ios | android | kompjuter`) dhe
+`aria-expanded` ndjek gjendjen:
+
+| Platforma | Udhëzimi |
+| --- | --- |
+| iOS | Share në shiritin e Safari-t → Add to Home Screen |
+| Android | menyja (⋮) → Install app / Add to Home screen |
+| Kompjuter | ikona e instalimit te shiriti i adresës, ose menyja (⋮) → Install |
 
 ### Butoni „Ndaje"
 
 Përdor `navigator.share()` kur ekziston; përndryshe e kopjon lidhjen në clipboard dhe e
-thotë atë. Teksti i ndarë përmban edhe përgjigjen, jo vetëm lidhjen — p.sh.
-„Kujdestare tani në Kaçanik: Rigoni-2 — e hapur deri në ora 08:00."
+thotë atë. Teksti i ndarë përmban edhe përgjigjen, jo vetëm lidhjen — p.sh. „Barnatorja
+kujdestare në Kaçanik, nata 26.07 → 27.07: Rigoni-2 (BK Center), e hapur 22:00–08:00."
+Nata shënohet me datë sepse „tani" bëhet i pasaktë sapo mesazhi lexohet një orë më vonë.
 
 ## Vendosja në Vercel
 
@@ -69,6 +178,28 @@ kur të dalë orari i ri të mos mbetet askush me faqen e vjetër në cache.
 `unsafe-inline`), `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options` dhe
 `Permissions-Policy`. Faqja nuk ka skripta as stile inline, prandaj CSP-ja e rreptë
 kalon pa përjashtime — e provuar në Chromium me pikërisht këto headers.
+
+### Imazhi i ndarjes
+
+Lidhja ndahet shumë në WhatsApp e Viber, prandaj `public/ndarje.png` (1200×630) gjenerohet
+nga [`scripts/gjenero-ikonat.mjs`](scripts/gjenero-ikonat.mjs) me të njëjtin motiv si
+ikona e instaluar — kartela në bisedë dhe ikona në ekranin kryesor njihen si një gjë e
+vetme. Nuk ka tekst në imazh: shkrimi i PNG-së me dorë nuk ka font, dhe titullin me
+përshkrimin i shkruan vetë aplikacioni nga `og:title` e `og:description`.
+
+Imazhi **nuk hyn në paracache** — e shikojnë vetëm robotët, kurrë përdoruesi.
+
+Te `index.html` rruga është relative, sepse domeni nuk dihet kur shkruhet kodi. Robotët e
+WhatsApp-it dhe të Facebook-ut kërkojnë URL absolute, prandaj `pergatit-sw.mjs` e
+plotëson pas ndërtimit:
+
+```bash
+KUJDESTARIA_BAZA=https://domeni-i-yt npm run build
+```
+
+Në Vercel nuk duhet asgjë: skripta merr `VERCEL_PROJECT_PRODUCTION_URL` vetë. Pa ndonjë
+prej të dyjave, rruga mbetet relative — Facebook-u zakonisht e zgjidh, WhatsApp-i mund të
+mos e zgjidhë — dhe ndërtimi e shkruan atë në dalje.
 
 ### Analytics
 

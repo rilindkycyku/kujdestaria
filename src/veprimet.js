@@ -22,6 +22,13 @@ export function eshteIOS() {
   );
 }
 
+/** Cilat udhëzime duhen kur shfletuesi nuk e hap vetë ftesën: `'ios' | 'android' | 'kompjuter'`. */
+export function platformaEInstalimit() {
+  if (eshteIOS()) return 'ios';
+  if (/Android/.test(navigator.userAgent)) return 'android';
+  return 'kompjuter';
+}
+
 /** A po ekzekutohet faqja tashmë si aplikacion i instaluar? */
 export function eshteEInstaluar() {
   return (
@@ -32,18 +39,22 @@ export function eshteEInstaluar() {
 }
 
 /**
- * A duhet shfaqur butoni i instalimit?
- * Chrome/Edge japin `beforeinstallprompt`; Safari në iOS jo, prandaj atje e
- * shfaqim gjithsesi dhe tregojmë udhëzimet me dorë.
+ * A duhet shfaqur butoni i instalimit? Kudo veç kur faqja është tashmë e
+ * instaluar.
+ *
+ * Më parë butoni varej nga `beforeinstallprompt`, prandaj në Safari të
+ * kompjuterit, në Firefox dhe në Chrome-in që ende nuk e ka nisur ngjarjen nuk
+ * shfaqej fare — dhe puna pa internet, që është arsyeja kryesore e kësaj faqeje,
+ * mbetej e pazbuluar. Tani butoni është gjithnjë atje: kur shfletuesi e mbështet
+ * ftesën, e hap atë; përndryshe tregon udhëzimet e platformës.
  */
 export function mundTëInstalohet() {
-  if (eshteEInstaluar()) return false;
-  return Boolean(ftesaEInstalimit) || eshteIOS();
+  return !eshteEInstaluar();
 }
 
-/** `true` nëse duhen treguar udhëzimet e iOS-it në vend të ftesës automatike. */
-export function kërkonUdhëzimeIOS() {
-  return !ftesaEInstalimit && eshteIOS();
+/** `true` nëse duhen treguar udhëzimet me dorë në vend të ftesës automatike. */
+export function kërkonUdhëzime() {
+  return !ftesaEInstalimit;
 }
 
 /** Hap ftesën e instalimit. Kthen `true` nëse përdoruesi e pranoi. */
