@@ -19,6 +19,9 @@ const app = document.querySelector('#app');
 const muajt = sipasMuajve();
 const { iRregullt, kujdestaria: orariINates } = orari.orari;
 
+/** Kush e ndërtoi faqen — shfaqet te fundfaqja. */
+const AUTORI = 'Rilind Kycyku';
+
 /** Muaji i shfaqur në tabelë; ndryshohet nga butonat e muajve. */
 let muajiAktiv = null;
 
@@ -321,6 +324,7 @@ function fundfaqja() {
         ·
         <a href="${orari.burimet.shpalljet}" target="_blank" rel="noopener noreferrer">Të gjitha shpalljet</a>
       </p>
+      <p class="fundfaqja__autori">Ndërtuar nga ${sig(AUTORI)}</p>
     </footer>
   `;
 }

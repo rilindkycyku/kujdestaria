@@ -478,6 +478,13 @@ a {
   font-size: 0.82rem;
 }
 
+.fundfaqja__autori {
+  margin-top: 1.1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--kufiri);
+  font-size: 0.82rem;
+}
+
 /* Në ekrane të ngushta hiqet kolona e ditës, që emri i barnatores të mos pritet. */
 @media (max-width: 30rem) {
   .tabela th:nth-child(2),
