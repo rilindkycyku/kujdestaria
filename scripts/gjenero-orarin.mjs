@@ -43,13 +43,41 @@ const ORARI_I_KUJDESTARISE = { prej: '22:00', deri: '08:00' };
  * `telefoni`: në formatin ndërkombëtar, p.sh. `+383 44 123 456`.
  */
 const BARNATORET = {
-  Dielli: { harta: '', adresa: '', telefoni: '' },
-  Flora: { harta: '', adresa: '', telefoni: '' },
-  Liampharm: { harta: '', adresa: '', telefoni: '' },
-  Riga: { harta: '', adresa: '', telefoni: '' },
-  'Riga-2': { harta: '', adresa: '', telefoni: '' },
-  Rigoni: { harta: '', adresa: '', telefoni: '' },
-  'Rigoni-2': { harta: '', adresa: '', telefoni: '' },
+  Dielli: {
+    harta: 'https://maps.app.goo.gl/HLp6SPG7N5cZRzHe6?g_st=ac',
+    adresa: 'BK Center',
+    telefoni: '',
+  },
+  Flora: {
+    harta: 'https://maps.app.goo.gl/1ws8yaCkQqyKtubH9?g_st=ac',
+    adresa: 'BK Center',
+    telefoni: '',
+  },
+  Liampharm: {
+    harta: 'https://maps.app.goo.gl/ANpTDYwGMqL6iiJD6?g_st=ac',
+    adresa: 'Afër BK Center',
+    telefoni: '',
+  },
+  Riga: {
+    harta: 'https://maps.app.goo.gl/s2oCV52ngBUD6dHM6?g_st=ac',
+    adresa: 'Bulevardi Ismail Raka — Korza I',
+    telefoni: '',
+  },
+  'Riga-2': {
+    harta: 'https://maps.app.goo.gl/Xin4bv3N4aaWf3wg8?g_st=ac',
+    adresa: 'Bob — përballë Viva Fresh Store',
+    telefoni: '',
+  },
+  Rigoni: {
+    harta: 'https://maps.app.goo.gl/jXBwAbQb8n6U2f8z9',
+    adresa: 'BK Center',
+    telefoni: '',
+  },
+  'Rigoni-2': {
+    harta: 'https://maps.app.goo.gl/jXBwAbQb8n6U2f8z9',
+    adresa: 'BK Center',
+    telefoni: '',
+  },
 };
 
 const DITET = [
