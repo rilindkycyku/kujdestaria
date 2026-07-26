@@ -1,61 +1,141 @@
+/**
+ * Stili i faqes.
+ *
+ * Faqja hapet më shpesh natën, nga dikush që kërkon shpejt një përgjigje: kush
+ * është hapur tani dhe si shkohet atje. Prandaj hierarkia është e prerë —
+ * emri i barnatores është elementi më i madh në ekran, veprimi kryesor („Hape
+ * në Maps") është buton i plotë, dhe gjithçka tjetër (orari i plotë, baza
+ * ligjore) vjen pas, me kontrast më të ulët.
+ *
+ * Tema e errët nuk është shtojcë: është gjendja e pritur në ora 02:00, prandaj
+ * sipërfaqet e errëta janë të thella dhe theksi mbahet i ndritshëm sa duhet për
+ * kontrast, pa u bërë verbues.
+ *
+ * CSP-ja e faqes është `style-src 'self'` — pa `unsafe-inline`. Prandaj asnjë
+ * vlerë dinamike nuk kalon nga atributi `style`: shiriti i natës vizatohet me
+ * SVG, ku gjerësia është atribut i `<rect>`, jo stil.
+ */
+
+/* ── Tokenat ────────────────────────────────────────────────────────────── */
+
 :root {
-  --sfond: #f4f6fa;
+  color-scheme: light dark;
+
+  --sfond: #eef1f7;
+  --shkelqimi: rgb(15 90 168 / 10%);
   --siperfaqe: #ffffff;
-  --teksti: #131a26;
-  --teksti-zbehte: #5d6879;
-  --kufiri: #dde3ec;
-  --theks: #14528c;
-  --theks-zbehte: #e7effa;
-  --hapur: #128a4a;
-  --mbyllur: #b0402c;
-  --projektim: #8a5a12;
-  --projektim-sfond: #fdf3e0;
-  --hije: 0 1px 2px rgb(19 26 38 / 6%), 0 8px 24px rgb(19 26 38 / 6%);
-  --rreze: 14px;
+  --siperfaqe-2: #f5f7fc;
+  --gjurma: #e4e9f2;
+
+  --teksti: #0e1622;
+  --teksti-zbehte: #57647a;
+
+  --kufiri: #e0e6f0;
+  --kufiri-forte: #c9d3e2;
+
+  --theks: #0f5aa8;
+  --theks-zbehte: #e8f1fb;
+  --hapur: #0d7c46;
+  --hapur-zbehte: #e1f5ea;
+  --projektim: #8a5712;
+  --projektim-zbehte: #fdf2e0;
+  /* Bojë mbi sipërfaqe të plotë me ngjyrën e gjendjes. */
+  --mbi-gjendje: #ffffff;
+
+  --rreze: 18px;
+  --rreze-2: 12px;
+  --hije-1: 0 1px 2px rgb(14 22 34 / 5%);
+  --hije-2:
+    0 1px 2px rgb(14 22 34 / 4%), 0 12px 28px -10px rgb(14 22 34 / 14%);
+  --hapesira: clamp(1rem, 4vw, 1.5rem);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --sfond: #0e131b;
-    --siperfaqe: #161d28;
-    --teksti: #eaeff7;
-    --teksti-zbehte: #97a3b6;
-    --kufiri: #27313f;
-    --theks: #7db3ee;
-    --theks-zbehte: #17293d;
-    --hapur: #4cc98a;
-    --mbyllur: #f08a72;
-    --projektim: #e0ac5c;
-    --projektim-sfond: #2b2213;
-    --hije: 0 1px 2px rgb(0 0 0 / 30%), 0 8px 24px rgb(0 0 0 / 25%);
+    --sfond: #080b12;
+    --shkelqimi: rgb(116 180 255 / 9%);
+    --siperfaqe: #101724;
+    --siperfaqe-2: #151e2c;
+    --gjurma: #1c2634;
+
+    --teksti: #e9eef7;
+    --teksti-zbehte: #93a1b6;
+
+    --kufiri: #202b3a;
+    --kufiri-forte: #2d3a4c;
+
+    --theks: #74b4ff;
+    --theks-zbehte: #14253b;
+    --hapur: #3ddc93;
+    --hapur-zbehte: #0d2a20;
+    --projektim: #e6b164;
+    --projektim-zbehte: #2a2113;
+    /* Sipërfaqet e ndritshme në temën e errët kërkojnë bojë të errët. */
+    --mbi-gjendje: #06101a;
+
+    --hije-1: 0 1px 2px rgb(0 0 0 / 40%);
+    --hije-2: 0 1px 2px rgb(0 0 0 / 40%), 0 14px 32px -12px rgb(0 0 0 / 70%);
   }
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
+/* ── Baza ───────────────────────────────────────────────────────────────── */
+
 body {
   margin: 0;
-  background: var(--sfond);
+  background-color: var(--sfond);
+  /* Shkëlqim i lehtë nga kreu i faqes, që sipërfaqja të mos jetë e vdekur. */
+  background-image: radial-gradient(
+    130% 55% at 50% -8%,
+    var(--shkelqimi),
+    transparent 70%
+  );
+  background-repeat: no-repeat;
   color: var(--teksti);
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 1rem;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 a {
   color: var(--theks);
-  text-underline-offset: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: from-font;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+}
+
+:where(a, button, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--theks);
+  outline-offset: 2px;
 }
 
 .faqja {
-  max-width: 46rem;
-  margin: 0 auto;
-  padding: 2rem 1rem 4rem;
+  max-width: 47rem;
+  margin-inline: auto;
+  padding-block: clamp(1.5rem, 5vw, 2.75rem) 4rem;
+  /* Zona e sigurt e iPhone-it kur faqja ekzekutohet e instaluar. */
+  padding-left: max(var(--hapesira), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--hapesira), env(safe-area-inset-right, 0px));
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
+  gap: clamp(1.6rem, 4.5vw, 2.4rem);
+}
+
+/* Seksionet pa përmbajtje (pa harta, pa netë të mbetura) të mos lënë hapësirë. */
+.faqja > section:empty {
+  display: none;
 }
 
 .vetem-lexues {
@@ -69,266 +149,425 @@ a {
   white-space: nowrap;
 }
 
-/* Kreu */
+.ikona {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
+}
+
+.titull-seksioni {
+  margin: 0 0 0.85rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--teksti-zbehte);
+}
+
+/* ── Kreu ───────────────────────────────────────────────────────────────── */
+
+.kreu {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 0.9rem;
+}
+
+.marka {
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-top: 0.15rem;
+}
+
+.marka__fusha {
+  fill: var(--theks);
+}
+
+.marka__kryqi {
+  fill: var(--mbi-gjendje);
+}
+
 .kreu__komuna {
   margin: 0;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--teksti-zbehte);
 }
 
 .kreu__titull {
-  margin: 0.25rem 0 0;
-  font-size: clamp(1.6rem, 5vw, 2.15rem);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  margin: 0.15rem 0 0;
+  font-size: clamp(1.55rem, 5.6vw, 2.1rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
 }
 
-.kreu__periudha {
-  margin: 0.35rem 0 0;
+.kreu__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.7rem 0 0;
+}
+
+.etiketa {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--kufiri);
+  border-radius: 999px;
+  background: var(--siperfaqe);
+  font-size: 0.78rem;
+  font-weight: 600;
   color: var(--teksti-zbehte);
   font-variant-numeric: tabular-nums;
 }
 
-.titull-seksioni {
-  margin: 0 0 0.75rem;
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--teksti-zbehte);
+.etiketa .ikona {
+  width: 0.95em;
+  height: 0.95em;
+  opacity: 0.85;
 }
 
-/* Kartela e ditës së sotme */
-.kartela {
+/* ── Kartela e gjendjes ─────────────────────────────────────────────────── */
+
+.tani {
+  --gjendja: var(--theks);
+  --gjendja-zbehte: var(--theks-zbehte);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(1.15rem, 4.5vw, 1.75rem);
   background: var(--siperfaqe);
   border: 1px solid var(--kufiri);
   border-radius: var(--rreze);
-  box-shadow: var(--hije);
-  padding: 1.5rem;
+  box-shadow: var(--hije-2);
 }
 
-.kartela__etiketa {
-  margin: 0;
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--teksti-zbehte);
+/* Gjatë natës gjendja është „e hapur" — jeshile; ditën është pritje — e kaltër. */
+.tani--nate {
+  --gjendja: var(--hapur);
+  --gjendja-zbehte: var(--hapur-zbehte);
 }
 
-.kartela__emri {
-  margin: 0.4rem 0 0.6rem;
-  font-size: clamp(2.1rem, 9vw, 3.1rem);
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  color: var(--theks);
+/* Vija e sipërme e ngjyrës së gjendjes: lexohet para çdo teksti. */
+.tani::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gjendja), transparent 88%);
 }
 
-.kartela__orari,
-.kartela__jashte,
-.kartela__shpjegim {
-  margin: 0;
+/* Shkëlqim i butë pas tekstit, në ngjyrën e gjendjes. */
+.tani::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: -45% 35% 50% -15%;
+  background: radial-gradient(closest-side, var(--gjendja-zbehte), transparent);
 }
 
-.kartela__jashte {
-  margin: 0.4rem 0 0.5rem;
-  font-size: 1.4rem;
-  line-height: 1.2;
-}
-
-.kartela__shpjegim {
-  color: var(--teksti-zbehte);
-  margin-top: 0.4rem;
-}
-
-.kartela__paralajmerim {
-  margin: 1rem 0 0;
-  padding: 0.7rem 0.85rem;
-  border-radius: 10px;
-  background: var(--projektim-sfond);
-  color: var(--projektim);
-  font-size: 0.92rem;
-}
-
-.kartela__paralajmerim a {
-  color: inherit;
-}
-
-.kartela__kontaktet {
-  margin-top: 1rem;
-}
-
-.kartela__adresa {
-  margin: 0 0 0.6rem;
-  color: var(--teksti-zbehte);
-}
-
-.kartela__veprimet,
-.barnatorja__veprimet {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin: 0;
-}
-
-/* Lidhje-buton për hartë e telefon; targeti prekës mbahet i madh sa duhet. */
-.lidhje-harte {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.45rem 0.85rem;
-  border: 1px solid var(--kufiri);
-  border-radius: 999px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-decoration: none;
-  color: var(--teksti);
-  background: var(--sfond);
-}
-
-.lidhje-harte:hover {
-  border-color: var(--theks);
-  color: var(--theks);
-}
-
-.lidhje-harte--kryesore {
-  background: var(--theks);
-  border-color: var(--theks);
-  color: #fff;
-}
-
-.lidhje-harte--kryesore:hover {
-  color: #fff;
-  filter: brightness(1.08);
-}
-
-/* Lista e barnatoreve */
-.barnatoret__lista {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.barnatorja {
+.tani__krye {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 0.6rem;
-  background: var(--siperfaqe);
-  border: 1px solid var(--kufiri);
-  border-radius: 10px;
-  padding: 0.75rem 0.9rem;
+  margin-bottom: 0.35rem;
 }
 
-.barnatorja__krye {
-  display: flex;
-  flex-direction: column;
-}
-
-.barnatorja__emri {
-  font-weight: 650;
-}
-
-.barnatorja__adresa {
-  font-size: 0.85rem;
-  color: var(--teksti-zbehte);
+.shenjuesi {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0.3rem 0.75rem 0.3rem 0.6rem;
+  border-radius: 999px;
+  background: var(--gjendja-zbehte);
+  color: var(--gjendja);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .pika {
-  display: inline-block;
-  width: 0.6rem;
-  height: 0.6rem;
+  position: relative;
+  width: 0.5rem;
+  height: 0.5rem;
   border-radius: 50%;
-  margin-right: 0.4rem;
-  vertical-align: 0.02rem;
+  background: currentColor;
+  flex: none;
 }
 
-.pika--hapur {
-  background: var(--hapur);
+/* Vala tregon se gjendja është e drejtpërdrejtë, jo tekst i ngrirë. */
+.tani--nate .pika::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  animation: vale 2.6s ease-out infinite;
 }
 
-.pika--mbyllur {
-  background: var(--mbyllur);
+@keyframes vale {
+  from {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(3);
+  }
 }
 
-/* Kujdestaria e caktuar, por që ende s'ka filluar. */
+/* Kujdestaria e caktuar që ende s'ka filluar: rreth i zbrazët, pa valë. */
 .pika--pritje {
   background: transparent;
-  box-shadow: inset 0 0 0 2px var(--teksti-zbehte);
+  box-shadow: inset 0 0 0 2px currentColor;
 }
 
-/* Ndaje / Shto në ekran */
+.tani__dritare {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--teksti-zbehte);
+  font-variant-numeric: tabular-nums;
+}
+
+.tani__emri {
+  margin: 0.45rem 0 0;
+  font-size: clamp(2.2rem, 11vw, 3.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.tani__vendi {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0.5rem 0 0;
+  color: var(--teksti-zbehte);
+}
+
+.tani__vendi .ikona {
+  color: var(--gjendja);
+}
+
+/* Titulli i gjendjes kur data është jashtë periudhës së orarit. */
+.tani__jashte {
+  margin: 0.5rem 0 0;
+  font-size: clamp(1.35rem, 5.5vw, 1.7rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.tani__shpjegim {
+  margin: 0.75rem 0 0;
+  color: var(--teksti-zbehte);
+  font-size: 0.94rem;
+}
+
+/* ── Numërimi i kohës ───────────────────────────────────────────────────── */
+
+.koha {
+  margin-top: 1.15rem;
+  padding-top: 1.05rem;
+  border-top: 1px solid var(--kufiri);
+}
+
+.koha__rreshti {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  margin: 0;
+  color: var(--teksti-zbehte);
+  font-size: 0.95rem;
+}
+
+.koha__rreshti .ikona {
+  margin-top: 0.2em;
+  color: var(--gjendja);
+}
+
+.koha__vlera {
+  color: var(--teksti);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Gjerësia e pjesës së kaluar është atribut SVG, që CSP-ja të mbetet e rreptë. */
+.shiriti {
+  display: block;
+  width: 100%;
+  height: 6px;
+  margin-top: 0.7rem;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.shiriti__gjurma {
+  fill: var(--gjurma);
+}
+
+.shiriti__pjesa {
+  fill: var(--gjendja);
+}
+
+.shiriti__skajet {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.3rem 0 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--teksti-zbehte);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Butonat ────────────────────────────────────────────────────────────── */
+
 .veprimet {
-  margin-top: -0.9rem;
-}
-
-.veprimet__butonat {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  margin: 1.15rem 0 0;
 }
 
-.veprim {
-  font: inherit;
-  font-size: 0.92rem;
-  font-weight: 600;
+.buton {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.55rem 1rem;
-  border: 1px solid var(--kufiri);
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 2.75rem;
+  padding: 0.55rem 1.1rem;
+  border: 1px solid var(--kufiri-forte);
   border-radius: 999px;
   background: var(--siperfaqe);
   color: var(--teksti);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
   cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease,
+    background-color 0.15s ease,
+    transform 0.12s ease;
 }
 
-.veprim:hover {
+.buton:hover {
   border-color: var(--theks);
   color: var(--theks);
 }
 
-.veprimet__mesazh {
-  margin: 0.6rem 0 0;
+.buton:active {
+  transform: translateY(1px);
+}
+
+.buton--kryesor,
+.buton--kryesor:hover {
+  background: var(--gjendja, var(--theks));
+  border-color: transparent;
+  color: var(--mbi-gjendje);
+  box-shadow: var(--hije-1);
+}
+
+.buton--kryesor:hover {
+  filter: brightness(1.06);
+}
+
+/* Buton vetëm me ikonë, për listën e barnatoreve. Emri i vendit vjen nga aria. */
+.buton--ikona {
+  width: 2.5rem;
+  min-height: 2.5rem;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.buton--ikona .ikona {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.mesazhi {
+  margin: 0.75rem 0 0;
   font-size: 0.9rem;
+  font-weight: 600;
   color: var(--hapur);
 }
 
-.veprimet__udhezim {
-  margin: 0.6rem 0 0;
-  padding: 0.7rem 0.85rem;
+.udhezimi {
+  margin: 0.75rem 0 0;
+  padding: 0.8rem 0.95rem;
   border: 1px solid var(--kufiri);
-  border-radius: 10px;
-  background: var(--siperfaqe);
+  border-radius: var(--rreze-2);
+  background: var(--siperfaqe-2);
   font-size: 0.9rem;
   color: var(--teksti-zbehte);
 }
 
-/* Netët në vijim */
+.udhezimi strong {
+  color: var(--teksti);
+}
+
+/* Paralajmërimi për data të projektuara. */
+.paralajmerim {
+  display: flex;
+  gap: 0.55rem;
+  margin: 1.15rem 0 0;
+  padding: 0.75rem 0.9rem;
+  border-radius: var(--rreze-2);
+  background: var(--projektim-zbehte);
+  color: var(--projektim);
+  font-size: 0.9rem;
+}
+
+.paralajmerim .ikona {
+  margin-top: 0.15rem;
+}
+
+.paralajmerim p {
+  margin: 0;
+}
+
+.paralajmerim a {
+  color: inherit;
+}
+
+/* ── Netët në vijim ─────────────────────────────────────────────────────── */
+
 .ardhshme__lista {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
   gap: 0.6rem;
 }
 
 .ardhshme__njesi {
-  background: var(--siperfaqe);
-  border: 1px solid var(--kufiri);
-  border-radius: 10px;
-  padding: 0.7rem 0.85rem;
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
+  gap: 0.1rem;
+  padding: 0.75rem 0.9rem;
+  background: var(--siperfaqe);
+  border: 1px solid var(--kufiri);
+  border-radius: var(--rreze-2);
+  box-shadow: var(--hije-1);
+}
+
+/* Nata e ardhshme është ajo që pyetet më shpesh pas kësaj që është në fuqi. */
+.ardhshme__njesi--para {
+  border-color: var(--theks);
+  background: var(--theks-zbehte);
 }
 
 .ardhshme__njesi--projektim {
@@ -336,57 +575,79 @@ a {
 }
 
 .ardhshme__dita {
-  font-size: 0.78rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
   color: var(--teksti-zbehte);
   font-variant-numeric: tabular-nums;
 }
 
-.ardhshme__emri {
-  font-weight: 650;
+.ardhshme__njesi--para .ardhshme__dita {
+  color: var(--theks);
 }
 
-/* Shiriti i muajve */
+.ardhshme__emri {
+  font-weight: 650;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+
+/* ── Orari i plotë ──────────────────────────────────────────────────────── */
+
+.orari-plote__shpjegim {
+  margin: -0.4rem 0 0.9rem;
+  font-size: 0.88rem;
+  color: var(--teksti-zbehte);
+}
+
 .muaj-shirit {
   display: flex;
-  flex-wrap: wrap;
   gap: 0.4rem;
   margin-bottom: 0.85rem;
+  padding-bottom: 0.2rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+}
+
+.muaj-shirit::-webkit-scrollbar {
+  display: none;
 }
 
 .muaj-buton {
+  flex: none;
+  scroll-snap-align: start;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--kufiri);
+  border-radius: 999px;
+  background: var(--siperfaqe);
+  color: var(--teksti-zbehte);
   font: inherit;
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--teksti-zbehte);
-  background: var(--siperfaqe);
-  border: 1px solid var(--kufiri);
-  border-radius: 999px;
-  padding: 0.35rem 0.85rem;
   cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease,
+    background-color 0.15s ease;
 }
 
 .muaj-buton:hover {
   color: var(--teksti);
-  border-color: var(--theks);
+  border-color: var(--kufiri-forte);
 }
 
+/* Muajt që mbulohen vetëm nga projeksioni, jo nga dokumenti. */
 .muaj-buton--projektim {
   border-style: dashed;
 }
 
-.muaj-buton--aktiv,
-.muaj-buton--aktiv:hover {
-  background: var(--theks-zbehte);
-  border-color: var(--theks);
+.muaj-buton[aria-pressed='true'],
+.muaj-buton[aria-pressed='true']:hover {
+  background: var(--theks);
+  border-color: transparent;
   border-style: solid;
-  color: var(--theks);
-}
-
-/* Tabela */
-.orari-plote__shpjegim {
-  margin: -0.35rem 0 0.85rem;
-  font-size: 0.88rem;
-  color: var(--teksti-zbehte);
+  color: var(--mbi-gjendje);
 }
 
 .tabela-mbeshtjellese {
@@ -394,6 +655,7 @@ a {
   background: var(--siperfaqe);
   border: 1px solid var(--kufiri);
   border-radius: var(--rreze);
+  box-shadow: var(--hije-1);
 }
 
 .tabela {
@@ -403,149 +665,380 @@ a {
 }
 
 .tabela th {
+  position: relative;
   text-align: left;
-  font-size: 0.74rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--teksti-zbehte);
-  padding: 0.7rem 0.9rem;
+  padding: 0.75rem 0.95rem;
+  background: var(--siperfaqe-2);
   border-bottom: 1px solid var(--kufiri);
   white-space: nowrap;
 }
 
 .tabela td {
-  padding: 0.55rem 0.9rem;
+  padding: 0.6rem 0.95rem;
   border-bottom: 1px solid var(--kufiri);
   white-space: nowrap;
+  vertical-align: baseline;
 }
 
-.tabela tr:last-child td {
+.tabela tbody tr:last-child td {
   border-bottom: 0;
 }
 
-.qeliza-data,
-.qeliza-orari {
+.qeliza-nata {
   font-variant-numeric: tabular-nums;
+  font-weight: 600;
 }
 
-.qeliza-dite,
-.qeliza-orari {
+.qeliza-nata__deri {
   color: var(--teksti-zbehte);
+  font-weight: 400;
+}
+
+.qeliza-dita {
+  color: var(--teksti-zbehte);
+}
+
+/* Dita e javës shkurtohet në ekrane të ngushta, në vend që të fshihet fare. */
+.qeliza-dita__shkurt {
+  display: none;
 }
 
 .qeliza-emri {
   font-weight: 600;
 }
 
-/* Data kur mbaron nata, e vogël pas orarit 22:00–08:00. */
-.qeliza-nesër {
-  margin-left: 0.35rem;
-  font-size: 0.78em;
-  opacity: 0.75;
+/* Shenjat („tani", „e projektuar") shtyhen në skaj, që rreshti të mbahet i lexueshëm. */
+.qeliza-shenja {
+  width: 100%;
+  text-align: right;
+}
+
+.qeliza-shenja:empty,
+.qeliza-shenja .shenja:first-child {
+  margin-left: 0;
 }
 
 .rresht--kaluar td {
-  opacity: 0.5;
+  color: var(--teksti-zbehte);
+  font-weight: 400;
 }
 
-.rresht--tani {
-  background: var(--theks-zbehte);
+.rresht--kaluar .qeliza-nata__deri {
+  opacity: 0.7;
 }
 
 .rresht--tani td {
-  opacity: 1;
+  background: var(--theks-zbehte);
   font-weight: 700;
+}
+
+/* Shiriti anësor e bën rreshtin e tanishëm të gjendet me një shikim. */
+.rresht--tani .qeliza-nata {
+  box-shadow: inset 3px 0 0 var(--theks);
 }
 
 .shenja {
   display: inline-block;
   margin-left: 0.45rem;
-  padding: 0.05rem 0.4rem;
+  padding: 0.05rem 0.45rem;
   border-radius: 999px;
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  vertical-align: 0.08rem;
+  vertical-align: 0.09em;
 }
 
 .shenja--tani {
   background: var(--theks);
-  color: var(--siperfaqe);
+  color: var(--mbi-gjendje);
 }
 
 .shenja--projektim {
-  background: var(--projektim-sfond);
+  background: var(--projektim-zbehte);
   color: var(--projektim);
 }
 
-/* Njoftimi për projeksionin */
+/* ── Barnatoret ─────────────────────────────────────────────────────────── */
+
+.barnatoret__lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 0.6rem;
+}
+
+.barnatorja {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 0.8rem;
+  background: var(--siperfaqe);
+  border: 1px solid var(--kufiri);
+  border-radius: var(--rreze-2);
+  box-shadow: var(--hije-1);
+}
+
+.barnatorja--kujdestare {
+  border-color: var(--hapur);
+}
+
+.barnatorja__shkronja {
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  flex: none;
+  border-radius: 50%;
+  background: var(--theks-zbehte);
+  color: var(--theks);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.barnatorja--kujdestare .barnatorja__shkronja {
+  background: var(--hapur-zbehte);
+  color: var(--hapur);
+}
+
+.barnatorja__krye {
+  flex: 1;
+  min-width: 0;
+}
+
+.barnatorja__emri {
+  display: block;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+/* Adresa mbështillet në rresht të dytë; prerja me „…" do të hiqte pikërisht
+   pjesën që i duhet dikujt që nuk e njeh vendin. */
+.barnatorja__meta {
+  display: block;
+  font-size: 0.83rem;
+  line-height: 1.4;
+  color: var(--teksti-zbehte);
+  text-wrap: pretty;
+}
+
+.barnatorja__veprimet {
+  display: flex;
+  gap: 0.35rem;
+  flex: none;
+}
+
+/* ── Njoftimi për projeksionin ──────────────────────────────────────────── */
+
 .njoftim {
-  background: var(--projektim-sfond);
+  padding: 1.1rem 1.2rem;
+  background: var(--projektim-zbehte);
   border: 1px dashed var(--projektim);
   border-radius: var(--rreze);
-  padding: 1.15rem 1.25rem;
-}
-
-.njoftim p {
-  margin: 0 0 0.6rem;
-}
-
-.njoftim p:last-child {
-  margin-bottom: 0;
+  font-size: 0.94rem;
 }
 
 .njoftim .titull-seksioni {
   color: var(--projektim);
 }
 
-.lidhje-theksuar {
+.njoftim p {
+  margin: 0 0 0.7rem;
+}
+
+.njoftim p:last-child {
+  margin-bottom: 0;
+}
+
+.njoftim a {
+  color: inherit;
   font-weight: 650;
 }
 
-/* Fundfaqja */
+.lidhje-jashtme {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* ── Fundfaqja ──────────────────────────────────────────────────────────── */
+
 .fundfaqja {
-  border-top: 1px solid var(--kufiri);
-  padding-top: 1.5rem;
   font-size: 0.9rem;
   color: var(--teksti-zbehte);
 }
 
-.fundfaqja p {
+.detaje {
+  background: var(--siperfaqe);
+  border: 1px solid var(--kufiri);
+  border-radius: var(--rreze-2);
+}
+
+.detaje + .detaje {
+  margin-top: 0.5rem;
+}
+
+.detaje__krye {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  color: var(--teksti);
+  font-weight: 650;
+  cursor: pointer;
+  list-style: none;
+  border-radius: inherit;
+}
+
+.detaje__krye::-webkit-details-marker {
+  display: none;
+}
+
+.detaje__shigjeta {
+  flex: none;
+  color: var(--teksti-zbehte);
+  transition: transform 0.2s ease;
+}
+
+.detaje[open] .detaje__shigjeta {
+  transform: rotate(180deg);
+}
+
+.detaje__trupi {
+  padding: 0 1rem 1rem;
+}
+
+.detaje__trupi > :first-child {
+  margin-top: 0;
+}
+
+.detaje__trupi p {
   margin: 0 0 0.7rem;
 }
 
-.fundfaqja__lista {
-  margin: 0 0 0.9rem;
+.detaje__trupi strong {
+  color: var(--teksti);
+}
+
+.detaje__lista {
+  margin: 0 0 0.8rem;
   padding-left: 1.15rem;
 }
 
+.detaje__lista li + li {
+  margin-top: 0.3rem;
+}
+
 .fundfaqja__meta {
+  margin: 1rem 0 0;
   font-size: 0.82rem;
+  line-height: 1.6;
 }
 
 .fundfaqja__autori {
-  margin-top: 1.1rem;
+  margin: 1.1rem 0 0;
   padding-top: 0.9rem;
   border-top: 1px solid var(--kufiri);
   font-size: 0.82rem;
 }
 
-/* Në ekrane të ngushta hiqet kolona e ditës, që emri i barnatores të mos pritet. */
+/* ── Hyrja ──────────────────────────────────────────────────────────────── */
+
+/* Vetëm në vizatimin e parë; rifreskimet çdo minutë nuk e përsërisin. */
+.faqja--hyrje > * {
+  animation: hyr 0.5s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+
+.faqja--hyrje > :nth-child(2) {
+  animation-delay: 0.05s;
+}
+
+.faqja--hyrje > :nth-child(n + 3) {
+  animation-delay: 0.1s;
+}
+
+@keyframes hyr {
+  from {
+    opacity: 0;
+    transform: translateY(0.6rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Ekrane të ngushta ──────────────────────────────────────────────────── */
+
 @media (max-width: 30rem) {
-  .tabela th:nth-child(2),
-  .qeliza-dite,
-  .qeliza-nesër {
+  /* „E mërkurë" → „Mër": data dhe emri i barnatores kanë përparësi mbi ditën. */
+  .qeliza-dita__plote {
     display: none;
   }
 
+  .qeliza-dita__shkurt {
+    display: inline;
+  }
+
   .tabela {
-    font-size: 0.88rem;
+    font-size: 0.9rem;
   }
 
   .tabela th,
   .tabela td {
-    padding-inline: 0.45rem;
+    padding-inline: 0.6rem;
+  }
+
+  .veprimet .buton {
+    flex: 1 1 auto;
+  }
+}
+
+/* ── Shtypja ────────────────────────────────────────────────────────────── */
+
+@media print {
+  :root {
+    --sfond: #fff;
+    --siperfaqe: #fff;
+    --siperfaqe-2: #fff;
+    --teksti: #000;
+    --teksti-zbehte: #333;
+    --kufiri: #bbb;
+    --theks: #000;
+    --theks-zbehte: #eee;
+    --hije-1: none;
+    --hije-2: none;
+  }
+
+  body {
+    background-image: none;
+  }
+
+  .veprimet,
+  .muaj-shirit,
+  .barnatorja__veprimet {
+    display: none;
+  }
+
+  .tabela-mbeshtjellese {
+    overflow: visible;
+  }
+
+  .tabela tr {
+    break-inside: avoid;
   }
 }

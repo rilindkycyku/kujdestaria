@@ -1,7 +1,8 @@
 # kujdestaria
 
 Orari i kujdestarisë së barnatoreve për qytetin e Kaçanikut — faqe e vogël Vite që tregon
-menjëherë **cila barnatore është kujdestare sot**, plus orarin e plotë sipas muajve.
+menjëherë **cila barnatore është kujdestare tani**, sa i ka mbetur kujdestarisë, si
+shkohet atje, plus orarin e plotë sipas muajve.
 
 ## Zhvillimi
 
@@ -16,6 +17,60 @@ npm run ikonat    # rigjeneron ikonat PNG te public/
 
 Faqja është statike pas `npm run build` — `dist/` mund të vendoset kudo (GitHub Pages,
 Netlify, Vercel, ose një server i thjeshtë).
+
+## Ndërfaqja
+
+Rasti i përdorimit është një person në ora 02:00 me pyetjen „ku shkoj tani". Prandaj
+hierarkia është e prerë: emri i barnatores është elementi më i madh në ekran, **Hape në
+Maps** është buton i plotë me ngjyrën e gjendjes, dhe orari i plotë me bazën ligjore vjen
+pas, me kontrast më të ulët. Tema e errët nuk është shtojcë — është gjendja e pritur në
+atë orë.
+
+### Kartela e gjendjes
+
+Kartela ka tri gjendje, dhe ngjyra e saj (`--gjendja`) i ndjek:
+
+| Gjendja | Kur | Ngjyra | Teksti |
+| --- | --- | --- | --- |
+| `tani--nate` | 22:00–08:00, kujdestaria në fuqi | jeshile | „E hapur tani" + sa i ka mbetur |
+| `tani--dite` | 08:00–22:00, orari i rregullt | e kaltër | „Kujdestare sonte" + pas sa kohe fillon |
+| `tani--jashte` | data jashtë periudhës së orarit | e kaltër | shpjegim + lidhja te shpalljet |
+
+Numërimi i kohës thotë **kujdestaria** mbaron/fillon, jo barnatorja mbyllet/hapet — në
+ora 08:00 barnatorja nuk mbyllet, kalon në orarin e rregullt bashkë me të gjitha të
+tjerat. Shiriti nën tekst tregon sa e ka kaluar nata rrugën prej 22:00 në 08:00.
+
+Ndërrimi bëhet pikërisht në kufirin e minutës (`tikuIMinutes`), jo 60 sekonda pas hapjes,
+përndryshe numërimi qëndron i ngrirë sa mbushet intervali i parë.
+
+### Vizatimi sipas pjesëve
+
+Kartela rifreskohet çdo minutë. Nëse do të rishkruhej `app.innerHTML` i tërë — si më parë
+— çdo minutë do të humbte rrëshqitja e tabelës, `<details>`-i i hapur dhe fokusi i
+tastierës. Prandaj skeleti vendoset një herë dhe `cakto()` shkruan vetëm pjesën që ka
+ndryshuar vërtet, duke kthyer fokusin mbi elementin me të njëjtin `data-fokus`. Në një
+minutë të zakonshme ndryshon vetëm kartela e gjendjes.
+
+Ndërrimi i muajit nuk e rivizaton shiritin e muajve: përditësohet `aria-pressed`, dhe
+stili i butonit aktiv varet nga ai atribut, prandaj fokusi mbetet mbi butonin e shtypur.
+
+### Stilet dhe CSP-ja
+
+CSP-ja e faqes është `style-src 'self'`, pa `unsafe-inline` — asnjë atribut `style` nuk
+kalon. Kjo e vendos një kufi: gjerësia e shiritit të natës është vlerë dinamike, prandaj
+vizatohet me SVG, ku gjerësia është **atribut** i `<rect>`, jo stil. E provuar me
+pikërisht headers-at e [`vercel.json`](vercel.json).
+
+Ikonat janë SVG inline te [`src/ikonat.js`](src/ikonat.js) e nuk janë emoji: emoji-t
+vizatohen nga fonti i sistemit, dalin me ngjyra e madhësi të ndryshme sipas pajisjes dhe
+nuk marrin ngjyrën e tekstit përreth.
+
+### Ekranet e vogla
+
+Nën 30rem dita e javës shkurtohet („E mërkurë" → „Mër") në vend që të fshihet, kështu
+tabela mbetet e plotë edhe në 320px. Shiriti i muajve rrëshqet horizontalisht dhe hapet
+te muaji aktual. `env(safe-area-inset-*)` bashkë me `viewport-fit=cover` mbajnë faqen
+larg qosheve të rrumbullakuara kur ekzekutohet e instaluar. Ka edhe stil për shtypje.
 
 ## PWA — instalim dhe punë pa internet
 
@@ -53,8 +108,9 @@ instaluar, butoni fshihet.
 ### Butoni „Ndaje"
 
 Përdor `navigator.share()` kur ekziston; përndryshe e kopjon lidhjen në clipboard dhe e
-thotë atë. Teksti i ndarë përmban edhe përgjigjen, jo vetëm lidhjen — p.sh.
-„Kujdestare tani në Kaçanik: Rigoni-2 — e hapur deri në ora 08:00."
+thotë atë. Teksti i ndarë përmban edhe përgjigjen, jo vetëm lidhjen — p.sh. „Barnatorja
+kujdestare në Kaçanik, nata 26.07 → 27.07: Rigoni-2 (BK Center), e hapur 22:00–08:00."
+Nata shënohet me datë sepse „tani" bëhet i pasaktë sapo mesazhi lexohet një orë më vonë.
 
 ## Vendosja në Vercel
 

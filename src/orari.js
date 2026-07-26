@@ -24,6 +24,15 @@ export function tëGjithaBarnatoret() {
   return orari.barnatoret.map((b) => barnatorja(b.emri));
 }
 
+/**
+ * Sa net kujdestarie ka një barnatore brenda një cikli.
+ * Flora, Rigoni dhe Rigoni-2 shfaqen dy herë në ciklin 10-ditor, prandaj kanë
+ * dy net; të tjerat një.
+ */
+export function netNeCikel(emri) {
+  return orari.rotacioni.filter((i) => i === emri).length;
+}
+
 /** A ka të paktën një barnatore lidhje harte? Nëse jo, seksioni i hartave fshihet. */
 export function kaHarta() {
   return tëGjithaBarnatoret().some((b) => b.harta);
@@ -101,10 +110,19 @@ export function dataShkurt(data) {
   return `${dita}.${muaji}`;
 }
 
-/** Numri i ditëve nga `nga` deri te `deri` (të dyja si `YYYY-MM-DD`). */
-export function ditetMes(nga, deri) {
-  const ms = Date.parse(`${deri}T00:00:00Z`) - Date.parse(`${nga}T00:00:00Z`);
-  return Math.round(ms / 86400000);
+/** `'E mërkurë'` → `'Mër'`, që dita të hyjë në kartelat e ngushta. */
+export function ditaShkurt(dita) {
+  const emri = dita.replace(/^E\s+/i, '');
+  return emri.charAt(0).toUpperCase() + emri.slice(1, 3);
+}
+
+/** `97` → `'1 h 37 min'`. Ora e vetme dhe minutat e vetme nuk shkruhen kot. */
+export function kohaShkurt(minuta) {
+  const ore = Math.floor(minuta / 60);
+  const mbetja = minuta % 60;
+  if (ore === 0) return `${mbetja} min`;
+  if (mbetja === 0) return `${ore} h`;
+  return `${ore} h ${mbetja} min`;
 }
 
 /** Zhvendos një datë `YYYY-MM-DD` me `n` ditë, pa u ndikuar nga ora verore. */
@@ -127,27 +145,52 @@ export function neMinuta(ora) {
  * të nesërmen. Prandaj pas mesnate ende vlen kujdestarja e datës së djeshme —
  * pikërisht arsyeja pse nuk mjafton `kujdestariaPer(dataSot())`.
  *
- * Kthen `{ faza, dita, natenIsFilloi }`:
+ * Kthen `{ faza, dita, natenIsFilloi, mbeten, kaluar, gjatesia }`:
  *  - `faza: 'nate'` — jemi brenda kujdestarisë; `dita` është kujdestarja e hapur tani
  *  - `faza: 'dite'` — orari i rregullt; `dita` është kujdestarja e natës që vjen
+ *  - `mbeten` — minuta deri te kufiri tjetër: mbyllja në 08:00, ose hapja në 22:00
+ *  - `kaluar` / `gjatesia` — minutat e kaluara të natës ndaj gjatësisë së plotë (0 ditën)
  */
 export function kujdestariaTani(tani = new Date()) {
   const fillonNata = neMinuta(orari.orari.kujdestaria.prej);
   const mbaronNata = neMinuta(orari.orari.kujdestaria.deri);
+  // Nata kalon mesnatën, prandaj gjatësia matet në dy pjesë.
+  const gjatesia = 24 * 60 - fillonNata + mbaronNata;
   const minutaTani = tani.getHours() * 60 + tani.getMinutes();
   const sot = dataSot(tani);
 
   // Pas mesnate deri në mëngjes: nata e nisur dje.
   if (minutaTani < mbaronNata) {
     const dje = zhvendosDite(sot, -1);
-    return { faza: 'nate', dita: kujdestariaPer(dje), natenIsFilloi: dje };
+    return {
+      faza: 'nate',
+      dita: kujdestariaPer(dje),
+      natenIsFilloi: dje,
+      mbeten: mbaronNata - minutaTani,
+      kaluar: 24 * 60 - fillonNata + minutaTani,
+      gjatesia,
+    };
   }
 
   // Prej ores 22:00 deri në mesnatë: nata e nisur sot.
   if (minutaTani >= fillonNata) {
-    return { faza: 'nate', dita: kujdestariaPer(sot), natenIsFilloi: sot };
+    return {
+      faza: 'nate',
+      dita: kujdestariaPer(sot),
+      natenIsFilloi: sot,
+      mbeten: fillonNata + gjatesia - minutaTani,
+      kaluar: minutaTani - fillonNata,
+      gjatesia,
+    };
   }
 
   // Orari i rregullt: të gjitha hapur, kujdestaria e sonte ende s'ka filluar.
-  return { faza: 'dite', dita: kujdestariaPer(sot), natenIsFilloi: sot };
+  return {
+    faza: 'dite',
+    dita: kujdestariaPer(sot),
+    natenIsFilloi: sot,
+    mbeten: fillonNata - minutaTani,
+    kaluar: 0,
+    gjatesia,
+  };
 }

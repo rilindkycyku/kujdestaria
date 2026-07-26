@@ -12,7 +12,7 @@ import { writeFileSync, mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
-const KALTER = [0x14, 0x52, 0x8c];
+const KALTER = [0x0f, 0x5a, 0xa8];
 const BARDH = [0xff, 0xff, 0xff];
 
 /**
