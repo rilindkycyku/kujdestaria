@@ -1,4 +1,5 @@
 import './style.css';
+import { inject } from '@vercel/analytics';
 import {
   orari,
   dataSot,
@@ -371,3 +372,7 @@ setInterval(vizato, 60_000);
 document.addEventListener('visibilitychange', () => {
   if (!document.hidden) vizato();
 });
+
+// Vercel Analytics. Skripta shërbehet nga vetë domeni (/_vercel/insights), prandaj
+// jashtë Vercel-it thjesht nuk ngarkohet — faqja punon njësoj.
+inject();

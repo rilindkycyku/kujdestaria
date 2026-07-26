@@ -16,6 +16,34 @@ npm run gjenero   # rigjeneron src/data/orari-2026.json
 Faqja është statike pas `npm run build` — `dist/` mund të vendoset kudo (GitHub Pages,
 Netlify, Vercel, ose një server i thjeshtë).
 
+## Vendosja në Vercel
+
+[`vercel.json`](vercel.json) e mbulon konfigurimin; Vercel-i e njeh vetë projektin si
+Vite, prandaj mjafton ta lidhësh depon dhe të bësh deploy.
+
+**Cache-i** është pjesa që ka rëndësi këtu. Skedarët te `/assets/` kanë emër me hash,
+prandaj ruhen një vit si `immutable`. `index.html` shërbehet me `must-revalidate`, që
+kur të dalë orari i ri të mos mbetet askush me faqen e vjetër në cache.
+
+**Headers-at e sigurisë** vendosen për të gjitha rrugët: CSP (`default-src 'self'`, pa
+`unsafe-inline`), `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options` dhe
+`Permissions-Policy`. Faqja nuk ka skripta as stile inline, prandaj CSP-ja e rreptë
+kalon pa përjashtime — e provuar në Chromium me pikërisht këto headers.
+
+### Analytics
+
+[Vercel Analytics](https://vercel.com/docs/analytics) thirret me `inject()` në fund të
+[`src/main.js`](src/main.js). Duhet aktivizuar edhe te paneli i projektit në Vercel
+(**Analytics → Enable**), përndryshe grumbullimi nuk ndodh.
+
+Skripta shërbehet nga vetë domeni (`/_vercel/insights/script.js`), prandaj hyn te
+`script-src 'self'` dhe nuk kërkon lirim në CSP. Jashtë Vercel-it — në `npm run dev`,
+`npm run preview` ose ndonjë host tjetër — kërkesa kthen 404 dhe thjesht injorohet;
+faqja punon njësoj.
+
+Për Speed Insights mjafton `npm i @vercel/speed-insights` dhe një `injectSpeedInsights()`
+po aty; nuk është shtuar sepse nuk u kërkua.
+
 ## Të dhënat
 
 Të gjitha të dhënat janë në [`src/data/orari-2026.json`](src/data/orari-2026.json), i
