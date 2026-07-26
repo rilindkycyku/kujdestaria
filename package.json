@@ -1,0 +1,20 @@
+{
+  "name": "kujdestaria",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Orari i kujdestaris\u00eb s\u00eb barnatoreve p\u00ebr qytetin e Ka\u00e7anikut",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && node scripts/pergatit-sw.mjs",
+    "preview": "vite preview",
+    "gjenero": "node scripts/gjenero-orarin.mjs",
+    "ikonat": "node scripts/gjenero-ikonat.mjs"
+  },
+  "devDependencies": {
+    "vite": "^8.1.5"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
