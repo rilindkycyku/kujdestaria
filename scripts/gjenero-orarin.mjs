@@ -28,6 +28,11 @@ const FILLIMI = '2026-07-01';
 const FUNDI_ZYRTAR = '2026-08-31'; // deri ku e mbulon dokumenti i publikuar
 const FUNDI = '2026-12-31'; // deri ku e projektojmë rotacionin
 
+// Orari i rregullt vlen për të gjitha barnatoret; kujdestaria fillon kur ai mbaron
+// dhe vazhdon tërë natën deri në mëngjes.
+const ORARI_I_RREGULLT = { prej: '08:00', deri: '22:00' };
+const ORARI_I_KUJDESTARISE = { prej: '22:00', deri: '08:00' };
+
 const DITET = [
   'E diel',
   'E hënë',
@@ -60,8 +65,8 @@ for (let d = dt(FILLIMI), i = 0; d <= dt(FUNDI); d = shtoDite(d, 1), i++) {
     barnatorja: ROTACIONI[pozita],
     pozitaNeCikel: pozita + 1,
     sezoni: d <= fundiIVeres ? 'veror' : 'dimeror',
-    // 08:00–22:00 gjatë tërë vitit: verë sipas rregullores, dimër sipas vendimit të kryetarit.
-    orari: { prej: '08:00', deri: '22:00' },
+    // Nata që fillon këtë datë në ora 22:00 dhe mbaron në ora 08:00 të nesërmen.
+    kujdestaria: { ...ORARI_I_KUJDESTARISE, mbaronMe: iso(shtoDite(d, 1)) },
     zyrtare: iso(d) <= FUNDI_ZYRTAR,
   });
 }
@@ -101,6 +106,19 @@ const doc = {
     'Rregullorja Komunale 01Nr.05-16-2609/15 e datës 30.01.2015',
     'Vendimi i Kryetarit të komunës 01Nr.104/02-30047/22 për zgjatjen e orarit të punës për barnatoret farmaceutike',
   ],
+  orari: {
+    iRregullt: {
+      ...ORARI_I_RREGULLT,
+      shpjegimi:
+        'Orari i rregullt i punës, i njëjtë për të gjitha barnatoret. Gjatë tij nuk ka barnatore të veçantë kujdestare.',
+    },
+    kujdestaria: {
+      ...ORARI_I_KUJDESTARISE,
+      shpjegimi:
+        'Pas orarit të rregullt, barnatorja kujdestare e asaj date qëndron e hapur tërë natën, ' +
+        'deri në ora 08:00 të nesërmen.',
+    },
+  },
   sezonet: {
     veror: {
       pershkrimi:

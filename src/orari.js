@@ -76,6 +76,51 @@ export function dataShkurt(data) {
 
 /** Numri i ditëve nga `nga` deri te `deri` (të dyja si `YYYY-MM-DD`). */
 export function ditetMes(nga, deri) {
-  const ms = Date.parse(`${deri}T00:00:00`) - Date.parse(`${nga}T00:00:00`);
+  const ms = Date.parse(`${deri}T00:00:00Z`) - Date.parse(`${nga}T00:00:00Z`);
   return Math.round(ms / 86400000);
+}
+
+/** Zhvendos një datë `YYYY-MM-DD` me `n` ditë, pa u ndikuar nga ora verore. */
+export function zhvendosDite(data, n) {
+  const d = new Date(`${data}T00:00:00Z`);
+  d.setUTCDate(d.getUTCDate() + n);
+  return d.toISOString().slice(0, 10);
+}
+
+/** `'22:00'` → `1320` (minuta nga mesnata). */
+export function neMinuta(ora) {
+  const [o, m] = ora.split(':').map(Number);
+  return o * 60 + m;
+}
+
+/**
+ * Kush është kujdestar në këtë moment.
+ *
+ * Kujdestaria e një date fillon në ora 22:00 të asaj date dhe mbaron në ora 08:00
+ * të nesërmen. Prandaj pas mesnate ende vlen kujdestarja e datës së djeshme —
+ * pikërisht arsyeja pse nuk mjafton `kujdestariaPer(dataSot())`.
+ *
+ * Kthen `{ faza, dita, natenIsFilloi }`:
+ *  - `faza: 'nate'` — jemi brenda kujdestarisë; `dita` është kujdestarja e hapur tani
+ *  - `faza: 'dite'` — orari i rregullt; `dita` është kujdestarja e natës që vjen
+ */
+export function kujdestariaTani(tani = new Date()) {
+  const fillonNata = neMinuta(orari.orari.kujdestaria.prej);
+  const mbaronNata = neMinuta(orari.orari.kujdestaria.deri);
+  const minutaTani = tani.getHours() * 60 + tani.getMinutes();
+  const sot = dataSot(tani);
+
+  // Pas mesnate deri në mëngjes: nata e nisur dje.
+  if (minutaTani < mbaronNata) {
+    const dje = zhvendosDite(sot, -1);
+    return { faza: 'nate', dita: kujdestariaPer(dje), natenIsFilloi: dje };
+  }
+
+  // Prej ores 22:00 deri në mesnatë: nata e nisur sot.
+  if (minutaTani >= fillonNata) {
+    return { faza: 'nate', dita: kujdestariaPer(sot), natenIsFilloi: sot };
+  }
+
+  // Orari i rregullt: të gjitha hapur, kujdestaria e sonte ende s'ka filluar.
+  return { faza: 'dite', dita: kujdestariaPer(sot), natenIsFilloi: sot };
 }

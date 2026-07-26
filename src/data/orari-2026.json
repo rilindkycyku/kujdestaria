@@ -27,6 +27,18 @@
     "Rregullorja Komunale 01Nr.05-16-2609/15 e datës 30.01.2015",
     "Vendimi i Kryetarit të komunës 01Nr.104/02-30047/22 për zgjatjen e orarit të punës për barnatoret farmaceutike"
   ],
+  "orari": {
+    "iRregullt": {
+      "prej": "08:00",
+      "deri": "22:00",
+      "shpjegimi": "Orari i rregullt i punës, i njëjtë për të gjitha barnatoret. Gjatë tij nuk ka barnatore të veçantë kujdestare."
+    },
+    "kujdestaria": {
+      "prej": "22:00",
+      "deri": "08:00",
+      "shpjegimi": "Pas orarit të rregullt, barnatorja kujdestare e asaj date qëndron e hapur tërë natën, deri në ora 08:00 të nesërmen."
+    }
+  },
   "sezonet": {
     "veror": {
       "pershkrimi": "Fillon nga e diela e fundit e muajit Mars dhe përfundon me të dielën e fundit të muajit Tetor.",
@@ -80,9 +92,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 1,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-02"
       },
       "zyrtare": true
     },
@@ -92,9 +105,10 @@
       "barnatorja": "Liampharm",
       "pozitaNeCikel": 2,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-03"
       },
       "zyrtare": true
     },
@@ -104,9 +118,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 3,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-04"
       },
       "zyrtare": true
     },
@@ -116,9 +131,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 4,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-05"
       },
       "zyrtare": true
     },
@@ -128,9 +144,10 @@
       "barnatorja": "Dielli",
       "pozitaNeCikel": 5,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-06"
       },
       "zyrtare": true
     },
@@ -140,9 +157,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 6,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-07"
       },
       "zyrtare": true
     },
@@ -152,9 +170,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 7,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-08"
       },
       "zyrtare": true
     },
@@ -164,9 +183,10 @@
       "barnatorja": "Riga",
       "pozitaNeCikel": 8,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-09"
       },
       "zyrtare": true
     },
@@ -176,9 +196,10 @@
       "barnatorja": "Riga-2",
       "pozitaNeCikel": 9,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-10"
       },
       "zyrtare": true
     },
@@ -188,9 +209,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 10,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-11"
       },
       "zyrtare": true
     },
@@ -200,9 +222,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 1,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-12"
       },
       "zyrtare": true
     },
@@ -212,9 +235,10 @@
       "barnatorja": "Liampharm",
       "pozitaNeCikel": 2,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-13"
       },
       "zyrtare": true
     },
@@ -224,9 +248,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 3,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-14"
       },
       "zyrtare": true
     },
@@ -236,9 +261,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 4,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-15"
       },
       "zyrtare": true
     },
@@ -248,9 +274,10 @@
       "barnatorja": "Dielli",
       "pozitaNeCikel": 5,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-16"
       },
       "zyrtare": true
     },
@@ -260,9 +287,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 6,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-17"
       },
       "zyrtare": true
     },
@@ -272,9 +300,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 7,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-18"
       },
       "zyrtare": true
     },
@@ -284,9 +313,10 @@
       "barnatorja": "Riga",
       "pozitaNeCikel": 8,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-19"
       },
       "zyrtare": true
     },
@@ -296,9 +326,10 @@
       "barnatorja": "Riga-2",
       "pozitaNeCikel": 9,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-20"
       },
       "zyrtare": true
     },
@@ -308,9 +339,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 10,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-21"
       },
       "zyrtare": true
     },
@@ -320,9 +352,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 1,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-22"
       },
       "zyrtare": true
     },
@@ -332,9 +365,10 @@
       "barnatorja": "Liampharm",
       "pozitaNeCikel": 2,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-23"
       },
       "zyrtare": true
     },
@@ -344,9 +378,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 3,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-24"
       },
       "zyrtare": true
     },
@@ -356,9 +391,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 4,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-25"
       },
       "zyrtare": true
     },
@@ -368,9 +404,10 @@
       "barnatorja": "Dielli",
       "pozitaNeCikel": 5,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-26"
       },
       "zyrtare": true
     },
@@ -380,9 +417,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 6,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-27"
       },
       "zyrtare": true
     },
@@ -392,9 +430,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 7,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-28"
       },
       "zyrtare": true
     },
@@ -404,9 +443,10 @@
       "barnatorja": "Riga",
       "pozitaNeCikel": 8,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-29"
       },
       "zyrtare": true
     },
@@ -416,9 +456,10 @@
       "barnatorja": "Riga-2",
       "pozitaNeCikel": 9,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-30"
       },
       "zyrtare": true
     },
@@ -428,9 +469,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 10,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-07-31"
       },
       "zyrtare": true
     },
@@ -440,9 +482,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 1,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-01"
       },
       "zyrtare": true
     },
@@ -452,9 +495,10 @@
       "barnatorja": "Liampharm",
       "pozitaNeCikel": 2,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-02"
       },
       "zyrtare": true
     },
@@ -464,9 +508,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 3,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-03"
       },
       "zyrtare": true
     },
@@ -476,9 +521,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 4,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-04"
       },
       "zyrtare": true
     },
@@ -488,9 +534,10 @@
       "barnatorja": "Dielli",
       "pozitaNeCikel": 5,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-05"
       },
       "zyrtare": true
     },
@@ -500,9 +547,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 6,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-06"
       },
       "zyrtare": true
     },
@@ -512,9 +560,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 7,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-07"
       },
       "zyrtare": true
     },
@@ -524,9 +573,10 @@
       "barnatorja": "Riga",
       "pozitaNeCikel": 8,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-08"
       },
       "zyrtare": true
     },
@@ -536,9 +586,10 @@
       "barnatorja": "Riga-2",
       "pozitaNeCikel": 9,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-09"
       },
       "zyrtare": true
     },
@@ -548,9 +599,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 10,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-10"
       },
       "zyrtare": true
     },
@@ -560,9 +612,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 1,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-11"
       },
       "zyrtare": true
     },
@@ -572,9 +625,10 @@
       "barnatorja": "Liampharm",
       "pozitaNeCikel": 2,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-12"
       },
       "zyrtare": true
     },
@@ -584,9 +638,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 3,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-13"
       },
       "zyrtare": true
     },
@@ -596,9 +651,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 4,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-14"
       },
       "zyrtare": true
     },
@@ -608,9 +664,10 @@
       "barnatorja": "Dielli",
       "pozitaNeCikel": 5,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-15"
       },
       "zyrtare": true
     },
@@ -620,9 +677,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 6,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-16"
       },
       "zyrtare": true
     },
@@ -632,9 +690,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 7,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-17"
       },
       "zyrtare": true
     },
@@ -644,9 +703,10 @@
       "barnatorja": "Riga",
       "pozitaNeCikel": 8,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-18"
       },
       "zyrtare": true
     },
@@ -656,9 +716,10 @@
       "barnatorja": "Riga-2",
       "pozitaNeCikel": 9,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-19"
       },
       "zyrtare": true
     },
@@ -668,9 +729,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 10,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-20"
       },
       "zyrtare": true
     },
@@ -680,9 +742,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 1,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-21"
       },
       "zyrtare": true
     },
@@ -692,9 +755,10 @@
       "barnatorja": "Liampharm",
       "pozitaNeCikel": 2,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-22"
       },
       "zyrtare": true
     },
@@ -704,9 +768,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 3,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-23"
       },
       "zyrtare": true
     },
@@ -716,9 +781,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 4,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-24"
       },
       "zyrtare": true
     },
@@ -728,9 +794,10 @@
       "barnatorja": "Dielli",
       "pozitaNeCikel": 5,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-25"
       },
       "zyrtare": true
     },
@@ -740,9 +807,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 6,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-26"
       },
       "zyrtare": true
     },
@@ -752,9 +820,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 7,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-27"
       },
       "zyrtare": true
     },
@@ -764,9 +833,10 @@
       "barnatorja": "Riga",
       "pozitaNeCikel": 8,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-28"
       },
       "zyrtare": true
     },
@@ -776,9 +846,10 @@
       "barnatorja": "Riga-2",
       "pozitaNeCikel": 9,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-29"
       },
       "zyrtare": true
     },
@@ -788,9 +859,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 10,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-30"
       },
       "zyrtare": true
     },
@@ -800,9 +872,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 1,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-08-31"
       },
       "zyrtare": true
     },
@@ -812,9 +885,10 @@
       "barnatorja": "Liampharm",
       "pozitaNeCikel": 2,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-01"
       },
       "zyrtare": true
     },
@@ -824,9 +898,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 3,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-02"
       },
       "zyrtare": false
     },
@@ -836,9 +911,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 4,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-03"
       },
       "zyrtare": false
     },
@@ -848,9 +924,10 @@
       "barnatorja": "Dielli",
       "pozitaNeCikel": 5,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-04"
       },
       "zyrtare": false
     },
@@ -860,9 +937,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 6,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-05"
       },
       "zyrtare": false
     },
@@ -872,9 +950,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 7,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-06"
       },
       "zyrtare": false
     },
@@ -884,9 +963,10 @@
       "barnatorja": "Riga",
       "pozitaNeCikel": 8,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-07"
       },
       "zyrtare": false
     },
@@ -896,9 +976,10 @@
       "barnatorja": "Riga-2",
       "pozitaNeCikel": 9,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-08"
       },
       "zyrtare": false
     },
@@ -908,9 +989,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 10,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-09"
       },
       "zyrtare": false
     },
@@ -920,9 +1002,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 1,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-10"
       },
       "zyrtare": false
     },
@@ -932,9 +1015,10 @@
       "barnatorja": "Liampharm",
       "pozitaNeCikel": 2,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-11"
       },
       "zyrtare": false
     },
@@ -944,9 +1028,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 3,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-12"
       },
       "zyrtare": false
     },
@@ -956,9 +1041,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 4,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-13"
       },
       "zyrtare": false
     },
@@ -968,9 +1054,10 @@
       "barnatorja": "Dielli",
       "pozitaNeCikel": 5,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-14"
       },
       "zyrtare": false
     },
@@ -980,9 +1067,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 6,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-15"
       },
       "zyrtare": false
     },
@@ -992,9 +1080,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 7,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-16"
       },
       "zyrtare": false
     },
@@ -1004,9 +1093,10 @@
       "barnatorja": "Riga",
       "pozitaNeCikel": 8,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-17"
       },
       "zyrtare": false
     },
@@ -1016,9 +1106,10 @@
       "barnatorja": "Riga-2",
       "pozitaNeCikel": 9,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-18"
       },
       "zyrtare": false
     },
@@ -1028,9 +1119,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 10,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-19"
       },
       "zyrtare": false
     },
@@ -1040,9 +1132,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 1,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-20"
       },
       "zyrtare": false
     },
@@ -1052,9 +1145,10 @@
       "barnatorja": "Liampharm",
       "pozitaNeCikel": 2,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-21"
       },
       "zyrtare": false
     },
@@ -1064,9 +1158,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 3,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-22"
       },
       "zyrtare": false
     },
@@ -1076,9 +1171,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 4,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-23"
       },
       "zyrtare": false
     },
@@ -1088,9 +1184,10 @@
       "barnatorja": "Dielli",
       "pozitaNeCikel": 5,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-24"
       },
       "zyrtare": false
     },
@@ -1100,9 +1197,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 6,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-25"
       },
       "zyrtare": false
     },
@@ -1112,9 +1210,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 7,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-26"
       },
       "zyrtare": false
     },
@@ -1124,9 +1223,10 @@
       "barnatorja": "Riga",
       "pozitaNeCikel": 8,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-27"
       },
       "zyrtare": false
     },
@@ -1136,9 +1236,10 @@
       "barnatorja": "Riga-2",
       "pozitaNeCikel": 9,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-28"
       },
       "zyrtare": false
     },
@@ -1148,9 +1249,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 10,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-29"
       },
       "zyrtare": false
     },
@@ -1160,9 +1262,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 1,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-09-30"
       },
       "zyrtare": false
     },
@@ -1172,9 +1275,10 @@
       "barnatorja": "Liampharm",
       "pozitaNeCikel": 2,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-01"
       },
       "zyrtare": false
     },
@@ -1184,9 +1288,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 3,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-02"
       },
       "zyrtare": false
     },
@@ -1196,9 +1301,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 4,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-03"
       },
       "zyrtare": false
     },
@@ -1208,9 +1314,10 @@
       "barnatorja": "Dielli",
       "pozitaNeCikel": 5,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-04"
       },
       "zyrtare": false
     },
@@ -1220,9 +1327,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 6,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-05"
       },
       "zyrtare": false
     },
@@ -1232,9 +1340,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 7,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-06"
       },
       "zyrtare": false
     },
@@ -1244,9 +1353,10 @@
       "barnatorja": "Riga",
       "pozitaNeCikel": 8,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-07"
       },
       "zyrtare": false
     },
@@ -1256,9 +1366,10 @@
       "barnatorja": "Riga-2",
       "pozitaNeCikel": 9,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-08"
       },
       "zyrtare": false
     },
@@ -1268,9 +1379,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 10,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-09"
       },
       "zyrtare": false
     },
@@ -1280,9 +1392,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 1,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-10"
       },
       "zyrtare": false
     },
@@ -1292,9 +1405,10 @@
       "barnatorja": "Liampharm",
       "pozitaNeCikel": 2,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-11"
       },
       "zyrtare": false
     },
@@ -1304,9 +1418,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 3,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-12"
       },
       "zyrtare": false
     },
@@ -1316,9 +1431,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 4,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-13"
       },
       "zyrtare": false
     },
@@ -1328,9 +1444,10 @@
       "barnatorja": "Dielli",
       "pozitaNeCikel": 5,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-14"
       },
       "zyrtare": false
     },
@@ -1340,9 +1457,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 6,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-15"
       },
       "zyrtare": false
     },
@@ -1352,9 +1470,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 7,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-16"
       },
       "zyrtare": false
     },
@@ -1364,9 +1483,10 @@
       "barnatorja": "Riga",
       "pozitaNeCikel": 8,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-17"
       },
       "zyrtare": false
     },
@@ -1376,9 +1496,10 @@
       "barnatorja": "Riga-2",
       "pozitaNeCikel": 9,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-18"
       },
       "zyrtare": false
     },
@@ -1388,9 +1509,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 10,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-19"
       },
       "zyrtare": false
     },
@@ -1400,9 +1522,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 1,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-20"
       },
       "zyrtare": false
     },
@@ -1412,9 +1535,10 @@
       "barnatorja": "Liampharm",
       "pozitaNeCikel": 2,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-21"
       },
       "zyrtare": false
     },
@@ -1424,9 +1548,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 3,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-22"
       },
       "zyrtare": false
     },
@@ -1436,9 +1561,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 4,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-23"
       },
       "zyrtare": false
     },
@@ -1448,9 +1574,10 @@
       "barnatorja": "Dielli",
       "pozitaNeCikel": 5,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-24"
       },
       "zyrtare": false
     },
@@ -1460,9 +1587,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 6,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-25"
       },
       "zyrtare": false
     },
@@ -1472,9 +1600,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 7,
       "sezoni": "veror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-26"
       },
       "zyrtare": false
     },
@@ -1484,9 +1613,10 @@
       "barnatorja": "Riga",
       "pozitaNeCikel": 8,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-27"
       },
       "zyrtare": false
     },
@@ -1496,9 +1626,10 @@
       "barnatorja": "Riga-2",
       "pozitaNeCikel": 9,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-28"
       },
       "zyrtare": false
     },
@@ -1508,9 +1639,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 10,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-29"
       },
       "zyrtare": false
     },
@@ -1520,9 +1652,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 1,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-30"
       },
       "zyrtare": false
     },
@@ -1532,9 +1665,10 @@
       "barnatorja": "Liampharm",
       "pozitaNeCikel": 2,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-10-31"
       },
       "zyrtare": false
     },
@@ -1544,9 +1678,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 3,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-01"
       },
       "zyrtare": false
     },
@@ -1556,9 +1691,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 4,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-02"
       },
       "zyrtare": false
     },
@@ -1568,9 +1704,10 @@
       "barnatorja": "Dielli",
       "pozitaNeCikel": 5,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-03"
       },
       "zyrtare": false
     },
@@ -1580,9 +1717,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 6,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-04"
       },
       "zyrtare": false
     },
@@ -1592,9 +1730,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 7,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-05"
       },
       "zyrtare": false
     },
@@ -1604,9 +1743,10 @@
       "barnatorja": "Riga",
       "pozitaNeCikel": 8,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-06"
       },
       "zyrtare": false
     },
@@ -1616,9 +1756,10 @@
       "barnatorja": "Riga-2",
       "pozitaNeCikel": 9,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-07"
       },
       "zyrtare": false
     },
@@ -1628,9 +1769,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 10,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-08"
       },
       "zyrtare": false
     },
@@ -1640,9 +1782,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 1,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-09"
       },
       "zyrtare": false
     },
@@ -1652,9 +1795,10 @@
       "barnatorja": "Liampharm",
       "pozitaNeCikel": 2,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-10"
       },
       "zyrtare": false
     },
@@ -1664,9 +1808,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 3,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-11"
       },
       "zyrtare": false
     },
@@ -1676,9 +1821,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 4,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-12"
       },
       "zyrtare": false
     },
@@ -1688,9 +1834,10 @@
       "barnatorja": "Dielli",
       "pozitaNeCikel": 5,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-13"
       },
       "zyrtare": false
     },
@@ -1700,9 +1847,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 6,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-14"
       },
       "zyrtare": false
     },
@@ -1712,9 +1860,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 7,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-15"
       },
       "zyrtare": false
     },
@@ -1724,9 +1873,10 @@
       "barnatorja": "Riga",
       "pozitaNeCikel": 8,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-16"
       },
       "zyrtare": false
     },
@@ -1736,9 +1886,10 @@
       "barnatorja": "Riga-2",
       "pozitaNeCikel": 9,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-17"
       },
       "zyrtare": false
     },
@@ -1748,9 +1899,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 10,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-18"
       },
       "zyrtare": false
     },
@@ -1760,9 +1912,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 1,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-19"
       },
       "zyrtare": false
     },
@@ -1772,9 +1925,10 @@
       "barnatorja": "Liampharm",
       "pozitaNeCikel": 2,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-20"
       },
       "zyrtare": false
     },
@@ -1784,9 +1938,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 3,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-21"
       },
       "zyrtare": false
     },
@@ -1796,9 +1951,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 4,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-22"
       },
       "zyrtare": false
     },
@@ -1808,9 +1964,10 @@
       "barnatorja": "Dielli",
       "pozitaNeCikel": 5,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-23"
       },
       "zyrtare": false
     },
@@ -1820,9 +1977,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 6,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-24"
       },
       "zyrtare": false
     },
@@ -1832,9 +1990,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 7,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-25"
       },
       "zyrtare": false
     },
@@ -1844,9 +2003,10 @@
       "barnatorja": "Riga",
       "pozitaNeCikel": 8,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-26"
       },
       "zyrtare": false
     },
@@ -1856,9 +2016,10 @@
       "barnatorja": "Riga-2",
       "pozitaNeCikel": 9,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-27"
       },
       "zyrtare": false
     },
@@ -1868,9 +2029,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 10,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-28"
       },
       "zyrtare": false
     },
@@ -1880,9 +2042,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 1,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-29"
       },
       "zyrtare": false
     },
@@ -1892,9 +2055,10 @@
       "barnatorja": "Liampharm",
       "pozitaNeCikel": 2,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-11-30"
       },
       "zyrtare": false
     },
@@ -1904,9 +2068,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 3,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-01"
       },
       "zyrtare": false
     },
@@ -1916,9 +2081,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 4,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-02"
       },
       "zyrtare": false
     },
@@ -1928,9 +2094,10 @@
       "barnatorja": "Dielli",
       "pozitaNeCikel": 5,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-03"
       },
       "zyrtare": false
     },
@@ -1940,9 +2107,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 6,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-04"
       },
       "zyrtare": false
     },
@@ -1952,9 +2120,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 7,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-05"
       },
       "zyrtare": false
     },
@@ -1964,9 +2133,10 @@
       "barnatorja": "Riga",
       "pozitaNeCikel": 8,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-06"
       },
       "zyrtare": false
     },
@@ -1976,9 +2146,10 @@
       "barnatorja": "Riga-2",
       "pozitaNeCikel": 9,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-07"
       },
       "zyrtare": false
     },
@@ -1988,9 +2159,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 10,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-08"
       },
       "zyrtare": false
     },
@@ -2000,9 +2172,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 1,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-09"
       },
       "zyrtare": false
     },
@@ -2012,9 +2185,10 @@
       "barnatorja": "Liampharm",
       "pozitaNeCikel": 2,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-10"
       },
       "zyrtare": false
     },
@@ -2024,9 +2198,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 3,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-11"
       },
       "zyrtare": false
     },
@@ -2036,9 +2211,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 4,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-12"
       },
       "zyrtare": false
     },
@@ -2048,9 +2224,10 @@
       "barnatorja": "Dielli",
       "pozitaNeCikel": 5,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-13"
       },
       "zyrtare": false
     },
@@ -2060,9 +2237,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 6,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-14"
       },
       "zyrtare": false
     },
@@ -2072,9 +2250,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 7,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-15"
       },
       "zyrtare": false
     },
@@ -2084,9 +2263,10 @@
       "barnatorja": "Riga",
       "pozitaNeCikel": 8,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-16"
       },
       "zyrtare": false
     },
@@ -2096,9 +2276,10 @@
       "barnatorja": "Riga-2",
       "pozitaNeCikel": 9,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-17"
       },
       "zyrtare": false
     },
@@ -2108,9 +2289,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 10,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-18"
       },
       "zyrtare": false
     },
@@ -2120,9 +2302,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 1,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-19"
       },
       "zyrtare": false
     },
@@ -2132,9 +2315,10 @@
       "barnatorja": "Liampharm",
       "pozitaNeCikel": 2,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-20"
       },
       "zyrtare": false
     },
@@ -2144,9 +2328,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 3,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-21"
       },
       "zyrtare": false
     },
@@ -2156,9 +2341,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 4,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-22"
       },
       "zyrtare": false
     },
@@ -2168,9 +2354,10 @@
       "barnatorja": "Dielli",
       "pozitaNeCikel": 5,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-23"
       },
       "zyrtare": false
     },
@@ -2180,9 +2367,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 6,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-24"
       },
       "zyrtare": false
     },
@@ -2192,9 +2380,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 7,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-25"
       },
       "zyrtare": false
     },
@@ -2204,9 +2393,10 @@
       "barnatorja": "Riga",
       "pozitaNeCikel": 8,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-26"
       },
       "zyrtare": false
     },
@@ -2216,9 +2406,10 @@
       "barnatorja": "Riga-2",
       "pozitaNeCikel": 9,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-27"
       },
       "zyrtare": false
     },
@@ -2228,9 +2419,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 10,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-28"
       },
       "zyrtare": false
     },
@@ -2240,9 +2432,10 @@
       "barnatorja": "Flora",
       "pozitaNeCikel": 1,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-29"
       },
       "zyrtare": false
     },
@@ -2252,9 +2445,10 @@
       "barnatorja": "Liampharm",
       "pozitaNeCikel": 2,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-30"
       },
       "zyrtare": false
     },
@@ -2264,9 +2458,10 @@
       "barnatorja": "Rigoni-2",
       "pozitaNeCikel": 3,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2026-12-31"
       },
       "zyrtare": false
     },
@@ -2276,9 +2471,10 @@
       "barnatorja": "Rigoni",
       "pozitaNeCikel": 4,
       "sezoni": "dimeror",
-      "orari": {
-        "prej": "08:00",
-        "deri": "22:00"
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-01"
       },
       "zyrtare": false
     }

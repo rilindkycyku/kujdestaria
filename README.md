@@ -41,9 +41,26 @@ Kujdestaria ndërrohet çdo ditë sipas një cikli 10-ditor:
 Flora, Rigoni dhe Rigoni-2 shfaqen dy herë në cikël, prandaj kanë nga dy ditë kujdestarie
 për çdo 10 ditë.
 
-Orari i punës është **08:00–22:00** gjatë tërë vitit: në sezonin veror sipas Rregullores
+### Orari
+
+Dy orare të ndryshme, që nuk duhen ngatërruar:
+
+| | Orari | Kush |
+| --- | --- | --- |
+| **Orari i rregullt** | 08:00–22:00 | të gjitha barnatoret |
+| **Kujdestaria** | 22:00–08:00 | vetëm barnatorja kujdestare e atij dati |
+
+Orari i rregullt **08:00–22:00** vlen gjatë tërë vitit: në sezonin veror sipas Rregullores
 Komunale `01Nr.05-16-2609/15`, kurse në sezonin dimëror sipas Vendimit të Kryetarit
 `01Nr.104/02-30047/22`, i cili e zgjat orarin dimëror nga 08:00–20:00 në 08:00–22:00.
+Gjatë tij nuk ka barnatore të veçantë kujdestare — janë hapur të gjitha.
+
+Kujdestaria fillon kur mbaron orari i rregullt: barnatorja e caktuar për një datë qëndron
+e hapur **prej 22:00 të asaj date deri në 08:00 të nesërmen**. Kjo ka një pasojë që faqja
+e mban parasysh: **pas mesnate kujdestare është ende barnatorja e datës së kaluar.** Në
+ora 02:00 të 27.07 është e hapur barnatorja e 26.07, jo e 27.07 — prandaj
+`kujdestariaTani()` në [`src/orari.js`](src/orari.js) nuk mjafton të kthejë
+`kujdestariaPer(dataSot())`.
 
 ### Datat zyrtare dhe ato të projektuara
 
@@ -62,6 +79,10 @@ bosh çdo dy muaj, i njëjti rotacion 10-ditor është vazhduar me llogaritje de
 ```jsonc
 {
   "periudha":    { "prej": "2026-07-01", "deri": "2026-12-31", "zyrtareDeri": "2026-08-31" },
+  "orari": {
+    "iRregullt":   { "prej": "08:00", "deri": "22:00" },  // të gjitha barnatoret
+    "kujdestaria": { "prej": "22:00", "deri": "08:00" }   // vetëm kujdestarja
+  },
   "rotacioni":   ["Flora", "Liampharm", "..."],
   "kujdestaria": [
     {
@@ -70,7 +91,8 @@ bosh çdo dy muaj, i njëjti rotacion 10-ditor është vazhduar me llogaritje de
       "barnatorja": "Flora",
       "pozitaNeCikel": 1,
       "sezoni": "veror",
-      "orari": { "prej": "08:00", "deri": "22:00" },
+      // nata që fillon më 01.07 në 22:00 dhe mbaron më 02.07 në 08:00
+      "kujdestaria": { "prej": "22:00", "deri": "08:00", "mbaronMe": "2026-07-02" },
       "zyrtare": true
     }
   ]
