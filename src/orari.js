@@ -1,0 +1,81 @@
+import orari from './data/orari-2026.json';
+
+export { orari };
+
+/** Data e sotme si varg `YYYY-MM-DD`, sipas orës lokale (jo UTC). */
+export function dataSot(date = new Date()) {
+  const v = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, '0');
+  const d = String(date.getDate()).padStart(2, '0');
+  return `${v}-${m}-${d}`;
+}
+
+/** Rreshti i kujdestarisë për një datë, ose `null` nëse data është jashtë periudhës. */
+export function kujdestariaPer(data) {
+  return orari.kujdestaria.find((dita) => dita.data === data) ?? null;
+}
+
+/** Kujdestaritë e ardhshme pas një date, maksimumi `sa` rreshta. */
+export function tëArdhshmet(data, sa = 5) {
+  return orari.kujdestaria.filter((dita) => dita.data > data).slice(0, sa);
+}
+
+/**
+ * Grupon kujdestaritë sipas muajit kalendarik, në rendin që shfaqen.
+ * Kthen `[{ celes: '2026-07', emri: 'Korrik 2026', ditet: [...] }, ...]`
+ */
+export function sipasMuajve() {
+  const muajt = new Map();
+  for (const dita of orari.kujdestaria) {
+    const celes = dita.data.slice(0, 7);
+    if (!muajt.has(celes)) {
+      muajt.set(celes, { celes, emri: emriIMuajit(celes), ditet: [] });
+    }
+    muajt.get(celes).ditet.push(dita);
+  }
+  return [...muajt.values()];
+}
+
+const EMRAT_E_MUAJVE = [
+  'Janar',
+  'Shkurt',
+  'Mars',
+  'Prill',
+  'Maj',
+  'Qershor',
+  'Korrik',
+  'Gusht',
+  'Shtator',
+  'Tetor',
+  'Nëntor',
+  'Dhjetor',
+];
+
+/** `'2026-07'` → `'Korrik 2026'` */
+export function emriIMuajit(celes) {
+  const [viti, muaji] = celes.split('-');
+  return `${EMRAT_E_MUAJVE[Number(muaji) - 1]} ${viti}`;
+}
+
+/** `'2026-07-01'` → `'01.07.2026'`, formati i përdorur në dokumentin zyrtar. */
+export function dataShqip(data) {
+  const [viti, muaji, dita] = data.split('-');
+  return `${dita}.${muaji}.${viti}`;
+}
+
+/** `'2026-07'` → `'Korrik'` (pa vit, për tituj brenda të njëjtit vit). */
+export function emriIMuajitShkurt(celes) {
+  return EMRAT_E_MUAJVE[Number(celes.split('-')[1]) - 1];
+}
+
+/** `'2026-07-01'` → `'01.07'`, pa vit, për etiketa të shkurtra. */
+export function dataShkurt(data) {
+  const [, muaji, dita] = data.split('-');
+  return `${dita}.${muaji}`;
+}
+
+/** Numri i ditëve nga `nga` deri te `deri` (të dyja si `YYYY-MM-DD`). */
+export function ditetMes(nga, deri) {
+  const ms = Date.parse(`${deri}T00:00:00`) - Date.parse(`${nga}T00:00:00`);
+  return Math.round(ms / 86400000);
+}

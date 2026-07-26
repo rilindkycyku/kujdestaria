@@ -1,0 +1,16 @@
+{
+  "name": "kujdestaria",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Orari i kujdestarisë së barnatoreve për qytetin e Kaçanikut",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "gjenero": "node scripts/gjenero-orarin.mjs"
+  },
+  "devDependencies": {
+    "vite": "^8.1.5"
+  }
+}

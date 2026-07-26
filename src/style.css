@@ -1,0 +1,393 @@
+:root {
+  --sfond: #f4f6fa;
+  --siperfaqe: #ffffff;
+  --teksti: #131a26;
+  --teksti-zbehte: #5d6879;
+  --kufiri: #dde3ec;
+  --theks: #14528c;
+  --theks-zbehte: #e7effa;
+  --hapur: #128a4a;
+  --mbyllur: #b0402c;
+  --projektim: #8a5a12;
+  --projektim-sfond: #fdf3e0;
+  --hije: 0 1px 2px rgb(19 26 38 / 6%), 0 8px 24px rgb(19 26 38 / 6%);
+  --rreze: 14px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sfond: #0e131b;
+    --siperfaqe: #161d28;
+    --teksti: #eaeff7;
+    --teksti-zbehte: #97a3b6;
+    --kufiri: #27313f;
+    --theks: #7db3ee;
+    --theks-zbehte: #17293d;
+    --hapur: #4cc98a;
+    --mbyllur: #f08a72;
+    --projektim: #e0ac5c;
+    --projektim-sfond: #2b2213;
+    --hije: 0 1px 2px rgb(0 0 0 / 30%), 0 8px 24px rgb(0 0 0 / 25%);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--sfond);
+  color: var(--teksti);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--theks);
+  text-underline-offset: 2px;
+}
+
+.faqja {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.vetem-lexues {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Kreu */
+.kreu__komuna {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--teksti-zbehte);
+}
+
+.kreu__titull {
+  margin: 0.25rem 0 0;
+  font-size: clamp(1.6rem, 5vw, 2.15rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.kreu__periudha {
+  margin: 0.35rem 0 0;
+  color: var(--teksti-zbehte);
+  font-variant-numeric: tabular-nums;
+}
+
+.titull-seksioni {
+  margin: 0 0 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--teksti-zbehte);
+}
+
+/* Kartela e ditës së sotme */
+.kartela {
+  background: var(--siperfaqe);
+  border: 1px solid var(--kufiri);
+  border-radius: var(--rreze);
+  box-shadow: var(--hije);
+  padding: 1.5rem;
+}
+
+.kartela__etiketa {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--teksti-zbehte);
+}
+
+.kartela__emri {
+  margin: 0.4rem 0 0.6rem;
+  font-size: clamp(2.1rem, 9vw, 3.1rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--theks);
+}
+
+.kartela__orari,
+.kartela__jashte,
+.kartela__shpjegim {
+  margin: 0;
+}
+
+.kartela__jashte {
+  margin: 0.4rem 0 0.5rem;
+  font-size: 1.4rem;
+  line-height: 1.2;
+}
+
+.kartela__shpjegim {
+  color: var(--teksti-zbehte);
+  margin-top: 0.4rem;
+}
+
+.kartela__paralajmerim {
+  margin: 1rem 0 0;
+  padding: 0.7rem 0.85rem;
+  border-radius: 10px;
+  background: var(--projektim-sfond);
+  color: var(--projektim);
+  font-size: 0.92rem;
+}
+
+.kartela__paralajmerim a {
+  color: inherit;
+}
+
+.pika {
+  display: inline-block;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  margin-right: 0.4rem;
+  vertical-align: 0.02rem;
+}
+
+.pika--hapur {
+  background: var(--hapur);
+}
+
+.pika--mbyllur {
+  background: var(--mbyllur);
+}
+
+/* Ditët në vijim */
+.ardhshme__lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  gap: 0.6rem;
+}
+
+.ardhshme__njesi {
+  background: var(--siperfaqe);
+  border: 1px solid var(--kufiri);
+  border-radius: 10px;
+  padding: 0.7rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.ardhshme__njesi--projektim {
+  border-style: dashed;
+}
+
+.ardhshme__dita {
+  font-size: 0.78rem;
+  color: var(--teksti-zbehte);
+  font-variant-numeric: tabular-nums;
+}
+
+.ardhshme__emri {
+  font-weight: 650;
+}
+
+/* Shiriti i muajve */
+.muaj-shirit {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.85rem;
+}
+
+.muaj-buton {
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--teksti-zbehte);
+  background: var(--siperfaqe);
+  border: 1px solid var(--kufiri);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  cursor: pointer;
+}
+
+.muaj-buton:hover {
+  color: var(--teksti);
+  border-color: var(--theks);
+}
+
+.muaj-buton--projektim {
+  border-style: dashed;
+}
+
+.muaj-buton--aktiv,
+.muaj-buton--aktiv:hover {
+  background: var(--theks-zbehte);
+  border-color: var(--theks);
+  border-style: solid;
+  color: var(--theks);
+}
+
+/* Tabela */
+.tabela-mbeshtjellese {
+  overflow-x: auto;
+  background: var(--siperfaqe);
+  border: 1px solid var(--kufiri);
+  border-radius: var(--rreze);
+}
+
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.94rem;
+}
+
+.tabela th {
+  text-align: left;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--teksti-zbehte);
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid var(--kufiri);
+  white-space: nowrap;
+}
+
+.tabela td {
+  padding: 0.55rem 0.9rem;
+  border-bottom: 1px solid var(--kufiri);
+  white-space: nowrap;
+}
+
+.tabela tr:last-child td {
+  border-bottom: 0;
+}
+
+.qeliza-data,
+.qeliza-orari {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Në ekrane të ngushta hiqet kolona e ditës, që emri i barnatores të mos pritet. */
+@media (max-width: 30rem) {
+  .tabela th:nth-child(2),
+  .qeliza-dite {
+    display: none;
+  }
+
+  .tabela {
+    font-size: 0.88rem;
+  }
+
+  .tabela th,
+  .tabela td {
+    padding-inline: 0.45rem;
+  }
+}
+
+.qeliza-dite,
+.qeliza-orari {
+  color: var(--teksti-zbehte);
+}
+
+.qeliza-emri {
+  font-weight: 600;
+}
+
+.rresht--kaluar td {
+  opacity: 0.5;
+}
+
+.rresht--sot {
+  background: var(--theks-zbehte);
+}
+
+.rresht--sot td {
+  opacity: 1;
+  font-weight: 700;
+}
+
+.shenja {
+  display: inline-block;
+  margin-left: 0.45rem;
+  padding: 0.05rem 0.4rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  vertical-align: 0.08rem;
+}
+
+.shenja--sot {
+  background: var(--theks);
+  color: var(--siperfaqe);
+}
+
+.shenja--projektim {
+  background: var(--projektim-sfond);
+  color: var(--projektim);
+}
+
+/* Njoftimi për projeksionin */
+.njoftim {
+  background: var(--projektim-sfond);
+  border: 1px dashed var(--projektim);
+  border-radius: var(--rreze);
+  padding: 1.15rem 1.25rem;
+}
+
+.njoftim p {
+  margin: 0 0 0.6rem;
+}
+
+.njoftim p:last-child {
+  margin-bottom: 0;
+}
+
+.njoftim .titull-seksioni {
+  color: var(--projektim);
+}
+
+.lidhje-theksuar {
+  font-weight: 650;
+}
+
+/* Fundfaqja */
+.fundfaqja {
+  border-top: 1px solid var(--kufiri);
+  padding-top: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--teksti-zbehte);
+}
+
+.fundfaqja p {
+  margin: 0 0 0.7rem;
+}
+
+.fundfaqja__lista {
+  margin: 0 0 0.9rem;
+  padding-left: 1.15rem;
+}
+
+.fundfaqja__meta {
+  font-size: 0.82rem;
+}
