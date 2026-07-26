@@ -60,12 +60,12 @@ const BARNATORET = {
   },
   Riga: {
     harta: 'https://maps.app.goo.gl/s2oCV52ngBUD6dHM6?g_st=ac',
-    adresa: 'Bulevardi Ismail Raka — Korza I',
+    adresa: 'Bulevardi Ismail Raka - Korza I',
     telefoni: '',
   },
   'Riga-2': {
     harta: 'https://maps.app.goo.gl/Xin4bv3N4aaWf3wg8?g_st=ac',
-    adresa: 'Bob — përballë Viva Fresh Store',
+    adresa: 'Bob - përballë Viva Fresh Store',
     telefoni: '',
   },
   Rigoni: {
