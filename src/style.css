@@ -264,6 +264,53 @@ a {
   box-shadow: inset 0 0 0 2px var(--teksti-zbehte);
 }
 
+/* Ndaje / Shto në ekran */
+.veprimet {
+  margin-top: -0.9rem;
+}
+
+.veprimet__butonat {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.veprim {
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--kufiri);
+  border-radius: 999px;
+  background: var(--siperfaqe);
+  color: var(--teksti);
+  cursor: pointer;
+}
+
+.veprim:hover {
+  border-color: var(--theks);
+  color: var(--theks);
+}
+
+.veprimet__mesazh {
+  margin: 0.6rem 0 0;
+  font-size: 0.9rem;
+  color: var(--hapur);
+}
+
+.veprimet__udhezim {
+  margin: 0.6rem 0 0;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--kufiri);
+  border-radius: 10px;
+  background: var(--siperfaqe);
+  font-size: 0.9rem;
+  color: var(--teksti-zbehte);
+}
+
 /* Netët në vijim */
 .ardhshme__lista {
   list-style: none;

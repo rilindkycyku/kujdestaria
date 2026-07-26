@@ -14,16 +14,43 @@ import {
   tëArdhshmet,
   tëGjithaBarnatoret,
 } from './orari.js';
+import {
+  eshteIOS,
+  instalo,
+  kërkonUdhëzimeIOS,
+  mbështetetNdarja,
+  mundTëInstalohet,
+  ndaj,
+  regjistroServiceWorker,
+  vendosNjoftuesin,
+} from './veprimet.js';
 
 const app = document.querySelector('#app');
 const muajt = sipasMuajve();
 const { iRregullt, kujdestaria: orariINates } = orari.orari;
 
 /** Kush e ndërtoi faqen — shfaqet te fundfaqja. */
-const AUTORI = 'Rilind Kycyku';
+const AUTORI = { emri: 'Rilind Kyçyku', faqja: 'https://rilindkycyku.dev' };
 
 /** Muaji i shfaqur në tabelë; ndryshohet nga butonat e muajve. */
 let muajiAktiv = null;
+
+/** Mesazh i shkurtër pas një veprimi, p.sh. „Lidhja u kopjua". */
+let mesazhi = null;
+let afatiIMesazhit = null;
+
+/** Udhëzimet e iOS-it shfaqen vetëm pasi shtypet butoni i instalimit. */
+let udhëzimetIOS = false;
+
+function trego(tekst) {
+  mesazhi = tekst;
+  clearTimeout(afatiIMesazhit);
+  afatiIMesazhit = setTimeout(() => {
+    mesazhi = null;
+    vizato();
+  }, 3000);
+  vizato();
+}
 
 /** Adresat dhe telefonat shkruhen me dorë te skripta e gjenerimit — nuk shkojnë të pafiltruara në HTML. */
 function sig(vlera) {
@@ -141,6 +168,53 @@ function kartelaTani(sot, gjendja) {
       ${paralajmerimProjektimi(dita)}
     </section>
   `;
+}
+
+/** Butonat e ndarjes dhe të instalimit; secili shfaqet vetëm nëse ka kuptim. */
+function shiritiIVeprimeve() {
+  const butonat = [];
+
+  if (mbështetetNdarja()) {
+    butonat.push(`
+      <button type="button" class="veprim" data-veprim="ndaj">
+        <span aria-hidden="true">↗</span> Ndaje
+      </button>
+    `);
+  }
+
+  if (mundTëInstalohet()) {
+    butonat.push(`
+      <button type="button" class="veprim" data-veprim="instalo">
+        <span aria-hidden="true">＋</span> Shto në ekran
+      </button>
+    `);
+  }
+
+  if (butonat.length === 0 && !mesazhi) return '';
+
+  return `
+    <section class="veprimet">
+      <div class="veprimet__butonat">${butonat.join('')}</div>
+      ${mesazhi ? `<p class="veprimet__mesazh" role="status">${sig(mesazhi)}</p>` : ''}
+      ${
+        udhëzimetIOS
+          ? `<p class="veprimet__udhezim">
+               Në iPhone: shtyp <strong>Share</strong> në shiritin e Safari-t, pastaj
+               <strong>Add to Home Screen</strong>.
+             </p>`
+          : ''
+      }
+    </section>
+  `;
+}
+
+/** Teksti që dërgohet kur ndahet faqja — i dobishëm edhe pa e hapur lidhjen. */
+function tekstiPërNdarje(gjendja) {
+  const { faza, dita } = gjendja;
+  if (!dita) return 'Kujdestaria e barnatoreve në Kaçanik';
+  return faza === 'nate'
+    ? `Kujdestare tani në Kaçanik: ${dita.barnatorja} — e hapur deri në ora ${orariINates.deri}.`
+    : `Kujdestare sonte në Kaçanik: ${dita.barnatorja} — prej ora ${orariINates.prej} deri në ${orariINates.deri}.`;
 }
 
 /** Netët pas asaj që është në fuqi tani — jo pas datës së sotme, që pas mesnate të mos e humbasë një natë. */
@@ -324,7 +398,10 @@ function fundfaqja() {
         ·
         <a href="${orari.burimet.shpalljet}" target="_blank" rel="noopener noreferrer">Të gjitha shpalljet</a>
       </p>
-      <p class="fundfaqja__autori">Ndërtuar nga ${sig(AUTORI)}</p>
+      <p class="fundfaqja__autori">
+        Ndërtuar nga
+        <a href="${sig(AUTORI.faqja)}" target="_blank" rel="noopener noreferrer">${sig(AUTORI.emri)}</a>
+      </p>
     </footer>
   `;
 }
@@ -353,6 +430,7 @@ function vizato() {
         </p>
       </header>
       ${kartelaTani(sot, gjendja)}
+      ${shiritiIVeprimeve()}
       ${vijaEArdhshme(nataNeFuqi)}
       ${tabelaEMuajit(nataNeFuqi)}
       ${seksioniIBarnatoreve()}
@@ -362,12 +440,42 @@ function vizato() {
   `;
 }
 
-app.addEventListener('click', (event) => {
-  const buton = event.target.closest('.muaj-buton');
-  if (!buton) return;
-  muajiAktiv = buton.dataset.muaji;
-  vizato();
+app.addEventListener('click', async (event) => {
+  const muaji = event.target.closest('.muaj-buton');
+  if (muaji) {
+    muajiAktiv = muaji.dataset.muaji;
+    vizato();
+    return;
+  }
+
+  const veprimi = event.target.closest('.veprim')?.dataset.veprim;
+  if (!veprimi) return;
+
+  if (veprimi === 'ndaj') {
+    const dal = await ndaj({
+      titulli: 'Kujdestaria e barnatoreve — Kaçanik',
+      teksti: tekstiPërNdarje(kujdestariaTani(new Date())),
+      url: location.href,
+    });
+    if (dal === 'kopjuar') trego('Lidhja u kopjua.');
+    else if (dal === 'deshtoi') trego('Nuk u ndanë dot. Kopjoje lidhjen nga shiriti i shfletuesit.');
+    return;
+  }
+
+  if (veprimi === 'instalo') {
+    if (kërkonUdhëzimeIOS()) {
+      udhëzimetIOS = !udhëzimetIOS;
+      vizato();
+      return;
+    }
+    const pranoi = await instalo();
+    if (pranoi) trego('U shtua në ekranin kryesor.');
+  }
 });
+
+// Butoni i instalimit shfaqet sapo shfletuesi njofton se faqja mund të instalohet.
+vendosNjoftuesin(() => vizato());
+regjistroServiceWorker();
 
 vizato();
 

@@ -8,13 +8,53 @@ menjëherë **cila barnatore është kujdestare sot**, plus orarin e plotë sipa
 ```bash
 npm install
 npm run dev       # serveri i zhvillimit
-npm run build     # ndërton në dist/
+npm run build     # ndërton në dist/ dhe përgatit sw.js
 npm run preview   # shikon ndërtimin
 npm run gjenero   # rigjeneron src/data/orari-2026.json
+npm run ikonat    # rigjeneron ikonat PNG te public/
 ```
 
 Faqja është statike pas `npm run build` — `dist/` mund të vendoset kudo (GitHub Pages,
 Netlify, Vercel, ose një server i thjeshtë).
+
+## PWA — instalim dhe punë pa internet
+
+Faqja instalohet në ekranin kryesor dhe punon plotësisht pa internet. Kjo e fundit është
+arsyeja kryesore: orari është i futur brenda paketës JS, prandaj pasi faqja hapet një
+herë, dikush që kërkon barnatoren kujdestare natën me sinjal të dobët e merr përgjigjen
+gjithsesi.
+
+| Skedari | Roli |
+| --- | --- |
+| [`public/manifest.webmanifest`](public/manifest.webmanifest) | emri, ikonat, `display: standalone` |
+| [`public/sw.js`](public/sw.js) | service worker-i |
+| [`scripts/pergatit-sw.mjs`](scripts/pergatit-sw.mjs) | shkruan listën e paracache-it pas ndërtimit |
+| [`scripts/gjenero-ikonat.mjs`](scripts/gjenero-ikonat.mjs) | ikonat PNG, pa varësi |
+
+**Paracache-i shkruhet pas ndërtimit, jo me dorë.** Skedarët te `/assets/` kanë hash në
+emër, prandaj `sw.js` nuk mund t'i dijë paraprakisht. `npm run build` e thërret
+`pergatit-sw.mjs`, i cili zëvendëson `VERSIONI` dhe `PARACACHE` te `dist/sw.js`.
+Pa këtë hap faqja do të hapej pa internet vetëm nga vizita e dytë e tutje — sepse gjatë
+vizitës së parë service worker-i ende nuk ka marrë kontrollin dhe s'ka çka të ruajë.
+Versioni është hash i përmbajtjes, prandaj një deploy pa ndryshime nuk e zbraz cache-in
+kot.
+
+Strategjia: navigimet janë **rrjeti i pari** me kthim te kopja e ruajtur (orari i ri
+merret sapo ka lidhje), kurse gjithçka tjetër është **cache-i i pari** (emrat me hash
+nuk vjetrohen kurrë gabimisht).
+
+### Butoni „Shto në ekran"
+
+Chrome dhe Edge japin `beforeinstallprompt`; e kapim dhe butoni shfaqet vetëm atëherë.
+Safari në iOS nuk e ka atë ngjarje, prandaj atje butoni shfaqet gjithsesi dhe tregon
+udhëzimet me dorë (Share → Add to Home Screen). Nëse faqja po ekzekutohet tashmë e
+instaluar, butoni fshihet.
+
+### Butoni „Ndaje"
+
+Përdor `navigator.share()` kur ekziston; përndryshe e kopjon lidhjen në clipboard dhe e
+thotë atë. Teksti i ndarë përmban edhe përgjigjen, jo vetëm lidhjen — p.sh.
+„Kujdestare tani në Kaçanik: Rigoni-2 — e hapur deri në ora 08:00."
 
 ## Vendosja në Vercel
 
