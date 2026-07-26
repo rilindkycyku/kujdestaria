@@ -72,6 +72,14 @@ tabela mbetet e plotë edhe në 320px. Shiriti i muajve rrëshqet horizontalisht
 te muaji aktual. `env(safe-area-inset-*)` bashkë me `viewport-fit=cover` mbajnë faqen
 larg qosheve të rrumbullakuara kur ekzekutohet e instaluar. Ka edhe stil për shtypje.
 
+### Njoftimi për gabim
+
+Orari transkriptohet me dorë nga një skanim, dhe rotacioni pas 31.08.2026 është i
+llogaritur — prandaj një datë e shkëmbyer është e mundshme. Fundfaqja ka një kartelë me
+lidhjen te [kontaktet e autorit](https://www.rilindkycyku.dev/contacts), që personi i
+cili e vë re gabimin të ketë ku ta thotë pa hapur GitHub. Adresa ndryshohet te `AUTORI`
+në [`src/main.js`](src/main.js).
+
 ## PWA — instalim dhe punë pa internet
 
 Faqja instalohet në ekranin kryesor dhe punon plotësisht pa internet. Kjo e fundit është

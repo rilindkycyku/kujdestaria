@@ -32,8 +32,12 @@ const app = document.querySelector('#app');
 const muajt = sipasMuajve();
 const { iRregullt, kujdestaria: orariINates } = orari.orari;
 
-/** Kush e ndërtoi faqen — shfaqet te fundfaqja. */
-const AUTORI = { emri: 'Rilind Kyçyku', faqja: 'https://rilindkycyku.dev' };
+/** Kush e ndërtoi faqen — shfaqet te fundfaqja, bashkë me adresën për njoftime. */
+const AUTORI = {
+  emri: 'Rilind Kyçyku',
+  faqja: 'https://rilindkycyku.dev',
+  kontakti: 'https://www.rilindkycyku.dev/contacts',
+};
 
 /** Muaji i shfaqur në tabelë; ndryshohet nga butonat e muajve. */
 let muajiAktiv = null;
@@ -474,6 +478,26 @@ function njoftimiIProjeksionit() {
   `;
 }
 
+/**
+ * Njoftimi për gabim. Orari transkriptohet me dorë nga një skanim, dhe rotacioni
+ * pas 31.08 është i llogaritur — prandaj një datë e shkëmbyer është e mundshme,
+ * dhe personi që e vë re duhet të ketë ku ta thotë pa u dashur të hapë GitHub.
+ */
+function raportoGabim() {
+  return `
+    <div class="raporto">
+      <p class="raporto__tekst">
+        <strong>A ka gabim në orar?</strong>
+        Nëse një datë, orë ose barnatore nuk përputhet me shpalljen e komunës, njoftoni
+        që të përmirësohet.
+      </p>
+      <a class="buton" href="${sig(AUTORI.kontakti)}" target="_blank" rel="noopener noreferrer">
+        ${ikona('njofto')} Njofto
+      </a>
+    </div>
+  `;
+}
+
 function fundfaqja() {
   const bazat = orari.bazaLigjore.map((b) => `<li>${sig(b)}</li>`).join('');
   return `
@@ -518,6 +542,8 @@ function fundfaqja() {
           Dokumenti burimor (PDF) ${ikona('jashte')}
         </a>
       </p>
+
+      ${raportoGabim()}
       <p class="fundfaqja__autori">
         Ndërtuar nga
         <a href="${sig(AUTORI.faqja)}" target="_blank" rel="noopener noreferrer">${sig(AUTORI.emri)}</a>

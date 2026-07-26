@@ -943,6 +943,29 @@ h3 {
   line-height: 1.6;
 }
 
+/* Njoftimi për gabim: kartelë e vetën, që të gjendet pa u lexuar fundfaqja e tërë. */
+.raporto {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.1rem;
+  margin-top: 1rem;
+  padding: 0.9rem 1rem;
+  background: var(--siperfaqe);
+  border: 1px solid var(--kufiri);
+  border-radius: var(--rreze-2);
+}
+
+.raporto__tekst {
+  flex: 1 1 13rem;
+  margin: 0;
+}
+
+.raporto__tekst strong {
+  display: block;
+  color: var(--teksti);
+}
+
 .fundfaqja__autori {
   margin: 1.1rem 0 0;
   padding-top: 0.9rem;
@@ -1003,7 +1026,8 @@ h3 {
     padding-inline: 0.6rem;
   }
 
-  .veprimet .buton {
+  .veprimet .buton,
+  .raporto .buton {
     flex: 1 1 auto;
   }
 }
