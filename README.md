@@ -106,7 +106,7 @@ Strategjia: navigimet janë **rrjeti i pari** me kthim te kopja e ruajtur (orari
 merret sapo ka lidhje), kurse gjithçka tjetër është **cache-i i pari** (emrat me hash
 nuk vjetrohen kurrë gabimisht).
 
-### Butoni „Shto në ekran"
+### Butoni „Instalo si aplikacion"
 
 Butoni shfaqet **kudo**, veç kur faqja është tashmë e instaluar (`display-mode:
 standalone`, ose `navigator.standalone` në iOS). Më parë varej nga

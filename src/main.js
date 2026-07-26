@@ -240,7 +240,7 @@ function veprimet(b) {
     const shpalos = kërkonUdhëzime() ? ` aria-expanded="${udhëzimetHapur}"` : '';
     butonat.push(`
       <button type="button" class="buton" data-fokus="instalo" data-veprim="instalo"${shpalos}>
-        ${ikona('shto')} Shto në ekran
+        ${ikona('shto')} Instalo si aplikacion
       </button>
     `);
   }
@@ -655,7 +655,7 @@ app.addEventListener('click', async (event) => {
       return;
     }
     const pranoi = await instalo();
-    if (pranoi) trego('U shtua në ekranin kryesor.');
+    if (pranoi) trego('Aplikacioni u instalua.');
   }
 });
 
