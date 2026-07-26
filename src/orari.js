@@ -1,6 +1,33 @@
 import orari from './data/orari-2026.json';
+import { lidhjeHarteEVlefshme } from './harta.js';
 
 export { orari };
+
+const SIPAS_EMRIT = new Map(orari.barnatoret.map((b) => [b.emri, b]));
+
+/**
+ * Kontaktet e një barnatore, me lidhjen e hartës të validuar.
+ * Fushat e zbrazëta kthehen si `null`, që UI-ja të vendosë vetëm çka ka.
+ */
+export function barnatorja(emri) {
+  const b = SIPAS_EMRIT.get(emri);
+  return {
+    emri,
+    harta: lidhjeHarteEVlefshme(b?.harta),
+    adresa: b?.adresa || null,
+    telefoni: b?.telefoni || null,
+  };
+}
+
+/** Të gjitha barnatoret me kontaktet e validuara, sipas alfabetit. */
+export function tëGjithaBarnatoret() {
+  return orari.barnatoret.map((b) => barnatorja(b.emri));
+}
+
+/** A ka të paktën një barnatore lidhje harte? Nëse jo, seksioni i hartave fshihet. */
+export function kaHarta() {
+  return tëGjithaBarnatoret().some((b) => b.harta);
+}
 
 /** Data e sotme si varg `YYYY-MM-DD`, sipas orës lokale (jo UTC). */
 export function dataSot(date = new Date()) {

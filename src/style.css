@@ -157,6 +157,90 @@ a {
   color: inherit;
 }
 
+.kartela__kontaktet {
+  margin-top: 1rem;
+}
+
+.kartela__adresa {
+  margin: 0 0 0.6rem;
+  color: var(--teksti-zbehte);
+}
+
+.kartela__veprimet,
+.barnatorja__veprimet {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+/* Lidhje-buton për hartë e telefon; targeti prekës mbahet i madh sa duhet. */
+.lidhje-harte {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--kufiri);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--teksti);
+  background: var(--sfond);
+}
+
+.lidhje-harte:hover {
+  border-color: var(--theks);
+  color: var(--theks);
+}
+
+.lidhje-harte--kryesore {
+  background: var(--theks);
+  border-color: var(--theks);
+  color: #fff;
+}
+
+.lidhje-harte--kryesore:hover {
+  color: #fff;
+  filter: brightness(1.08);
+}
+
+/* Lista e barnatoreve */
+.barnatoret__lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.barnatorja {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  background: var(--siperfaqe);
+  border: 1px solid var(--kufiri);
+  border-radius: 10px;
+  padding: 0.75rem 0.9rem;
+}
+
+.barnatorja__krye {
+  display: flex;
+  flex-direction: column;
+}
+
+.barnatorja__emri {
+  font-weight: 650;
+}
+
+.barnatorja__adresa {
+  font-size: 0.85rem;
+  color: var(--teksti-zbehte);
+}
+
 .pika {
   display: inline-block;
   width: 0.6rem;

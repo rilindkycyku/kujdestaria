@@ -2,13 +2,16 @@ import './style.css';
 import {
   orari,
   dataSot,
+  barnatorja,
   dataShkurt,
   dataShqip,
   ditetMes,
   emriIMuajitShkurt,
+  kaHarta,
   kujdestariaTani,
   sipasMuajve,
   tëArdhshmet,
+  tëGjithaBarnatoret,
 } from './orari.js';
 
 const app = document.querySelector('#app');
@@ -17,6 +20,25 @@ const { iRregullt, kujdestaria: orariINates } = orari.orari;
 
 /** Muaji i shfaqur në tabelë; ndryshohet nga butonat e muajve. */
 let muajiAktiv = null;
+
+/** Adresat dhe telefonat shkruhen me dorë te skripta e gjenerimit — nuk shkojnë të pafiltruara në HTML. */
+function sig(vlera) {
+  return String(vlera ?? '').replace(
+    /[&<>"']/g,
+    (sh) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[sh],
+  );
+}
+
+/** Butoni „Hape në Maps" — shfaqet vetëm kur barnatorja ka lidhje të vlefshme. */
+function butoniIHartes(emri, klasa = 'lidhje-harte') {
+  const { harta } = barnatorja(emri);
+  if (!harta) return '';
+  return `
+    <a class="${klasa}" href="${sig(harta)}" target="_blank" rel="noopener noreferrer">
+      <span aria-hidden="true">📍</span> Hape në Maps
+    </a>
+  `;
+}
 
 function shenjaProjektim(dita) {
   return dita.zyrtare ? '' : '<span class="shenja shenja--projektim">e projektuar</span>';
@@ -29,6 +51,27 @@ function paralajmerimProjektimi(dita) {
       Kjo datë nuk mbulohet nga orari i publikuar — është vazhdim i llogaritur i rotacionit.
       <a href="${orari.burimet.shpalljet}" target="_blank" rel="noopener noreferrer">Verifikoni te shpalljet zyrtare</a>.
     </p>
+  `;
+}
+
+/** Adresa, telefoni dhe harta e barnatores kujdestare — çka ekziston. */
+function kontaktetEKartelës(emri) {
+  const { adresa, telefoni, harta } = barnatorja(emri);
+  if (!adresa && !telefoni && !harta) return '';
+  return `
+    <div class="kartela__kontaktet">
+      ${adresa ? `<p class="kartela__adresa">${sig(adresa)}</p>` : ''}
+      <p class="kartela__veprimet">
+        ${butoniIHartes(emri, 'lidhje-harte lidhje-harte--kryesore')}
+        ${
+          telefoni
+            ? `<a class="lidhje-harte" href="tel:${sig(telefoni.replace(/\s+/g, ''))}">
+                 <span aria-hidden="true">📞</span> ${sig(telefoni)}
+               </a>`
+            : ''
+        }
+      </p>
+    </div>
   `;
 }
 
@@ -80,8 +123,9 @@ function kartelaTani(sot, gjendja) {
   return `
     <section class="kartela${dita.zyrtare ? '' : ' kartela--projektim'}">
       <p class="kartela__etiketa">${etiketa}</p>
-      <h2 class="kartela__emri">${dita.barnatorja}</h2>
+      <h2 class="kartela__emri">${sig(dita.barnatorja)}</h2>
       <p class="kartela__orari">${statusi}</p>
+      ${kontaktetEKartelës(dita.barnatorja)}
       ${
         faza === 'dite'
           ? `<p class="kartela__shpjegim">
@@ -107,7 +151,7 @@ function vijaEArdhshme(natenIsFilloi) {
       return `
         <li class="ardhshme__njesi${dita.zyrtare ? '' : ' ardhshme__njesi--projektim'}">
           <span class="ardhshme__dita">${etiketa}</span>
-          <span class="ardhshme__emri">${dita.barnatorja}</span>
+          <span class="ardhshme__emri">${sig(dita.barnatorja)}</span>
         </li>
       `;
     })
@@ -157,7 +201,7 @@ function tabelaEMuajit(natenIsFilloi) {
             ${dataShqip(dita.data)}${tani ? '<span class="shenja shenja--tani">tani</span>' : ''}
           </td>
           <td class="qeliza-dite">${dita.dita}</td>
-          <td class="qeliza-emri">${dita.barnatorja}${shenjaProjektim(dita)}</td>
+          <td class="qeliza-emri">${sig(dita.barnatorja)}${shenjaProjektim(dita)}</td>
           <td class="qeliza-orari">
             ${dita.kujdestaria.prej}–${dita.kujdestaria.deri}
             <span class="qeliza-nesër">${dataShkurt(dita.kujdestaria.mbaronMe)}</span>
@@ -189,6 +233,41 @@ function tabelaEMuajit(natenIsFilloi) {
           <tbody>${rreshtat}</tbody>
         </table>
       </div>
+    </section>
+  `;
+}
+
+/** Lista e të gjitha barnatoreve me hartë e telefon; fshihet krejt nëse s'ka asnjë. */
+function seksioniIBarnatoreve() {
+  if (!kaHarta()) return '';
+
+  const njesite = tëGjithaBarnatoret()
+    .map(
+      (b) => `
+        <li class="barnatorja">
+          <div class="barnatorja__krye">
+            <span class="barnatorja__emri">${sig(b.emri)}</span>
+            ${b.adresa ? `<span class="barnatorja__adresa">${sig(b.adresa)}</span>` : ''}
+          </div>
+          <div class="barnatorja__veprimet">
+            ${butoniIHartes(b.emri)}
+            ${
+              b.telefoni
+                ? `<a class="lidhje-harte" href="tel:${sig(b.telefoni.replace(/\s+/g, ''))}">
+                     <span aria-hidden="true">📞</span> ${sig(b.telefoni)}
+                   </a>`
+                : ''
+            }
+          </div>
+        </li>
+      `,
+    )
+    .join('');
+
+  return `
+    <section class="barnatoret">
+      <h2 class="titull-seksioni">Barnatoret</h2>
+      <ul class="barnatoret__lista">${njesite}</ul>
     </section>
   `;
 }
@@ -271,6 +350,7 @@ function vizato() {
       ${kartelaTani(sot, gjendja)}
       ${vijaEArdhshme(nataNeFuqi)}
       ${tabelaEMuajit(nataNeFuqi)}
+      ${seksioniIBarnatoreve()}
       ${njoftimiIProjeksionit()}
       ${fundfaqja()}
     </main>

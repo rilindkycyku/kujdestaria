@@ -9,6 +9,7 @@
 import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { HOSTE_TE_LEJUARA, hostiI } from '../src/harta.js';
 
 // Rotacioni 10-ditor, ashtu si është shtypur në dokumentin zyrtar (kolonat majtas-djathtas).
 const ROTACIONI = [
@@ -32,6 +33,24 @@ const FUNDI = '2026-12-31'; // deri ku e projektojmë rotacionin
 // dhe vazhdon tërë natën deri në mëngjes.
 const ORARI_I_RREGULLT = { prej: '08:00', deri: '22:00' };
 const ORARI_I_KUJDESTARISE = { prej: '22:00', deri: '08:00' };
+
+/**
+ * Të dhënat e kontaktit për çdo barnatore. Vetëm `emri` është i detyrueshëm —
+ * fushat e zbrazëta thjesht nuk shfaqen në faqe.
+ *
+ * `harta`: lidhje Google Maps. Pranohen vetëm `google.com/maps`, `maps.google.com`,
+ * `maps.app.goo.gl` dhe `goo.gl/maps` — lidhjet e tjera nuk shfaqen.
+ * `telefoni`: në formatin ndërkombëtar, p.sh. `+383 44 123 456`.
+ */
+const BARNATORET = {
+  Dielli: { harta: '', adresa: '', telefoni: '' },
+  Flora: { harta: '', adresa: '', telefoni: '' },
+  Liampharm: { harta: '', adresa: '', telefoni: '' },
+  Riga: { harta: '', adresa: '', telefoni: '' },
+  'Riga-2': { harta: '', adresa: '', telefoni: '' },
+  Rigoni: { harta: '', adresa: '', telefoni: '' },
+  'Rigoni-2': { harta: '', adresa: '', telefoni: '' },
+};
 
 const DITET = [
   'E diel',
@@ -145,10 +164,24 @@ const doc = {
     'Inspektorati i Komunës',
     'Arkivi',
   ],
-  barnatoret: [...new Set(ROTACIONI)].sort(),
+  barnatoret: [...new Set(ROTACIONI)]
+    .sort((a, b) => a.localeCompare(b, 'sq'))
+    .map((emri) => ({ emri, ...(BARNATORET[emri] ?? { harta: '', adresa: '', telefoni: '' }) })),
   rotacioni: ROTACIONI,
   kujdestaria,
 };
+
+// Kontrolle që një gabim shtypi te BARNATORET të mos kalojë në heshtje.
+for (const emri of new Set(ROTACIONI)) {
+  if (!BARNATORET[emri]) {
+    console.warn(`kujdes: "${emri}" nuk ka zë te BARNATORET — do të dalë pa hartë e telefon.`);
+  }
+}
+for (const b of doc.barnatoret) {
+  if (b.harta && !HOSTE_TE_LEJUARA.some((h) => hostiI(b.harta) === h)) {
+    console.warn(`kujdes: lidhja e hartës e "${b.emri}" nuk është Google Maps — nuk do të shfaqet.`);
+  }
+}
 
 const rruga = join(
   dirname(fileURLToPath(import.meta.url)),

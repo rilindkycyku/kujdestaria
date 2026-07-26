@@ -62,6 +62,34 @@ ora 02:00 të 27.07 është e hapur barnatorja e 26.07, jo e 27.07 — prandaj
 `kujdestariaTani()` në [`src/orari.js`](src/orari.js) nuk mjafton të kthejë
 `kujdestariaPer(dataSot())`.
 
+### Harta, adresa dhe telefoni
+
+Çdo barnatore mund të ketë lidhje Google Maps, adresë dhe telefon. Vendosen te
+`BARNATORET` në [`scripts/gjenero-orarin.mjs`](scripts/gjenero-orarin.mjs):
+
+```js
+const BARNATORET = {
+  Flora: {
+    harta: 'https://maps.app.goo.gl/xxxxxxxx',
+    adresa: 'Rr. …, Kaçanik',
+    telefoni: '+383 44 123 456',
+  },
+  // …
+};
+```
+
+Pastaj `npm run gjenero`. Fushat e zbrazëta thjesht nuk shfaqen, prandaj mund të
+plotësohen një nga një. Kur asnjë barnatore s'ka lidhje, seksioni „Barnatoret" fshihet
+krejt.
+
+Lidhjet kalojnë nga [`src/harta.js`](src/harta.js), që pranon vetëm `https:` dhe vetëm
+hostet e Google Maps (`google.com`, `maps.google.com`, `maps.app.goo.gl`, `goo.gl`).
+Çdo gjë tjetër nuk shfaqet dhe skripta e gjenerimit paralajmëron. Kjo sepse `href`-i
+ndërtohet me varg teksti, kështu që një `javascript:` ose një host i ngjashëm
+(`maps.app.goo.gl.dikush.com`) nuk kalon.
+
+Si merret lidhja: hape vendin në Google Maps → **Share** → **Copy link**.
+
 ### Datat zyrtare dhe ato të projektuara
 
 Dokumenti i publikuar mbulon vetëm **01.07.2026 – 31.08.2026**. Që faqja të mos mbetet

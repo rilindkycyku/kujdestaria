@@ -65,13 +65,48 @@
     "Arkivi"
   ],
   "barnatoret": [
-    "Dielli",
-    "Flora",
-    "Liampharm",
-    "Riga",
-    "Riga-2",
-    "Rigoni",
-    "Rigoni-2"
+    {
+      "emri": "Dielli",
+      "harta": "",
+      "adresa": "",
+      "telefoni": ""
+    },
+    {
+      "emri": "Flora",
+      "harta": "",
+      "adresa": "",
+      "telefoni": ""
+    },
+    {
+      "emri": "Liampharm",
+      "harta": "",
+      "adresa": "",
+      "telefoni": ""
+    },
+    {
+      "emri": "Riga",
+      "harta": "",
+      "adresa": "",
+      "telefoni": ""
+    },
+    {
+      "emri": "Riga-2",
+      "harta": "",
+      "adresa": "",
+      "telefoni": ""
+    },
+    {
+      "emri": "Rigoni",
+      "harta": "",
+      "adresa": "",
+      "telefoni": ""
+    },
+    {
+      "emri": "Rigoni-2",
+      "harta": "",
+      "adresa": "",
+      "telefoni": ""
+    }
   ],
   "rotacioni": [
     "Flora",
