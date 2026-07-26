@@ -39,6 +39,7 @@
   --hapur-zbehte: #e1f5ea;
   --projektim: #8a5712;
   --projektim-zbehte: #fdf2e0;
+  --zemra: #d43f5c;
   /* Bojë mbi sipërfaqe të plotë me ngjyrën e gjendjes. */
   --mbi-gjendje: #ffffff;
 
@@ -70,6 +71,7 @@
     --hapur-zbehte: #0d2a20;
     --projektim: #e6b164;
     --projektim-zbehte: #2a2113;
+    --zemra: #ff7089;
     /* Sipërfaqet e ndritshme në temën e errët kërkojnë bojë të errët. */
     --mbi-gjendje: #06101a;
 
@@ -971,6 +973,13 @@ h3 {
   padding-top: 0.9rem;
   border-top: 1px solid var(--kufiri);
   font-size: 0.82rem;
+}
+
+.zemra {
+  width: 0.95em;
+  height: 0.95em;
+  fill: var(--zemra);
+  vertical-align: -0.12em;
 }
 
 /* ── Hyrja ──────────────────────────────────────────────────────────────── */

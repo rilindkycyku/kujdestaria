@@ -17,13 +17,14 @@ import {
   tëArdhshmet,
   tëGjithaBarnatoret,
 } from './orari.js';
-import { ikona, shenjaEFaqes } from './ikonat.js';
+import { ikona, shenjaEFaqes, zemra } from './ikonat.js';
 import {
   instalo,
-  kërkonUdhëzimeIOS,
+  kërkonUdhëzime,
   mbështetetNdarja,
   mundTëInstalohet,
   ndaj,
+  platformaEInstalimit,
   regjistroServiceWorker,
   vendosNjoftuesin,
 } from './veprimet.js';
@@ -46,8 +47,22 @@ let muajiAktiv = null;
 let mesazhi = null;
 let afatiIMesazhit = null;
 
-/** Udhëzimet e iOS-it shfaqen vetëm pasi shtypet butoni i instalimit. */
-let udhëzimetIOS = false;
+/** Udhëzimet me dorë shfaqen vetëm pasi shtypet butoni i instalimit. */
+let udhëzimetHapur = false;
+
+/**
+ * Si instalohet faqja kur shfletuesi nuk hap ftesë vetë. Emrat e menyve mbeten
+ * në anglisht sepse ashtu shkruhen edhe në shfletuesin e përkthyer në shqip.
+ */
+const UDHEZIMET = {
+  ios: `Në iPhone: shtyp <strong>Share</strong> në shiritin e Safari-t, pastaj
+        <strong>Add to Home Screen</strong>.`,
+  android: `Në Android: hap menynë e shfletuesit (⋮), pastaj
+            <strong>Install app</strong> ose <strong>Add to Home screen</strong>.`,
+  kompjuter: `Në kompjuter: shtyp ikonën e instalimit në shiritin e adresës, ose menynë
+              (⋮) → <strong>Install</strong>. Chrome-i dhe Edge-i e mbështetin;
+              Firefox-i jo, por faqja punon njësoj edhe pa instalim.`,
+};
 
 /** Skeleti vendoset një herë; pastaj përditësohen vetëm pjesët që ndryshojnë. */
 let ndertuar = false;
@@ -221,8 +236,10 @@ function veprimet(b) {
   }
 
   if (mundTëInstalohet()) {
+    // Kur udhëzimet hapen e mbyllen nga i njëjti buton, `aria-expanded` e thotë atë.
+    const shpalos = kërkonUdhëzime() ? ` aria-expanded="${udhëzimetHapur}"` : '';
     butonat.push(`
-      <button type="button" class="buton" data-fokus="instalo" data-veprim="instalo">
+      <button type="button" class="buton" data-fokus="instalo" data-veprim="instalo"${shpalos}>
         ${ikona('shto')} Shto në ekran
       </button>
     `);
@@ -236,10 +253,10 @@ function mesazhiDheUdhezimet() {
   return `
     ${mesazhi ? `<p class="mesazhi" role="status">${sig(mesazhi)}</p>` : ''}
     ${
-      udhëzimetIOS
+      udhëzimetHapur
         ? `<p class="udhezimi">
-             Në iPhone: shtyp <strong>Share</strong> në shiritin e Safari-t, pastaj
-             <strong>Add to Home Screen</strong>.
+             ${UDHEZIMET[platformaEInstalimit()]}
+             Pas instalimit hapet edhe pa internet.
            </p>`
         : ''
     }
@@ -545,8 +562,9 @@ function fundfaqja() {
 
       ${raportoGabim()}
       <p class="fundfaqja__autori">
-        Ndërtuar nga
+        Bërë me ${zemra()} nga
         <a href="${sig(AUTORI.faqja)}" target="_blank" rel="noopener noreferrer">${sig(AUTORI.emri)}</a>
+        për qytetarët e Komunës së ${sig(orari.komunaGjinore)}.
       </p>
     </footer>
   `;
@@ -631,8 +649,8 @@ app.addEventListener('click', async (event) => {
   }
 
   if (veprimi === 'instalo') {
-    if (kërkonUdhëzimeIOS()) {
-      udhëzimetIOS = !udhëzimetIOS;
+    if (kërkonUdhëzime()) {
+      udhëzimetHapur = !udhëzimetHapur;
       vizato();
       return;
     }

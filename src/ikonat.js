@@ -34,6 +34,18 @@ export function ikona(emri, klasa = 'ikona') {
 }
 
 /**
+ * Zemra e fundfaqjes. E mbushur, jo me vija si ikonat e tjera, dhe me
+ * `aria-label` — pa të, lexuesi i ekranit do të thoshte „Bërë me nga Rilind".
+ */
+export function zemra() {
+  return `
+    <svg class="zemra" viewBox="0 0 24 24" role="img" aria-label="dashuri">
+      <path d="M12 20.7l-1.6-1.45C5.6 14.9 2.7 12.25 2.7 8.95 2.7 6.25 4.85 4.1 7.55 4.1c1.55 0 3.03.72 3.99 1.86l.46.55.46-.55A5.15 5.15 0 0 1 16.45 4.1c2.7 0 4.85 2.15 4.85 4.85 0 3.3-2.9 5.95-7.7 10.3L12 20.7Z" />
+    </svg>
+  `;
+}
+
+/**
  * Shenja e faqes: kryqi i barnatores, i njëjti motiv si favicon-i dhe ikonat e
  * PWA-së. Ngjyrat vijnë nga CSS-i, prandaj ndryshon vetë me temën e sistemit.
  */

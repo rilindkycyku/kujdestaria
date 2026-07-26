@@ -108,10 +108,21 @@ nuk vjetrohen kurrë gabimisht).
 
 ### Butoni „Shto në ekran"
 
-Chrome dhe Edge japin `beforeinstallprompt`; e kapim dhe butoni shfaqet vetëm atëherë.
-Safari në iOS nuk e ka atë ngjarje, prandaj atje butoni shfaqet gjithsesi dhe tregon
-udhëzimet me dorë (Share → Add to Home Screen). Nëse faqja po ekzekutohet tashmë e
-instaluar, butoni fshihet.
+Butoni shfaqet **kudo**, veç kur faqja është tashmë e instaluar (`display-mode:
+standalone`, ose `navigator.standalone` në iOS). Më parë varej nga
+`beforeinstallprompt`, prandaj në Safari të kompjuterit, në Firefox dhe në Chrome-in që
+ende nuk e ka nisur ngjarjen nuk shfaqej fare — dhe puna pa internet, që është arsyeja
+kryesore e kësaj faqeje, mbetej e pazbuluar.
+
+Kur ngjarja ekziston, butoni hap ftesën e shfletuesit. Kur nuk ekziston, shpalos
+udhëzimet e platformës (`platformaEInstalimit()` → `ios | android | kompjuter`) dhe
+`aria-expanded` ndjek gjendjen:
+
+| Platforma | Udhëzimi |
+| --- | --- |
+| iOS | Share në shiritin e Safari-t → Add to Home Screen |
+| Android | menyja (⋮) → Install app / Add to Home screen |
+| Kompjuter | ikona e instalimit te shiriti i adresës, ose menyja (⋮) → Install |
 
 ### Butoni „Ndaje"
 
