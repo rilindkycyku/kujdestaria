@@ -170,9 +170,12 @@ Titulli i skedës vazhdon të ndryshojë çdo natë — „Rigoni-2 — barnator
 Kaçanik" — sepse përgjigjja duhet të duket edhe kur skeda është një nga të shumtat; fjalët
 që kërkohen mbeten aty në të dyja format.
 
-`canonical` dhe `og:url` shtohen vetëm kur domeni dihet (`KUJDESTARIA_BAZA` ose
-`VERCEL_PROJECT_PRODUCTION_URL`): një adresë kanonike e gabuar është më keq se asnjë, sepse
-i thotë kërkuesit se faqja e vërtetë është diku tjetër.
+Domeni i faqes — `https://kujdestaria.rilindkycyku.dev` — rri si `DOMENI` te
+[`scripts/parafaqja.mjs`](scripts/parafaqja.mjs), dhe prej tij dalin `canonical`, `og:url`,
+`og:image` dhe `sitemap.xml`. Nuk merret nga `VERCEL_PROJECT_PRODUCTION_URL`, sepse ajo
+kthen adresën `*.vercel.app` po qe se domeni me emër nuk është i pari te projekti, dhe një
+`canonical` i tillë do t'ia kalonte peshën e kërkimit adresës së gabuar. Për një kopje diku
+tjetër mjafton `KUJDESTARIA_BAZA`, që i mbizotëron të dyja.
 
 ### robots.txt dhe sitemap.xml
 
@@ -265,16 +268,15 @@ përshkrimin i shkruan vetë aplikacioni nga `og:title` e `og:description`.
 Imazhi **nuk hyn në paracache** — e shikojnë vetëm robotët, kurrë përdoruesi.
 
 Te `index.html` rruga është relative, sepse domeni nuk dihet kur shkruhet kodi. Robotët e
-WhatsApp-it dhe të Facebook-ut kërkojnë URL absolute, prandaj `parafaqja.mjs` e
-plotëson pas ndërtimit — bashkë me `canonical`, `og:url` dhe `sitemap.xml`:
+WhatsApp-it dhe të Facebook-ut kërkojnë URL absolute, prandaj `parafaqja.mjs` e plotëson
+pas ndërtimit nga `DOMENI` — bashkë me `canonical`, `og:url` dhe `sitemap.xml`. Për një
+kopje në një domen tjetër:
 
 ```bash
 KUJDESTARIA_BAZA=https://domeni-i-yt npm run build
 ```
 
-Në Vercel nuk duhet asgjë: skripta merr `VERCEL_PROJECT_PRODUCTION_URL` vetë. Pa ndonjë
-prej të dyjave, rruga mbetet relative — Facebook-u zakonisht e zgjidh, WhatsApp-i mund të
-mos e zgjidhë — dhe ndërtimi e shkruan atë në dalje.
+Ndërtimi e shkruan në dalje se cilin domen përdori.
 
 ### Analytics
 

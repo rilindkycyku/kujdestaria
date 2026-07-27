@@ -23,12 +23,21 @@ import { skema } from '../src/skema.js';
 const rrenja = join(dirname(fileURLToPath(import.meta.url)), '..', 'dist');
 const faqja = join(rrenja, 'index.html');
 
+/** Domeni ku shërben faqja. Prej tij dalin `canonical`, `og:url` dhe `sitemap.xml`. */
+const DOMENI = 'https://kujdestaria.rilindkycyku.dev';
+
 /**
- * Domeni i faqes, pa `/` në fund. `VERCEL_PROJECT_PRODUCTION_URL` është domeni i
- * prodhimit — ai me emrin e vet, po qe se projektit i është vënë një i tillë.
+ * Domeni i ndërtimit, pa `/` në fund.
+ *
+ * `KUJDESTARIA_BAZA` e mbizotëron — i duhet një kopjeje të vendosur diku tjetër.
+ * Pa të merret `DOMENI`, dhe vetëm nëse ai zbrazet, domeni i prodhimit që jep
+ * Vercel-i. Rendi është ky sepse `VERCEL_PROJECT_PRODUCTION_URL` kthen adresën
+ * `*.vercel.app` po qe se domeni me emër nuk është vënë si i pari te projekti, dhe
+ * një `canonical` i tillë do t'ia kalonte peshën e kërkimit adresës së gabuar.
  */
 const baza = (
-  process.env.KUJDESTARIA_BAZA ??
+  process.env.KUJDESTARIA_BAZA ||
+  DOMENI ||
   (process.env.VERCEL_PROJECT_PRODUCTION_URL
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
     : '')
