@@ -1,10 +1,58 @@
-# kujdestaria
+<div align="center">
 
-Orari i kujdestarisë së barnatoreve për qytetin e Kaçanikut — faqe e vogël Vite që tregon
-menjëherë **cila barnatore është kujdestare tani**, sa i ka mbetur kujdestarisë, si
-shkohet atje, plus orarin e plotë sipas muajve.
+<img src="docs/pamja.webp" alt="Kujdestaria e barnatoreve — Kaçanik" width="100%">
 
-## Zhvillimi
+# Kujdestaria e barnatoreve
+
+**Cila barnatore është e hapur tani në Kaçanik.**
+
+[**kujdestaria.rilindkycyku.dev →**](https://kujdestaria.rilindkycyku.dev)
+
+</div>
+
+---
+
+Prej ora 22:00 deri në 08:00 një barnatore e Komunës së Kaçanikut qëndron e hapur me radhë,
+sipas një rotacioni 10-ditor. Orari ekziston — si PDF i skanuar te shpalljet e komunës, që
+duhet gjetur, shkarkuar dhe lexuar rresht për rresht.
+
+Kjo faqe e kthen atë PDF në një përgjigje. Emri i barnatores kujdestare është elementi më i
+madh në ekran, pastaj sa i ka mbetur kujdestarisë, pastaj një buton i plotë që e hap në
+Google Maps. Orari i plotë, barnatoret me adresa dhe baza ligjore vijnë pas. Instalohet në
+ekranin kryesor dhe punon plotësisht pa internet — sepse ora kur duhet është edhe ora kur
+lidhja është më e dobët.
+
+| | |
+| --- | --- |
+| **Faqja** | [kujdestaria.rilindkycyku.dev](https://kujdestaria.rilindkycyku.dev) |
+| **Ndërtimi** | Vite — pa framework për ndërfaqen |
+| **Periudha** | 01.07.2026 – 31.12.2026, zyrtare deri më 31.08.2026 |
+| **Barnatoret** | 7, në rotacion 10-ditor |
+| **Pa internet** | Po — PWA me service worker, orari brenda paketës |
+| **Provat** | `node --test`, pa framework provash |
+
+## Pamjet
+
+| | |
+| :-- | :-- |
+| <img src="docs/gjendjet.webp" alt="Tri gjendjet e kartelës"> | <img src="docs/orari.webp" alt="Orari i plotë"> |
+| **Tri gjendje, një kartelë** — jeshile natën me kohën e mbetur, e kaltër ditën me kohën deri sa të fillojë. | **Orari i plotë** — gjashtë muaj, barnatoret me adresa, datat e projektuara të shënuara si të tilla. |
+| <img src="docs/pa-internet.webp" alt="Punon pa internet"> | <img src="docs/kerkimi.webp" alt="Orari brenda HTML-së dhe grafi JSON-LD"> |
+| **Pa internet** — faqja hapet me rrjetin e fikur; butoni i instalimit shfaqet gjithmonë, me udhëzime sipas platformës. | **Kërkimi** — orari brenda HTML-së dhe grafi JSON-LD, të dyja të shkruara gjatë ndërtimit. |
+
+## Përmbajtja
+
+- [Nisja e shpejtë](#nisja-e-shpejtë)
+- [Struktura](#struktura)
+- [Ndërfaqja](#ndërfaqja)
+- [Provat](#provat)
+- [Kërkimi](#kërkimi)
+- [PWA — instalim dhe punë pa internet](#pwa--instalim-dhe-punë-pa-internet)
+- [Vendosja në Vercel](#vendosja-në-vercel)
+- [Të dhënat](#të-dhënat)
+- [A ka gabim në orar?](#a-ka-gabim-në-orar)
+
+## Nisja e shpejtë
 
 ```bash
 npm install
@@ -18,6 +66,30 @@ npm run ikonat    # rigjeneron ikonat PNG dhe imazhin e ndarjes te public/
 
 Faqja është statike pas `npm run build` — `dist/` mund të vendoset kudo (GitHub Pages,
 Netlify, Vercel, ose një server i thjeshtë).
+
+## Struktura
+
+```
+src/
+  main.js                pikënisja në shfletues — lidh ngjarjet dhe tikun e minutës
+  faqja.js               markup-i i faqes, i përbashkët me parandërtimin (pa DOM, pa Date)
+  koha.js                logjika e kohës — e ndarë që të provohet pa bundler
+  orari.js               leximi i orarit: kush është kujdestare, netët në vijim, kontaktet
+  skema.js               grafi schema.org (JSON-LD)
+  veprimet.js            ndarja, instalimi dhe regjistrimi i service worker-it
+  harta.js               validimi i lidhjeve të Google Maps
+  ikonat.js              ikonat SVG inline
+  style.css              tokenat dhe stilet
+  data/orari-2026.json   orari i gjeneruar
+
+scripts/
+  gjenero-orarin.mjs     ndërton orarin nga rotacioni dhe datat e dokumentit
+  parafaqja.mjs          faqja e gatshme, head-i, robots.txt dhe sitemap.xml
+  pergatit-sw.mjs        lista e paracache-it te sw.js, pas ndërtimit
+  gjenero-ikonat.mjs     ikonat PNG dhe imazhi i ndarjes
+
+test/                    koha, të dhënat e gjeneruara, dhe HTML-ja e gatshme
+```
 
 ## Ndërfaqja
 
@@ -402,6 +474,22 @@ bosh çdo dy muaj, i njëjti rotacion 10-ditor është vazhduar me llogaritje de
   ]
 }
 ```
+
+## A ka gabim në orar?
+
+Orari është transkriptuar me dorë nga një skanim pa shtresë teksti, dhe rotacioni pas
+31.08.2026 është i llogaritur — prandaj një datë e shkëmbyer është e mundshme.
+
+- Nëse e vëreni një gabim, shkruani te [kontaktet](https://www.rilindkycyku.dev/contacts)
+  ose hapni një *issue* këtu. Fundfaqja e faqes e ka të njëjtën lidhje, që të mos duhet
+  GitHub-i.
+- Kur komuna publikon orarin e ri te [shpalljet][shpalljet], përditësohen `ROTACIONI`,
+  `FILLIMI`, `FUNDI_ZYRTAR` dhe `FUNDI` te
+  [`scripts/gjenero-orarin.mjs`](scripts/gjenero-orarin.mjs), pastaj `npm run gjenero`.
+  Provat e kapin një gjenerim të gabuar para se ta kapë faqja.
+
+Burimi zyrtar është njoftimi `03Nr. 500/01-15606/26` i datës 29.06.2026 i Komunës së
+Kaçanikut — [PDF-ja e skanuar][pdf].
 
 [pdf]: https://kacanik.rks-gov.net/wp-content/uploads/2026/06/Orari-Korrik-Gusht-2026.pdf
 [shpalljet]: https://kacanik.rks-gov.net/shpalljet/
