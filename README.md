@@ -9,9 +9,9 @@ shkohet atje, plus orarin e plotë sipas muajve.
 ```bash
 npm install
 npm run dev       # serveri i zhvillimit
-npm run build     # ndërton në dist/ dhe përgatit sw.js
+npm run build     # ndërton në dist/, mbush HTML-në dhe përgatit sw.js
 npm run preview   # shikon ndërtimin
-npm test          # provat e logjikës së kohës dhe të të dhënave
+npm test          # provat e logjikës së kohës, të të dhënave dhe të SEO-s
 npm run gjenero   # rigjeneron src/data/orari-2026.json
 npm run ikonat    # rigjeneron ikonat PNG dhe imazhin e ndarjes te public/
 ```
@@ -89,7 +89,7 @@ Orari transkriptohet me dorë nga një skanim, dhe rotacioni pas 31.08.2026 ësh
 llogaritur — prandaj një datë e shkëmbyer është e mundshme. Fundfaqja ka një kartelë me
 lidhjen te [kontaktet e autorit](https://www.rilindkycyku.dev/contacts), që personi i
 cili e vë re gabimin të ketë ku ta thotë pa hapur GitHub. Adresa ndryshohet te `AUTORI`
-në [`src/main.js`](src/main.js).
+në [`src/faqja.js`](src/faqja.js).
 
 ## Provat
 
@@ -113,6 +113,84 @@ të njëpasnjëshme pa hapësira, dita e javës që i përgjigjet datës, `mbaro
 rotacioni 10-ditor sipas radhës së shpallur, flamuri `zyrtare` vetëm brenda dokumentit,
 sezoni që ndërron te data e duhur, dhe lidhjet e hartave që kalojnë validimin. Kështu një
 `npm run gjenero` i gabuar bie te provat, jo te faqja.
+
+[`test/seo.test.mjs`](test/seo.test.mjs) provon atë që e sheh vetëm makina: se HTML-ja e
+gatshme i mban të gjitha netët e orarit dhe asnjë shenjë „tani" të ngrirë, se grafi JSON-LD
+del JSON i vlefshëm me `@id`-të e veta dhe pa fusha të zbrazëta, dhe se çdo përgjigje e
+`FAQPage`-it shfaqet fjalë për fjalë edhe në faqe — Google-i e pranon vetëm ashtu.
+
+## Kërkimi
+
+Dikush që shkruan „barnatorja kujdestare Kaçanik" duhet ta gjejë këtë faqe, dhe përgjigjja
+duhet t'i dalë edhe atij që nuk e hap fare — te fragmenti i rezultatit ose te përgjigjja e
+një asistenti. Prandaj orari nuk rri vetëm brenda JavaScript-it.
+
+### Faqja e gatshme brenda HTML-së
+
+Pas `vite build`, [`scripts/parafaqja.mjs`](scripts/parafaqja.mjs) e mbush `dist/index.html`:
+brenda `<div id="app">` shkruhet orari i plotë i të gjithë muajve, lista e barnatoreve me
+adresa, pyetjet e shpeshta dhe fundfaqja me bazën ligjore. Google-i e ekzekuton
+JavaScript-in, por Bing-u, Facebook-u, WhatsApp-i dhe robotët e asistentëve zakonisht jo —
+për ta faqja e mëparshme ishte një `<div>` i zbrazët. HTML-ja rritet në rreth 10 kB të
+ngjeshura dhe shërben edhe si faqe e plotë për këdo me JavaScript të fikur.
+
+Markup-i nuk shkruhet dy herë: [`src/faqja.js`](src/faqja.js) i mban të njëjtat funksione
+që përdor edhe shfletuesi, dhe rregulli aty është që asgjë të mos prekë `document`,
+`navigator` as `new Date()`. Kartela „tani" dhe „netët në vijim" nuk parandërtohen fare —
+HTML-ja shkruhet një herë dhe lexohet muaj më vonë, prandaj çdo „tani" i ngrirë aty do të
+ishte gabim i sigurt. Sapo skripta ngarkohet, `main.js` e zëvendëson përmbajtjen me pamjen
+e drejtpërdrejtë.
+
+### Të dhënat e strukturuara
+
+[`src/skema.js`](src/skema.js) ndërton një graf schema.org (JSON-LD) që shkruhet te
+`<head>`-i gjatë ndërtimit: `WebSite`, `WebPage`+`FAQPage`, `GovernmentService` për vetë
+kujdestarinë 22:00–08:00, `GovernmentOrganization` për komunën me drejtorinë brenda,
+`City`, `CreativeWork` për dokumentin e skanuar nga i cili është transkriptuar orari, dhe
+një `Pharmacy` për secilën barnatore me adresën, telefonin, lidhjen e Google Maps-it dhe
+orarin e rregullt.
+
+Asgjë nuk shpiket: fusha që nuk dihet — telefoni që mungon, koordinatat e sakta të një
+barnatoreje — thjesht nuk shkruhet. Netët e kujdestarisë nuk shkojnë te
+`openingHoursSpecification`, sepse qindra data do ta frynin faqen pa i dhënë asgjë
+lexuesit; ato i mban tabela.
+
+JSON-LD-ja është bllok të dhënash, jo skriptë që ekzekutohet, prandaj `script-src 'self'`
+e CSP-së nuk e prek — e provuar në Chromium me pikërisht headers-at e
+[`vercel.json`](vercel.json).
+
+### Titulli, përshkrimi dhe adresat
+
+Titulli dhe përshkrimi ndërtohen nga vetë të dhënat (`TITULLI`, `PERSHKRIMI` te
+[`src/faqja.js`](src/faqja.js)) dhe i shkruhen `<head>`-it gjatë ndërtimit, që kur komuna
+publikon orarin e ri të mos mbetet asnjë periudhë e vjetër te rezultati i kërkimit. Teksti
+te [`index.html`](index.html) është vetëm rezervë për `npm run dev`.
+
+Titulli i skedës vazhdon të ndryshojë çdo natë — „Rigoni-2 — barnatorja kujdestare tani në
+Kaçanik" — sepse përgjigjja duhet të duket edhe kur skeda është një nga të shumtat; fjalët
+që kërkohen mbeten aty në të dyja format.
+
+Domeni i faqes — `https://kujdestaria.rilindkycyku.dev` — rri si `DOMENI` te
+[`scripts/parafaqja.mjs`](scripts/parafaqja.mjs), dhe prej tij dalin `canonical`, `og:url`,
+`og:image` dhe `sitemap.xml`. Nuk merret nga `VERCEL_PROJECT_PRODUCTION_URL`, sepse ajo
+kthen adresën `*.vercel.app` po qe se domeni me emër nuk është i pari te projekti, dhe një
+`canonical` i tillë do t'ia kalonte peshën e kërkimit adresës së gabuar. Për një kopje diku
+tjetër mjafton `KUJDESTARIA_BAZA`, që i mbizotëron të dyja.
+
+### robots.txt dhe sitemap.xml
+
+Të dyja gjenerohen gjatë ndërtimit, jo me dorë te `public/`, sepse `sitemap.xml` kërkon
+adresa absolute dhe `robots.txt` e tregon vendin e tij. Pa domen të njohur shkruhet vetëm
+`robots.txt`, pa rreshtin `Sitemap:`. Asnjëra nuk hyn në paracache të service worker-it —
+i lexojnë vetëm robotët.
+
+### Pyetjet e shpeshta
+
+Seksioni i pyetjeve nuk është zbukurim SEO-je: janë pyetjet që njerëzit shkruajnë te
+kërkimi („a ka barnatore hapur natën", „deri në sa orë punojnë barnatoret") me përgjigje të
+ndërtuara nga të dhënat. I njëjti tekst shkon te `FAQPage` i grafit — Google-i i pranon
+përgjigjet vetëm nëse duken edhe në faqe, prandaj burimi është një i vetëm
+([`pyetjet()`](src/faqja.js)) dhe një provë e mban të lidhur.
 
 ## PWA — instalim dhe punë pa internet
 
@@ -190,16 +268,15 @@ përshkrimin i shkruan vetë aplikacioni nga `og:title` e `og:description`.
 Imazhi **nuk hyn në paracache** — e shikojnë vetëm robotët, kurrë përdoruesi.
 
 Te `index.html` rruga është relative, sepse domeni nuk dihet kur shkruhet kodi. Robotët e
-WhatsApp-it dhe të Facebook-ut kërkojnë URL absolute, prandaj `pergatit-sw.mjs` e
-plotëson pas ndërtimit:
+WhatsApp-it dhe të Facebook-ut kërkojnë URL absolute, prandaj `parafaqja.mjs` e plotëson
+pas ndërtimit nga `DOMENI` — bashkë me `canonical`, `og:url` dhe `sitemap.xml`. Për një
+kopje në një domen tjetër:
 
 ```bash
 KUJDESTARIA_BAZA=https://domeni-i-yt npm run build
 ```
 
-Në Vercel nuk duhet asgjë: skripta merr `VERCEL_PROJECT_PRODUCTION_URL` vetë. Pa ndonjë
-prej të dyjave, rruga mbetet relative — Facebook-u zakonisht e zgjidh, WhatsApp-i mund të
-mos e zgjidhë — dhe ndërtimi e shkruan atë në dalje.
+Ndërtimi e shkruan në dalje se cilin domen përdori.
 
 ### Analytics
 

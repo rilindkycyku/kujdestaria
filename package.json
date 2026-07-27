@@ -6,7 +6,7 @@
   "description": "Orari i kujdestarisë së barnatoreve për qytetin e Kaçanikut",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/pergatit-sw.mjs",
+    "build": "vite build && node scripts/parafaqja.mjs && node scripts/pergatit-sw.mjs",
     "preview": "vite preview",
     "test": "node --test",
     "gjenero": "node scripts/gjenero-orarin.mjs",
