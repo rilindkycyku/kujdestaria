@@ -1,4 +1,4 @@
-import orari from './data/orari-2026.json';
+import orari from './data/orari-2026.json' with { type: 'json' };
 import { lidhjeHarteEVlefshme } from './harta.js';
 import { emriIMuajit, gjendjaEKujdestarise } from './koha.js';
 

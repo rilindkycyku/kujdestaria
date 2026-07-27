@@ -1,25 +1,21 @@
 import './style.css';
 import { inject } from '@vercel/analytics';
+import { orari, barnatorja, kujdestariaTani, sipasMuajve } from './orari.js';
+import { dataSot, dataShkurt, dataShqip, kohaShkurt } from './koha.js';
+import { ikona } from './ikonat.js';
 import {
-  orari,
-  barnatorja,
-  kaHarta,
-  kujdestariaTani,
-  netNeCikel,
-  sipasMuajve,
-  tëArdhshmet,
-  tëGjithaBarnatoret,
-} from './orari.js';
-import {
-  dataSot,
-  dataShkurt,
-  dataShqip,
-  ditaShkurt,
-  emriIMuajit,
-  emriIMuajitShkurt,
-  kohaShkurt,
-} from './koha.js';
-import { ikona, shenjaEFaqes, zemra } from './ikonat.js';
+  TITULLI,
+  ardhshmet,
+  butonatEMuajve,
+  fundfaqja,
+  kreu,
+  njoftimiIProjeksionit,
+  seksioniIBarnatoreve,
+  seksioniIPyetjeve,
+  shpjegimiIOrarit,
+  sig,
+  tabelaEMuajit,
+} from './faqja.js';
 import {
   instalo,
   kërkonUdhëzime,
@@ -34,13 +30,6 @@ import {
 const app = document.querySelector('#app');
 const muajt = sipasMuajve();
 const { iRregullt, kujdestaria: orariINates } = orari.orari;
-
-/** Kush e ndërtoi faqen — shfaqet te fundfaqja, bashkë me adresën për njoftime. */
-const AUTORI = {
-  emri: 'Rilind Kyçyku',
-  faqja: 'https://rilindkycyku.dev',
-  kontakti: 'https://www.rilindkycyku.dev/contacts',
-};
 
 /** Muaji i shfaqur në tabelë; ndryshohet nga butonat e muajve. */
 let muajiAktiv = null;
@@ -79,14 +68,6 @@ function trego(tekst) {
   vizato();
 }
 
-/** Adresat dhe telefonat shkruhen me dorë te skripta e gjenerimit — nuk shkojnë të pafiltruara në HTML. */
-function sig(vlera) {
-  return String(vlera ?? '').replace(
-    /[&<>"']/g,
-    (sh) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[sh],
-  );
-}
-
 /**
  * Vendos HTML-në e një pjese të faqes, vetëm nëse ka ndryshuar vërtet.
  *
@@ -112,24 +93,6 @@ function cakto(perzgjedhesi, html) {
 
   if (fokusi) element.querySelector(`[data-fokus="${fokusi}"]`)?.focus();
   return element;
-}
-
-/* ── Kreu ──────────────────────────────────────────────────────────────── */
-
-function kreu() {
-  return `
-    <header class="kreu">
-      ${shenjaEFaqes()}
-      <div>
-        <p class="kreu__komuna">Komuna e ${sig(orari.komunaGjinore)}</p>
-        <h1 class="kreu__titull">Kujdestaria e barnatoreve</h1>
-        <p class="kreu__meta">
-          <span class="etiketa">${ikona('nate')} Kujdestaria ${orariINates.prej}–${orariINates.deri}</span>
-          <span class="etiketa">${dataShqip(orari.periudha.prej)} – ${dataShqip(orari.periudha.deri)}</span>
-        </p>
-      </div>
-    </header>
-  `;
 }
 
 /* ── Kartela e gjendjes ────────────────────────────────────────────────── */
@@ -306,54 +269,7 @@ function jashtePeriudhes(sot) {
   `;
 }
 
-/* ── Netët në vijim ────────────────────────────────────────────────────── */
-
-/** Netët pas asaj që është në fuqi tani — jo pas datës së sotme, që pas mesnate të mos e humbasë një natë. */
-function ardhshmet(natenIsFilloi) {
-  const ditet = tëArdhshmet(natenIsFilloi, 4);
-  if (ditet.length === 0) return '';
-
-  const njesite = ditet
-    .map((dita, indeksi) => {
-      const klasa = [
-        'ardhshme__njesi',
-        indeksi === 0 && 'ardhshme__njesi--para',
-        !dita.zyrtare && 'ardhshme__njesi--projektim',
-      ]
-        .filter(Boolean)
-        .join(' ');
-      return `
-        <li class="${klasa}">
-          <span class="ardhshme__dita">${ditaShkurt(dita.dita)} ${dataShkurt(dita.data)}</span>
-          <span class="ardhshme__emri">${sig(dita.barnatorja)}</span>
-        </li>
-      `;
-    })
-    .join('');
-
-  return `
-    <h2 class="titull-seksioni">Netët në vijim</h2>
-    <ul class="ardhshme__lista">${njesite}</ul>
-  `;
-}
-
 /* ── Orari i plotë ─────────────────────────────────────────────────────── */
-
-function butonatEMuajve() {
-  return muajt
-    .map((m) => {
-      const projektim = m.ditet.every((d) => !d.zyrtare);
-      return `
-        <button
-          type="button"
-          class="muaj-buton${projektim ? ' muaj-buton--projektim' : ''}"
-          data-muaji="${m.celes}"
-          aria-pressed="${m.celes === muajiAktiv}"
-        >${emriIMuajitShkurt(m.celes)}</button>
-      `;
-    })
-    .join('');
-}
 
 function shenoMuajinAktiv() {
   for (const buton of app.querySelectorAll('.muaj-buton')) {
@@ -369,209 +285,6 @@ function qendroNeMuajinAktiv() {
   shiriti.scrollLeft = butoni.offsetLeft - (shiriti.clientWidth - butoni.offsetWidth) / 2;
 }
 
-function tabelaEMuajit(natenIsFilloi) {
-  const muaji = muajt.find((m) => m.celes === muajiAktiv) ?? muajt[0];
-
-  const rreshtat = muaji.ditet
-    .map((dita) => {
-      const tani = dita.data === natenIsFilloi;
-      const klasa = [
-        tani && 'rresht--tani',
-        dita.data < natenIsFilloi && 'rresht--kaluar',
-      ]
-        .filter(Boolean)
-        .join(' ');
-      return `
-        <tr class="${klasa}">
-          <td class="qeliza-nata">
-            ${dataShkurt(dita.data)}
-            <span class="qeliza-nata__deri">→ ${dataShkurt(dita.kujdestaria.mbaronMe)}</span>
-          </td>
-          <td class="qeliza-dita">
-            <span class="qeliza-dita__plote">${dita.dita}</span>
-            <span class="qeliza-dita__shkurt">${ditaShkurt(dita.dita)}</span>
-          </td>
-          <td class="qeliza-emri">${sig(dita.barnatorja)}</td>
-          <td class="qeliza-shenja">
-            ${tani ? '<span class="shenja shenja--tani">tani</span>' : ''}
-            ${dita.zyrtare ? '' : '<span class="shenja shenja--projektim">e projektuar</span>'}
-          </td>
-        </tr>
-      `;
-    })
-    .join('');
-
-  return `
-    <div class="tabela-mbeshtjellese">
-      <table class="tabela">
-        <caption class="vetem-lexues">
-          Kujdestaria e barnatoreve për ${emriIMuajit(muaji.celes)}
-        </caption>
-        <thead>
-          <tr>
-            <th scope="col">Nata</th>
-            <th scope="col">Dita</th>
-            <th scope="col">Barnatorja</th>
-            <th scope="col"><span class="vetem-lexues">Gjendja</span></th>
-          </tr>
-        </thead>
-        <tbody>${rreshtat}</tbody>
-      </table>
-    </div>
-  `;
-}
-
-/* ── Barnatoret ────────────────────────────────────────────────────────── */
-
-/**
- * Lista e të gjitha barnatoreve me hartë e telefon; fshihet krejt nëse s'ka asnjë.
- * Kujdestarja e natës në fuqi shënohet — vizualisht me ngjyrë, dhe me tekst për
- * lexuesat e ekranit, që shënimi të mos varet vetëm nga ngjyra.
- */
-function seksioniIBarnatoreve(emriKujdestar, faza) {
-  if (!kaHarta()) return '';
-  const kur = faza === 'nate' ? 'tani' : 'sonte';
-
-  const njesite = tëGjithaBarnatoret()
-    .map((b) => {
-      const kujdestare = b.emri === emriKujdestar;
-      const net = netNeCikel(b.emri);
-      const meta = [
-        b.adresa,
-        `${net} ${net === 1 ? 'natë' : 'net'} për ${orari.projeksioni.gjatesiaECiklit} ditë`,
-      ]
-        .filter(Boolean)
-        .join(' · ');
-
-      return `
-        <li class="barnatorja${kujdestare ? ' barnatorja--kujdestare' : ''}">
-          <span class="barnatorja__shkronja" aria-hidden="true">${sig(b.emri.charAt(0))}</span>
-          <span class="barnatorja__krye">
-            <span class="barnatorja__emri">
-              ${sig(b.emri)}${kujdestare ? `<span class="vetem-lexues"> — kujdestare ${kur}</span>` : ''}
-            </span>
-            <span class="barnatorja__meta">${sig(meta)}</span>
-          </span>
-          <span class="barnatorja__veprimet">
-            ${
-              b.harta
-                ? `<a class="buton buton--ikona" href="${sig(b.harta)}" target="_blank"
-                      rel="noopener noreferrer" aria-label="Hape ${sig(b.emri)} në Google Maps">
-                     ${ikona('harta')}
-                   </a>`
-                : ''
-            }
-            ${
-              b.telefoni
-                ? `<a class="buton buton--ikona" href="tel:${sig(b.telefoni.replace(/\s+/g, ''))}"
-                      aria-label="Telefono ${sig(b.emri)} — ${sig(b.telefoni)}">
-                     ${ikona('telefoni')}
-                   </a>`
-                : ''
-            }
-          </span>
-        </li>
-      `;
-    })
-    .join('');
-
-  return `
-    <h2 class="titull-seksioni">Barnatoret</h2>
-    <ul class="barnatoret__lista">${njesite}</ul>
-  `;
-}
-
-/* ── Njoftimi dhe fundfaqja ────────────────────────────────────────────── */
-
-function njoftimiIProjeksionit() {
-  return `
-    <section class="njoftim">
-      <h2 class="titull-seksioni">Për datat pas ${dataShqip(orari.periudha.zyrtareDeri)}</h2>
-      <p>${sig(orari.projeksioni.shpjegimi)}</p>
-      <p>
-        <a class="lidhje-jashtme" href="${orari.burimet.shpalljet}" target="_blank" rel="noopener noreferrer">
-          Shpalljet zyrtare të Komunës së ${sig(orari.komunaGjinore)} ${ikona('jashte')}
-        </a>
-      </p>
-    </section>
-  `;
-}
-
-/**
- * Njoftimi për gabim. Orari transkriptohet me dorë nga një skanim, dhe rotacioni
- * pas 31.08 është i llogaritur — prandaj një datë e shkëmbyer është e mundshme,
- * dhe personi që e vë re duhet të ketë ku ta thotë pa u dashur të hapë GitHub.
- */
-function raportoGabim() {
-  return `
-    <div class="raporto">
-      <p class="raporto__tekst">
-        <strong>A ka gabim në orar?</strong>
-        Nëse një datë, orë ose barnatore nuk përputhet me shpalljen e komunës, njoftoni
-        që të përmirësohet.
-      </p>
-      <a class="buton" href="${sig(AUTORI.kontakti)}" target="_blank" rel="noopener noreferrer">
-        ${ikona('njofto')} Njofto
-      </a>
-    </div>
-  `;
-}
-
-function fundfaqja() {
-  const bazat = orari.bazaLigjore.map((b) => `<li>${sig(b)}</li>`).join('');
-  return `
-    <footer class="fundfaqja">
-      <h2 class="titull-seksioni">Burimi zyrtar</h2>
-
-      <details class="detaje">
-        <summary class="detaje__krye">
-          Orari, sezonet dhe baza ligjore
-          ${ikona('shigjeta', 'ikona detaje__shigjeta')}
-        </summary>
-        <div class="detaje__trupi">
-          <p>
-            <strong>Orari i rregullt ${iRregullt.prej}–${iRregullt.deri}:</strong>
-            ${sig(iRregullt.shpjegimi)}
-          </p>
-          <p>
-            <strong>Kujdestaria ${orariINates.prej}–${orariINates.deri}:</strong>
-            ${sig(orariINates.shpjegimi)}
-          </p>
-          <p>
-            <strong>Sezoni veror</strong> (deri më ${dataShqip(orari.sezonet.veror.mbaron)}):
-            ${sig(orari.sezonet.veror.pershkrimi)}
-            Orari ${orari.sezonet.veror.prej}–${orari.sezonet.veror.deri}.
-          </p>
-          <p>
-            <strong>Sezoni dimëror</strong> (nga ${dataShqip(orari.sezonet.dimeror.fillon)}):
-            ${sig(orari.sezonet.dimeror.pershkrimi)}
-          </p>
-          <ul class="detaje__lista">${bazat}</ul>
-          <p>
-            ${sig(orari.institucioni)}, Komuna e ${sig(orari.komunaGjinore)} ·
-            ${sig(orari.referenca)} · ${dataShqip(orari.dataEDokumentit)} ·
-            ${sig(orari.nenshkroi.pozita)}, ${sig(orari.nenshkroi.emri)}
-          </p>
-        </div>
-      </details>
-
-      <p class="fundfaqja__meta">
-        Të dhënat janë transkriptim i dokumentit zyrtar të skanuar.
-        <a class="lidhje-jashtme" href="${orari.burimet.dokumenti}" target="_blank" rel="noopener noreferrer">
-          Dokumenti burimor (PDF) ${ikona('jashte')}
-        </a>
-      </p>
-
-      ${raportoGabim()}
-      <p class="fundfaqja__autori">
-        Bërë me ${zemra()} nga
-        <a href="${sig(AUTORI.faqja)}" target="_blank" rel="noopener noreferrer">${sig(AUTORI.emri)}</a>
-        për qytetarët e Komunës së ${sig(orari.komunaGjinore)}.
-      </p>
-    </footer>
-  `;
-}
-
 /* ── Vizatimi ──────────────────────────────────────────────────────────── */
 
 function skeleti() {
@@ -580,17 +293,15 @@ function skeleti() {
       ${kreu()}
       <section class="tani" id="tani"></section>
       <section class="ardhshme" id="ardhshme"></section>
-      <section class="orari-plote">
+      <section class="orari-plote" id="orari-plote">
         <h2 class="titull-seksioni">Orari i plotë</h2>
-        <p class="orari-plote__shpjegim">
-          Një rresht është një natë: prej ora ${orariINates.prej} të datës së parë
-          deri në ora ${orariINates.deri} të nesërmen.
-        </p>
-        <div class="muaj-shirit" role="group" aria-label="Zgjidh muajin">${butonatEMuajve()}</div>
+        ${shpjegimiIOrarit()}
+        <div class="muaj-shirit" role="group" aria-label="Zgjidh muajin">${butonatEMuajve(muajiAktiv)}</div>
         <div id="tabela"></div>
       </section>
       <section class="barnatoret" id="barnatoret"></section>
       ${njoftimiIProjeksionit()}
+      ${seksioniIPyetjeve()}
       ${fundfaqja()}
     </main>
   `;
@@ -616,13 +327,17 @@ function vizato() {
   if (kartela) kartela.className = klasaETanit(gjendja);
 
   cakto('#ardhshme', ardhshmet(nataNeFuqi));
-  cakto('#tabela', tabelaEMuajit(nataNeFuqi));
+  cakto('#tabela', tabelaEMuajit(muajiAktiv, nataNeFuqi));
   cakto('#barnatoret', seksioniIBarnatoreve(gjendja.dita?.barnatorja ?? null, gjendja.faza));
 
   // Përgjigjja shihet edhe pa u hapur faqja, kur skeda është një nga të shumtat.
+  // Fjalët „barnatorja kujdestare" dhe emri i qytetit mbeten aty edhe kur titullin
+  // e lexon një kërkues pasi e ka ekzekutuar skriptën.
   document.title = gjendja.dita
-    ? `${gjendja.dita.barnatorja} — kujdestare ${gjendja.faza === 'nate' ? 'tani' : 'sonte'} · ${orari.komuna}`
-    : `Kujdestaria e barnatoreve — ${orari.komuna}`;
+    ? `${gjendja.dita.barnatorja} — barnatorja kujdestare ${
+        gjendja.faza === 'nate' ? 'tani' : 'sonte'
+      } në ${orari.komuna}`
+    : TITULLI;
 }
 
 /* ── Ngjarjet ──────────────────────────────────────────────────────────── */

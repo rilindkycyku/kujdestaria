@@ -367,7 +367,8 @@ h3 {
 }
 
 /* Titulli i gjendjes kur data është jashtë periudhës së orarit. */
-.tani__jashte {
+.tani__jashte,
+.tani__titull {
   margin: 0.5rem 0 0;
   font-size: clamp(1.35rem, 5.5vw, 1.7rem);
   line-height: 1.2;
@@ -871,6 +872,36 @@ h3 {
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
+}
+
+/* ── Pyetjet e shpeshta ─────────────────────────────────────────────────── */
+
+.pyetjet__lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.pyetje {
+  padding: 0.95rem 1.1rem;
+  background: var(--siperfaqe);
+  border: 1px solid var(--kufiri);
+  border-radius: var(--rreze-2);
+  box-shadow: var(--hije-1);
+}
+
+.pyetje__titulli {
+  margin: 0 0 0.35rem;
+  font-size: 0.97rem;
+  line-height: 1.4;
+}
+
+.pyetje__pergjigjja {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--teksti-zbehte);
 }
 
 /* ── Fundfaqja ──────────────────────────────────────────────────────────── */

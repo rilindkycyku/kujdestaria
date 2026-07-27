@@ -38,6 +38,8 @@ const jashteParacachit = new Set([
   '/ikona-maskable-512.png',
   '/apple-touch-icon.png',
   '/ndarje.png',
+  '/robots.txt',
+  '/sitemap.xml',
 ]);
 
 const paracache = ['/', ...tegjithe.filter((f) => !jashteParacachit.has(f))];
@@ -68,34 +70,3 @@ if (dalja === origjinali) {
 writeFileSync(shtegu, dalja, 'utf8');
 console.log(`sw.js → ${versioni} · ${paracache.length} skedarë në paracache`);
 for (const f of paracache) console.log(`   ${f}`);
-
-/**
- * `og:image` shkruhet me rrugë relative te `index.html`, sepse domeni nuk dihet
- * kur shkruhet kodi. Robotët e WhatsApp-it e të Facebook-ut kërkojnë URL absolute,
- * prandaj po qe se dihet domeni — `KUJDESTARIA_BAZA`, ose ai që jep Vercel-i vetë
- * — rruga plotësohet tani. Pa të, imazhi mbetet relativ: Facebook-u zakonisht e
- * zgjidh, WhatsApp-i mund të mos e zgjidhë.
- */
-const baza =
-  process.env.KUJDESTARIA_BAZA ??
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : null);
-
-const faqja = join(rrenja, 'index.html');
-const html = readFileSync(faqja, 'utf8');
-
-if (!baza) {
-  console.log('og:image → mbetet relativ (pa KUJDESTARIA_BAZA as domen nga Vercel-i)');
-} else {
-  const iPlote = html.replace(
-    /(<meta property="og:image" content=")\/ndarje\.png(")/,
-    `$1${baza.replace(/\/$/, '')}/ndarje.png$2`,
-  );
-  if (iPlote === html) {
-    console.error('gabim: nuk u gjet meta og:image te dist/index.html');
-    process.exit(1);
-  }
-  writeFileSync(faqja, iPlote, 'utf8');
-  console.log(`og:image → ${baza.replace(/\/$/, '')}/ndarje.png`);
-}

@@ -2,6 +2,7 @@
   "name": "Kujdestaria e barnatoreve — Kaçanik",
   "short_name": "Kujdestaria",
   "description": "Cila barnatore është kujdestare tani në Kaçanik. Punon edhe pa internet.",
+  "id": "/",
   "lang": "sq",
   "dir": "ltr",
   "start_url": "/",

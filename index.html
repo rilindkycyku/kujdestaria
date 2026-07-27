@@ -18,20 +18,37 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="Kujdestaria" />
     <meta name="mobile-web-app-capable" content="yes" />
-    <title>Kujdestaria e barnatoreve — Kaçanik</title>
+    <meta name="application-name" content="Kujdestaria" />
+
+    <!-- Titulli dhe përshkrimi rishkruhen gjatë ndërtimit nga `scripts/parafaqja.mjs`,
+         që të dalin nga vetë orari dhe të mos vjetrohen kur komuna publikon orarin e ri.
+         Aty shtohen edhe `canonical` e `og:url`, sepse domeni nuk dihet këtu.
+         Ajo që rri në këtë skedar është vetëm rezerva për `npm run dev`. -->
+    <title>Barnatorja kujdestare në Kaçanik — orari i kujdestarisë</title>
     <meta
       name="description"
-      content="Cila barnatore është kujdestare tani në Kaçanik, e hapur 22:00–08:00. Orari zyrtar i kujdestarisë për Korrik – Gusht 2026."
+      content="Cila barnatore është kujdestare sonte në Kaçanik, e hapur 22:00–08:00. Orari zyrtar i kujdestarisë natë për natë, me adresa dhe harta. Punon edhe pa internet."
     />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="author" content="Rilind Kyçyku" />
+    <link rel="author" href="https://rilindkycyku.dev" />
+
+    <!-- Qyteti ku vlen orari. Koordinatat janë të qendrës së Kaçanikut, jo të ndonjë
+         barnatoreje — vendin e secilës e mban lidhja e saj e Google Maps-it. -->
+    <meta name="geo.region" content="XK" />
+    <meta name="geo.placename" content="Kaçanik" />
+    <meta name="geo.position" content="42.2317;21.2597" />
+    <meta name="ICBM" content="42.2317, 21.2597" />
+
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="sq_AL" />
     <meta property="og:site_name" content="Kujdestaria e barnatoreve" />
-    <meta property="og:title" content="Kujdestaria e barnatoreve — Kaçanik" />
+    <meta property="og:title" content="Barnatorja kujdestare në Kaçanik — orari i kujdestarisë" />
     <meta
       property="og:description"
-      content="Cila barnatore është kujdestare tani në Kaçanik, e hapur 22:00–08:00. Punon edhe pa internet."
+      content="Cila barnatore është kujdestare sonte në Kaçanik, e hapur 22:00–08:00. Orari zyrtar i kujdestarisë natë për natë, me adresa dhe harta. Punon edhe pa internet."
     />
-    <!-- Rruga bëhet e plotë pas ndërtimit nga `scripts/pergatit-sw.mjs`, sepse
+    <!-- Rrugët bëhen të plota pas ndërtimit nga `scripts/parafaqja.mjs`, sepse
          WhatsApp-i dhe Facebook-u kërkojnë URL absolute te `og:image`. -->
     <meta property="og:image" content="/ndarje.png" />
     <meta property="og:image:type" content="image/png" />
@@ -39,6 +56,13 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Kryqi i barnatores mbi fushë të kaltër" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Barnatorja kujdestare në Kaçanik — orari i kujdestarisë" />
+    <meta
+      name="twitter:description"
+      content="Cila barnatore është kujdestare sonte në Kaçanik, e hapur 22:00–08:00. Orari zyrtar i kujdestarisë natë për natë, me adresa dhe harta. Punon edhe pa internet."
+    />
+    <meta name="twitter:image" content="/ndarje.png" />
+    <meta name="twitter:image:alt" content="Kryqi i barnatores mbi fushë të kaltër" />
   </head>
   <body>
     <div id="app"></div>
