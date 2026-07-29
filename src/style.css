@@ -18,68 +18,106 @@
 
 /* ── Tokenat ────────────────────────────────────────────────────────────── */
 
+/**
+ * Paleta ndjek atë të FinanCare-s: sipërfaqe blu-nate të shtresuara, me
+ * smerald e cian si dy ngjyrat e theksit. Dy ngjyra theksi, jo një, sepse
+ * faqja ka dy gjendje që nuk duhet të ngatërrohen — `--theks` (cian) është
+ * kujdestaria e caktuar por ende jo në fuqi, `--hapur` (smerald) është ajo që
+ * është e hapur tani. Kjo ishte ndarja e kaltër/jeshile e dikurshme, e mbajtur.
+ *
+ * Fonti mbetet ai i sistemit. FinanCare ngarkon Inter nga Google Fonts, por
+ * këtu `font-src 'self'` e ndalon, dhe faqja duhet të hapet edhe pa internet
+ * në ora 02:00 — një font i jashtëm do të ishte bajt e pritje pa përfitim.
+ * Ndjesia merret nga pesha, hapësira e shkronjave dhe numrat tabelorë.
+ *
+ * Ngjyrat e temës së çelët janë një shkallë më të thella se ato të FinanCare-s
+ * (smeraldi `#047857` në vend të `#059669`, ciani `#0369a1` në vend të
+ * `#0284c7`): ato origjinalet bien nën 4.5:1 mbi të bardhën dhe këtu përdoren
+ * për tekst — lidhje, etiketa gjendjeje, bojë mbi buton.
+ */
+
 :root {
   color-scheme: light dark;
 
-  --sfond: #eef1f7;
-  --shkelqimi: rgb(15 90 168 / 10%);
+  --sfond: #f1f5f9;
+  --shkelqimi: rgb(4 120 87 / 10%);
   --siperfaqe: #ffffff;
-  --siperfaqe-2: #f5f7fc;
-  --gjurma: #e4e9f2;
+  --siperfaqe-2: #f8fafc;
+  --gjurma: #e2e8f0;
 
-  --teksti: #0e1622;
-  --teksti-zbehte: #57647a;
+  --teksti: #0f172a;
+  /* 5.7:1 mbi sipërfaqe, 5.2:1 mbi sfondin e faqes. */
+  --teksti-zbehte: #5b6779;
 
-  --kufiri: #e0e6f0;
+  --kufiri: #e2e8f0;
   /* Kufi i elementeve që klikohen. WCAG 1.4.11 kërkon 3:1 për të dallohet një
-     kontroll; ky arrin 3.6:1 mbi të bardhën dhe 3.2:1 mbi sfondin e faqes. */
+     kontroll; ky arrin 3.6:1 mbi të bardhën dhe 3.3:1 mbi sfondin e faqes. */
   --kufiri-veprues: #7a889e;
 
-  --theks: #0f5aa8;
-  --theks-zbehte: #e8f1fb;
-  --hapur: #0d7c46;
-  --hapur-zbehte: #e1f5ea;
-  --projektim: #8a5712;
-  --projektim-zbehte: #fdf2e0;
-  --zemra: #d43f5c;
-  /* Bojë mbi sipërfaqe të plotë me ngjyrën e gjendjes. */
+  /* 5.9:1 mbi sipërfaqe, 5.2:1 mbi mbushjen e vet të zbehtë. */
+  --theks: #0369a1;
+  --theks-zbehte: #e0f2fe;
+  /* 5.5:1 mbi sipërfaqe, 4.8:1 mbi mbushjen e vet të zbehtë. */
+  --hapur: #047857;
+  --hapur-zbehte: #d1fae5;
+  /* Vetëm për hije e shkëlqime — të tejdukshme, që të shihen mbi çdo sipërfaqe.
+     Mbushjet `--*-zbehte` janë të errëta në temën e natës dhe s'bëjnë punë këtu. */
+  --theks-shkelqim: rgb(3 105 161 / 22%);
+  --hapur-shkelqim: rgb(4 120 87 / 22%);
+  /* 5.0:1 mbi sipërfaqe, 4.5:1 mbi mbushjen e vet të zbehtë. */
+  --projektim: #b45309;
+  --projektim-zbehte: #fef3c7;
+  --zemra: #dc2626;
+  /* Bojë mbi sipërfaqe të plotë me ngjyrën e gjendjes: 5.5:1 mbi smeraldin,
+     5.9:1 mbi cianin. */
   --mbi-gjendje: #ffffff;
 
-  --rreze: 18px;
+  --rreze: 16px;
   --rreze-2: 12px;
-  --hije-1: 0 1px 2px rgb(14 22 34 / 5%);
+  --rreze-3: 8px;
+  --hije-1: 0 1px 2px rgb(15 23 42 / 5%);
   --hije-2:
-    0 1px 2px rgb(14 22 34 / 4%), 0 12px 28px -10px rgb(14 22 34 / 14%);
+    0 1px 2px rgb(15 23 42 / 4%), 0 12px 28px -10px rgb(15 23 42 / 14%);
   --hapesira: clamp(1rem, 4vw, 1.5rem);
+  /* Numrat e orëve e të datave rreshtohen kolonë më kolonë. */
+  --shkronja-numrat: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas,
+    monospace;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --sfond: #080b12;
-    --shkelqimi: rgb(116 180 255 / 9%);
-    --siperfaqe: #101724;
-    --siperfaqe-2: #151e2c;
-    --gjurma: #1c2634;
+    --sfond: #080f1a;
+    --shkelqimi: rgb(16 185 129 / 12%);
+    --siperfaqe: #0f1827;
+    --siperfaqe-2: #162033;
+    --gjurma: #1e2d45;
 
-    --teksti: #e9eef7;
-    --teksti-zbehte: #93a1b6;
+    --teksti: #f1f5f9;
+    /* 6.9:1 mbi sipërfaqe, 7.5:1 mbi sfond. */
+    --teksti-zbehte: #94a3b8;
 
-    --kufiri: #202b3a;
-    /* 3.3:1 mbi sipërfaqe, 3.6:1 mbi sfond. */
+    --kufiri: rgb(255 255 255 / 10%);
+    /* 3.2:1 mbi sipërfaqe, 3.5:1 mbi sfond. */
     --kufiri-veprues: #5a6a80;
 
-    --theks: #74b4ff;
-    --theks-zbehte: #14253b;
-    --hapur: #3ddc93;
+    /* 7.3:1 mbi sipërfaqe, 6.7:1 mbi mbushjen e vet të zbehtë. */
+    --theks: #06b6d4;
+    --theks-zbehte: #0d2233;
+    /* 7.0:1 mbi sipërfaqe, 6.1:1 mbi mbushjen e vet të zbehtë. */
+    --hapur: #10b981;
     --hapur-zbehte: #0d2a20;
-    --projektim: #e6b164;
+    --theks-shkelqim: rgb(6 182 212 / 32%);
+    --hapur-shkelqim: rgb(16 185 129 / 32%);
+    /* 8.3:1 mbi sipërfaqe, 7.4:1 mbi mbushjen e vet të zbehtë. */
+    --projektim: #f59e0b;
     --projektim-zbehte: #2a2113;
-    --zemra: #ff7089;
-    /* Sipërfaqet e ndritshme në temën e errët kërkojnë bojë të errët. */
+    --zemra: #ef4444;
+    /* Sipërfaqet e ndritshme në temën e errët kërkojnë bojë të errët:
+       7.6:1 mbi smeraldin, 7.9:1 mbi cianin. */
     --mbi-gjendje: #06101a;
 
     --hije-1: 0 1px 2px rgb(0 0 0 / 40%);
-    --hije-2: 0 1px 2px rgb(0 0 0 / 40%), 0 14px 32px -12px rgb(0 0 0 / 70%);
+    --hije-2: 0 1px 2px rgb(0 0 0 / 40%), 0 20px 50px -12px rgb(0 0 0 / 75%);
   }
 }
 
@@ -161,12 +199,26 @@ h3 {
 }
 
 .titull-seksioni {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
   margin: 0 0 0.85rem;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--teksti-zbehte);
+}
+
+/* Pika e theksit para titullit — e njëjta shenjë si te FinanCare. */
+.titull-seksioni::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--hapur);
+  box-shadow: 0 0 10px var(--hapur);
 }
 
 /* ── Kreu ───────────────────────────────────────────────────────────────── */
@@ -182,10 +234,26 @@ h3 {
   width: 2.75rem;
   height: 2.75rem;
   margin-top: 0.15rem;
+  filter: drop-shadow(0 6px 16px rgb(4 120 87 / 30%));
+}
+
+@media (prefers-color-scheme: dark) {
+  .marka {
+    filter: drop-shadow(0 6px 18px rgb(16 185 129 / 35%));
+  }
+}
+
+/* Skajet e kalimit: `stop-color` mbi `<stop>`, që ngjyrat të rrinë te tokenat. */
+.marka__nga {
+  stop-color: var(--hapur);
+}
+
+.marka__deri {
+  stop-color: var(--theks);
 }
 
 .marka__fusha {
-  fill: var(--theks);
+  fill: url(#marka-fusha);
 }
 
 .marka__kryqi {
@@ -194,9 +262,9 @@ h3 {
 
 .kreu__komuna {
   margin: 0;
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.11em;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--teksti-zbehte);
 }
@@ -204,8 +272,9 @@ h3 {
 .kreu__titull {
   margin: 0.15rem 0 0;
   font-size: clamp(1.55rem, 5.6vw, 2.1rem);
+  font-weight: 800;
   line-height: 1.1;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.035em;
   text-wrap: balance;
 }
 
@@ -220,12 +289,13 @@ h3 {
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  padding: 0.2rem 0.6rem;
+  padding: 0.25rem 0.65rem;
   border: 1px solid var(--kufiri);
   border-radius: 999px;
   background: var(--siperfaqe);
-  font-size: 0.78rem;
-  font-weight: 600;
+  box-shadow: var(--hije-1);
+  font-size: 0.76rem;
+  font-weight: 700;
   color: var(--teksti-zbehte);
   font-variant-numeric: tabular-nums;
 }
@@ -240,30 +310,35 @@ h3 {
 
 .tani {
   --gjendja: var(--theks);
+  --gjendja-2: var(--hapur);
   --gjendja-zbehte: var(--theks-zbehte);
+  --gjendja-shkelqim: var(--theks-shkelqim);
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding: clamp(1.15rem, 4.5vw, 1.75rem);
+  padding: clamp(1.25rem, 4.5vw, 1.9rem);
   background: var(--siperfaqe);
   border: 1px solid var(--kufiri);
   border-radius: var(--rreze);
   box-shadow: var(--hije-2);
 }
 
-/* Gjatë natës gjendja është „e hapur" — jeshile; ditën është pritje — e kaltër. */
+/* Gjatë natës gjendja është „e hapur" — smerald; ditën është pritje — cian. */
 .tani--nate {
   --gjendja: var(--hapur);
+  --gjendja-2: var(--theks);
   --gjendja-zbehte: var(--hapur-zbehte);
+  --gjendja-shkelqim: var(--hapur-shkelqim);
 }
 
-/* Vija e sipërme e ngjyrës së gjendjes: lexohet para çdo teksti. */
+/* Vija e sipërme e ngjyrës së gjendjes: lexohet para çdo teksti. Kalimi te
+   ngjyra e dytë e theksit është ai i FinanCare-s (smerald→cian). */
 .tani::before {
   content: '';
   position: absolute;
   inset: 0 0 auto;
   height: 3px;
-  background: linear-gradient(90deg, var(--gjendja), transparent 88%);
+  background: linear-gradient(90deg, var(--gjendja), var(--gjendja-2) 55%, transparent 92%);
 }
 
 /* Shkëlqim i butë pas tekstit, në ngjyrën e gjendjes. */
@@ -289,13 +364,13 @@ h3 {
   align-items: center;
   gap: 0.5rem;
   margin: 0;
-  padding: 0.3rem 0.75rem 0.3rem 0.6rem;
+  padding: 0.32rem 0.8rem 0.32rem 0.62rem;
   border-radius: 999px;
   background: var(--gjendja-zbehte);
   color: var(--gjendja);
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
 }
 
@@ -340,8 +415,9 @@ h3 {
   align-items: center;
   gap: 0.35rem;
   margin: 0;
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-family: var(--shkronja-numrat);
+  font-size: 0.82rem;
+  font-weight: 700;
   color: var(--teksti-zbehte);
   font-variant-numeric: tabular-nums;
 }
@@ -349,8 +425,9 @@ h3 {
 .tani__emri {
   margin: 0.45rem 0 0;
   font-size: clamp(2.2rem, 11vw, 3.4rem);
+  font-weight: 800;
   line-height: 1.02;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.045em;
   text-wrap: balance;
 }
 
@@ -405,6 +482,7 @@ h3 {
 
 .koha__vlera {
   color: var(--teksti);
+  font-family: var(--shkronja-numrat);
   font-weight: 700;
   font-variant-numeric: tabular-nums;
 }
@@ -431,8 +509,9 @@ h3 {
   display: flex;
   justify-content: space-between;
   margin: 0.3rem 0 0;
-  font-size: 0.72rem;
-  font-weight: 600;
+  font-family: var(--shkronja-numrat);
+  font-size: 0.7rem;
+  font-weight: 700;
   color: var(--teksti-zbehte);
   font-variant-numeric: tabular-nums;
 }
@@ -452,42 +531,51 @@ h3 {
   justify-content: center;
   gap: 0.45rem;
   min-height: 2.75rem;
-  padding: 0.55rem 1.1rem;
+  padding: 0.55rem 1.15rem;
   border: 1px solid var(--kufiri-veprues);
-  border-radius: 999px;
+  border-radius: var(--rreze-2);
   background: var(--siperfaqe);
   color: var(--teksti);
   font: inherit;
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: 0.93rem;
+  font-weight: 700;
   text-decoration: none;
   cursor: pointer;
   transition:
     border-color 0.15s ease,
     color 0.15s ease,
     background-color 0.15s ease,
-    transform 0.12s ease;
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
 }
 
 .buton:hover {
-  border-color: var(--theks);
-  color: var(--theks);
+  border-color: var(--gjendja, var(--hapur));
+  color: var(--gjendja, var(--hapur));
+  transform: translateY(-2px);
 }
 
 .buton:active {
-  transform: translateY(1px);
+  transform: translateY(0);
 }
 
+/* Veprimi kryesor mban kalimin smerald→cian të FinanCare-s, në drejtimin e
+   gjendjes së çastit: natën niset nga smeraldi, ditën nga ciani. */
 .buton--kryesor,
 .buton--kryesor:hover {
-  background: var(--gjendja, var(--theks));
+  background: linear-gradient(
+    135deg,
+    var(--gjendja, var(--hapur)),
+    var(--gjendja-2, var(--theks))
+  );
   border-color: transparent;
   color: var(--mbi-gjendje);
-  box-shadow: var(--hije-1);
+  box-shadow: 0 6px 18px -4px var(--gjendja-shkelqim, var(--hapur-shkelqim));
 }
 
 .buton--kryesor:hover {
-  filter: brightness(1.06);
+  filter: brightness(1.08);
+  box-shadow: 0 12px 26px -6px var(--gjendja-shkelqim, var(--hapur-shkelqim));
 }
 
 /* Buton vetëm me ikonë, për listën e barnatoreve. Emri i vendit vjen nga aria. */
@@ -562,12 +650,22 @@ h3 {
 .ardhshme__njesi {
   display: flex;
   flex-direction: column;
-  gap: 0.1rem;
-  padding: 0.75rem 0.9rem;
+  gap: 0.15rem;
+  padding: 0.8rem 0.95rem;
   background: var(--siperfaqe);
   border: 1px solid var(--kufiri);
   border-radius: var(--rreze-2);
   box-shadow: var(--hije-1);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+.ardhshme__njesi:hover {
+  border-color: var(--theks);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -6px var(--theks-shkelqim);
 }
 
 /* Nata e ardhshme është ajo që pyetet më shpesh pas kësaj që është në fuqi. */
@@ -581,8 +679,9 @@ h3 {
 }
 
 .ardhshme__dita {
-  font-size: 0.76rem;
-  font-weight: 600;
+  font-family: var(--shkronja-numrat);
+  font-size: 0.72rem;
+  font-weight: 700;
   letter-spacing: 0.03em;
   color: var(--teksti-zbehte);
   font-variant-numeric: tabular-nums;
@@ -593,9 +692,9 @@ h3 {
 }
 
 .ardhshme__emri {
-  font-weight: 650;
+  font-weight: 700;
   font-size: 1.05rem;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 /* ── Orari i plotë ──────────────────────────────────────────────────────── */
@@ -623,19 +722,20 @@ h3 {
 .muaj-buton {
   flex: none;
   scroll-snap-align: start;
-  padding: 0.4rem 0.9rem;
+  padding: 0.42rem 0.95rem;
   border: 1px solid var(--kufiri-veprues);
-  border-radius: 999px;
+  border-radius: var(--rreze-3);
   background: var(--siperfaqe);
   color: var(--teksti-zbehte);
   font: inherit;
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 0.85rem;
+  font-weight: 700;
   cursor: pointer;
   transition:
     border-color 0.15s ease,
     color 0.15s ease,
-    background-color 0.15s ease;
+    background-color 0.15s ease,
+    box-shadow 0.2s ease;
 }
 
 .muaj-buton:hover {
@@ -650,10 +750,11 @@ h3 {
 
 .muaj-buton[aria-pressed='true'],
 .muaj-buton[aria-pressed='true']:hover {
-  background: var(--theks);
+  background: linear-gradient(135deg, var(--hapur), var(--theks));
   border-color: transparent;
   border-style: solid;
   color: var(--mbi-gjendje);
+  box-shadow: 0 6px 16px -6px var(--theks-shkelqim);
 }
 
 .tabela-mbeshtjellese {
@@ -661,7 +762,7 @@ h3 {
   background: var(--siperfaqe);
   border: 1px solid var(--kufiri);
   border-radius: var(--rreze);
-  box-shadow: var(--hije-1);
+  box-shadow: var(--hije-2);
 }
 
 .tabela {
@@ -673,31 +774,38 @@ h3 {
 .tabela th {
   position: relative;
   text-align: left;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.09em;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--teksti-zbehte);
-  padding: 0.75rem 0.95rem;
+  padding: 0.85rem 0.95rem;
   background: var(--siperfaqe-2);
-  border-bottom: 1px solid var(--kufiri);
+  border-bottom: 2px solid var(--kufiri);
   white-space: nowrap;
 }
 
 .tabela td {
-  padding: 0.6rem 0.95rem;
+  padding: 0.65rem 0.95rem;
   border-bottom: 1px solid var(--kufiri);
   white-space: nowrap;
   vertical-align: baseline;
+  transition: background-color 0.15s ease;
 }
 
 .tabela tbody tr:last-child td {
   border-bottom: 0;
 }
 
+/* Rreshti i natës në fuqi ka mbushjen e vet dhe nuk duhet ta humbasë nën hover. */
+.tabela tbody tr:not(.rresht--tani):hover td {
+  background: var(--siperfaqe-2);
+}
+
 .qeliza-nata {
+  font-family: var(--shkronja-numrat);
   font-variant-numeric: tabular-nums;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .qeliza-nata__deri {
@@ -751,11 +859,11 @@ h3 {
 .shenja {
   display: inline-block;
   margin-left: 0.45rem;
-  padding: 0.05rem 0.45rem;
+  padding: 0.05rem 0.5rem;
   border-radius: 999px;
-  font-size: 0.66rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
   vertical-align: 0.09em;
 }
@@ -785,15 +893,26 @@ h3 {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.7rem 0.8rem;
+  padding: 0.75rem 0.85rem;
   background: var(--siperfaqe);
   border: 1px solid var(--kufiri);
   border-radius: var(--rreze-2);
   box-shadow: var(--hije-1);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+.barnatorja:hover {
+  border-color: var(--hapur);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -6px var(--hapur-shkelqim);
 }
 
 .barnatorja--kujdestare {
   border-color: var(--hapur);
+  box-shadow: 0 6px 18px -8px var(--hapur-shkelqim), var(--hije-1);
 }
 
 .barnatorja__shkronja {
@@ -802,11 +921,11 @@ h3 {
   width: 2.4rem;
   height: 2.4rem;
   flex: none;
-  border-radius: 50%;
+  border-radius: var(--rreze-3);
   background: var(--theks-zbehte);
   color: var(--theks);
   font-size: 1.05rem;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .barnatorja--kujdestare .barnatorja__shkronja {
@@ -855,6 +974,12 @@ h3 {
   color: var(--projektim);
 }
 
+/* Pika e titullit ndjek ngjyrën e njoftimit, jo theksin e faqes. */
+.njoftim .titull-seksioni::before {
+  background: var(--projektim);
+  box-shadow: 0 0 10px var(--projektim);
+}
+
 .njoftim p {
   margin: 0 0 0.7rem;
 }
@@ -890,6 +1015,14 @@ h3 {
   border: 1px solid var(--kufiri);
   border-radius: var(--rreze-2);
   box-shadow: var(--hije-1);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.pyetje:hover {
+  border-color: var(--theks);
+  box-shadow: 0 8px 20px -8px var(--theks-shkelqim);
 }
 
 .pyetje__titulli {
@@ -1087,12 +1220,22 @@ h3 {
     --kufiri: #bbb;
     --theks: #000;
     --theks-zbehte: #eee;
+    --hapur: #000;
+    --hapur-zbehte: #eee;
     --hije-1: none;
     --hije-2: none;
+    /* Shkëlqimet janë bojë e harxhuar në letër. */
+    --theks-shkelqim: transparent;
+    --hapur-shkelqim: transparent;
   }
 
   body {
     background-image: none;
+  }
+
+  /* Shenja e faqes e humb kalimin: në letër del si fushë e zezë e plotë. */
+  .marka {
+    filter: none;
   }
 
   .veprimet,

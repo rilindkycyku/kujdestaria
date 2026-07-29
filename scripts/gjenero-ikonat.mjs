@@ -1,6 +1,6 @@
 /**
  * Gjeneron ikonat PNG të PWA-së dhe imazhin e ndarjes, nga i njëjti motiv si
- * favicon-i: kryq i bardhë mbi fushë të kaltër.
+ * favicon-i: kryq i bardhë mbi fushë me kalimin smerald→cian.
  *
  * Përdorimi:  node scripts/gjenero-ikonat.mjs
  *
@@ -15,13 +15,27 @@ import { writeFileSync, mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
-const KALTER = [0x0f, 0x5a, 0xa8];
+const SMERALD = [0x10, 0xb9, 0x81];
+const CIAN = [0x06, 0xb6, 0xd4];
 const BARDH = [0xff, 0xff, 0xff];
-const HAPUR = [0x1d, 0xc4, 0x7d]; // jeshilja e „e hapur tani"
+const NATA = [0x08, 0x0f, 0x1a]; // sfondi i thellë i temës së errët
+
+/** Përzien dy ngjyra në pozitën `t` ∈ [0,1]. */
+function perzie(nga, deri, t) {
+  const k = Math.min(1, Math.max(0, t));
+  return [
+    Math.round(nga[0] + (deri[0] - nga[0]) * k),
+    Math.round(nga[1] + (deri[1] - nga[1]) * k),
+    Math.round(nga[2] + (deri[2] - nga[2]) * k),
+  ];
+}
 
 /**
  * Ikonat janë katrore e me sfond të plotë: sistemi operativ i pret vetë qoshet
  * sipas formës që përdor, prandaj s'ka nevojë t'i rrumbullakojmë ne.
+ *
+ * Fusha ndjek kalimin diagonal të markës — smerald në qoshen e sipërme majtas,
+ * cian në atë të poshtme djathtas, si `linear-gradient(135deg, …)` te CSS-i.
  *
  * @param {number} madhesia  gjerësia/lartësia në piksela
  * @param {number} pjesaEKryqit  sa e gjerë është hapësira e kryqit ndaj kanavacës
@@ -40,7 +54,9 @@ function vizatoIkonen(madhesia, pjesaEKryqit) {
         (Math.abs(x - qendra) <= trashesia && Math.abs(y - qendra) <= gjysma) ||
         (Math.abs(y - qendra) <= trashesia && Math.abs(x - qendra) <= gjysma);
 
-      const ngjyra = brendaKryqit ? BARDH : KALTER;
+      // Pozita përgjatë diagonales: 0 sipër-majtas, 1 poshtë-djathtas.
+      const sfondi = perzie(SMERALD, CIAN, (x + y) / (2 * (madhesia - 1)));
+      const ngjyra = brendaKryqit ? BARDH : sfondi;
       const pozita = 1 + x * 3;
       rreshti[pozita] = ngjyra[0];
       rreshti[pozita + 1] = ngjyra[1];
@@ -94,34 +110,32 @@ function png(gjeresia, lartesia, pikselat) {
  * Imazhi që shfaqet kur lidhja ndahet në WhatsApp, Viber ose Facebook.
  *
  * Motivi është i njëjtë me ikonën e instaluar, që kartela në bisedë dhe ikona
- * në ekranin kryesor të njihen si një gjë e vetme. Fusha ka një kalim të lehtë
- * nga e kaltra e ndritshme te e thella, dhe në fund një vijë jeshile — ngjyra që
- * faqja përdor për „e hapur tani".
+ * në ekranin kryesor të njihen si një gjë e vetme: kalimi diagonal smerald→cian
+ * me kryqin e bardhë në mes. Poshtë rri një vijë me blunë e natës — sfondi i
+ * temës së errët, ajo me të cilën faqja hapet më shpesh.
  */
 function vizatoNdarjen(gjeresia, lartesia) {
   const qendraX = gjeresia / 2;
   const qendraY = lartesia / 2;
   const gjysma = lartesia * 0.29; // gjysma e gjatësisë së krahut
   const trashesia = gjysma * (6 / 18);
-  const vija = Math.round(lartesia * 0.018); // vija jeshile në fund
+  const vija = Math.round(lartesia * 0.018); // vija e errët në fund
 
   const rreshtat = [];
   for (let y = 0; y < lartesia; y++) {
     const rreshti = Buffer.alloc(1 + gjeresia * 3);
-    // Kalimi vertikal: sipër më e ndritshme, poshtë më e thellë.
-    const pjesa = y / lartesia;
-    const sfondi = [
-      Math.round(KALTER[0] + (0x18 - KALTER[0] * 0.08) * (1 - pjesa) - 4 * pjesa),
-      Math.round(KALTER[1] + 0x12 * (1 - pjesa) - 8 * pjesa),
-      Math.round(KALTER[2] + 0x14 * (1 - pjesa) - 10 * pjesa),
-    ];
-
     for (let x = 0; x < gjeresia; x++) {
       const brendaKryqit =
         (Math.abs(x - qendraX) <= trashesia && Math.abs(y - qendraY) <= gjysma) ||
         (Math.abs(y - qendraY) <= trashesia && Math.abs(x - qendraX) <= gjysma);
 
-      const ngjyra = y >= lartesia - vija ? HAPUR : brendaKryqit ? BARDH : sfondi;
+      // E njëjta diagonale si te ikonat, e shtrirë mbi kanavacën e gjerë.
+      const sfondi = perzie(
+        SMERALD,
+        CIAN,
+        (x / (gjeresia - 1) + y / (lartesia - 1)) / 2,
+      );
+      const ngjyra = y >= lartesia - vija ? NATA : brendaKryqit ? BARDH : sfondi;
       const pozita = 1 + x * 3;
       rreshti[pozita] = ngjyra[0];
       rreshti[pozita + 1] = ngjyra[1];
