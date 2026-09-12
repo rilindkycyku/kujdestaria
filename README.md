@@ -26,6 +26,7 @@ më e dobët.
 | **Barnatoret** | 7, në rotacion 10-ditor |
 | **Pa internet** | Po — PWA me service worker, orari brenda paketës |
 | **Tema** | sipas sistemit, ose e zgjedhur vetë — e çelët / e errët |
+| **Fonti** | Quicksand, brenda paketës — pa Google Fonts, punon pa internet |
 | **Provat** | `node --test`, pa framework provash |
 
 | | |
@@ -61,6 +62,7 @@ src/
   harta.js               validimi i lidhjeve të Google Maps
   ikonat.js              ikonat SVG inline
   data/orari-2026.json   orari i gjeneruar
+  fonts/                 Quicksand (woff2 variabël) dhe licenca OFL
 
 scripts/
   gjenero-orarin.mjs     ndërton orarin nga rotacioni dhe datat e dokumentit

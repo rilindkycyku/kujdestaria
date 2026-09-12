@@ -32,7 +32,7 @@ npm install
 npm run dev       # serveri i zhvillimit
 npm run build     # vite build && node scripts/parafaqja.mjs && node scripts/pergatit-sw.mjs
 npm run preview
-npm test          # node --test — 42 prova, pa framework provash
+npm test          # node --test — 45 prova, pa framework provash
 npm run gjenero   # rigjeneron src/data/orari-2026.json
 npm run ikonat    # rigjeneron ikonat PNG dhe imazhin e ndarjes te public/
 ```
@@ -57,6 +57,7 @@ src/
   ikonat.js              ikonat SVG inline
   style.css
   data/orari-2026.json   orari i gjeneruar
+  fonts/                 Quicksand (woff2 variabël) dhe licenca OFL
 
 scripts/
   gjenero-orarin.mjs     ndërton orarin nga rotacioni dhe datat e dokumentit
@@ -64,7 +65,8 @@ scripts/
   pergatit-sw.mjs        shkruan VERSIONI dhe PARACACHE te dist/sw.js, pas ndërtimit
   gjenero-ikonat.mjs     ikonat PNG dhe imazhi i ndarjes
 
-test/                    koha.test.mjs, orari-2026.test.mjs, seo.test.mjs, tema.test.mjs
+test/                    koha.test.mjs, orari-2026.test.mjs, seo.test.mjs,
+                         tema.test.mjs, stili.test.mjs
 docs/vendimet.md         arsyetimi pas zgjidhjeve
 public/
   tema.js                tema e zgjedhur — vendoset para vizatimit, jashtë paketës
@@ -170,6 +172,18 @@ për sistemin (`:root:not([data-tema='drite'])`) dhe një për zgjedhjen (`:root
 CSS-ja nuk e ndan dot një bllok mes një `@media`-je dhe një përzgjedhësi, prandaj përsëritet
 lista e emrave, kurrë vlerat; `test/tema.test.mjs` i mban të dyja listat të njëjta e të plota.
 
+### 9. Fonti rri brenda paketës, dhe sipërfaqet nuk kanë kalime
+
+Fonti është **Quicksand**, një woff2 variabël (300–700, latin) te `src/fonts/`, i lidhur me
+`@font-face` te `style.css`. Mos e zëvendëso me Google Fonts: CSP-ja është `font-src 'self'`
+dhe faqja duhet të hapet pa internet. Quicksand nuk ka peshë mbi 700 — mos shkruaj `800`.
+Numrat mbeten te `--shkronja-numrat`, që orët e datat të rreshtohen te tabela.
+
+Asnjë `gradient` te CSS-i dhe asnjë `<linearGradient>` te SVG-të: butoni kryesor, vija e
+kartelës, muaji i shtypur, shenja e faqes dhe ikonat e gjeneruara mbushen me një ngjyrë të
+vetme. Cian dhe smerald kanë nga një kuptim (e caktuar / e hapur tani) dhe një sipërfaqe që
+i përzien nuk thotë asnjërën.
+
 ## Provat
 
 `node --test`, pa asnjë varësi. Provat vendosin `TZ = Europe/Belgrade`, që të dalin njësoj në çdo
@@ -180,6 +194,7 @@ makinë.
 | `test/koha.test.mjs` | kufijtë (21:59 → 22:00 → 00:00 → 07:59 → 08:00), nata që kalon fundvitin, ndërrimi i orës verore, dhe një kalim mbi të 1440 minutat që kontrollon `kaluar + mbeten = gjatësia` |
 | `test/orari-2026.test.mjs` | të dhënat e gjeneruara: data të njëpasnjëshme, dita e javës, `mbaronMe` një ditë pas, rotacioni sipas radhës së shpallur, flamuri `zyrtare`, lidhjet e hartave |
 | `test/seo.test.mjs` | HTML-ja e gatshme i mban të gjitha netët dhe asnjë „tani" të ngrirë; JSON-LD-ja del e vlefshme; çdo përgjigje e `FAQPage`-it shfaqet fjalë për fjalë edhe në faqe |
+| `test/stili.test.mjs` | fonti vjen nga vetë paketa me `font-display: swap`, asnjë peshë mbi 700, dhe asnjë kalim te CSS-i, te SVG-të e te ikonat |
 | `test/tema.test.mjs` | të dyja rrugët e natës kalojnë të njëjtat tokena; `color-scheme` ndjek zgjedhjen; shtypja mbetet e bardhë edhe me terrin e zgjedhur; `tema.js` mbetet skriptë bllokuese pa `defer` e pa module; butonat kanë emër të lexueshëm |
 
 Logjika e re shkon me prova. Një `npm run gjenero` i gabuar duhet të bjerë te provat, jo te faqja.

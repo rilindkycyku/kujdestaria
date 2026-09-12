@@ -51,20 +51,14 @@ export function zemra() {
  * Shenja e faqes: kryqi i barnatores, i njëjti motiv si favicon-i dhe ikonat e
  * PWA-së. Ngjyrat vijnë nga CSS-i, prandaj ndryshon vetë me temën e sistemit.
  *
- * Fusha ka kalimin smerald→cian të FinanCare-s. Kalimi rri këtu si `<linearGradient>`
- * e jo si `background-image` te CSS-i, sepse forma është SVG dhe kështu ndjek
- * qoshet e rrumbullakuara pa u prerë. `id`-ja është e ngurtë sepse shenja
- * vizatohet një herë të vetme në faqe.
+ * Fusha është një ngjyrë e vetme — smeraldi i gjendjes „e hapur". Kalimi i
+ * dikurshëm smerald→cian ra: dy ngjyrat e theksit kanë nga një kuptim te kartela
+ * (cian = e caktuar, smerald = e hapur tani), dhe një fushë që i përzien të dyja
+ * nuk thotë asnjërën.
  */
 export function shenjaEFaqes() {
   return `
     <svg class="marka" viewBox="0 0 44 44" role="img" aria-label="Kujdestaria e barnatoreve">
-      <defs>
-        <linearGradient id="marka-fusha" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" class="marka__nga" />
-          <stop offset="100%" class="marka__deri" />
-        </linearGradient>
-      </defs>
       <rect class="marka__fusha" width="44" height="44" rx="12" />
       <path class="marka__kryqi" d="M18.6 10h6.8v8.6H34v6.8h-8.6V34h-6.8v-8.6H10v-6.8h8.6z" />
     </svg>

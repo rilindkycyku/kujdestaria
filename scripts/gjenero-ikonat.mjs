@@ -1,6 +1,6 @@
 /**
  * Gjeneron ikonat PNG të PWA-së dhe imazhin e ndarjes, nga i njëjti motiv si
- * favicon-i: kryq i bardhë mbi fushë me kalimin smerald→cian.
+ * favicon-i: kryq i bardhë mbi fushë smeralde.
  *
  * Përdorimi:  node scripts/gjenero-ikonat.mjs
  *
@@ -16,26 +16,14 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const SMERALD = [0x10, 0xb9, 0x81];
-const CIAN = [0x06, 0xb6, 0xd4];
 const BARDH = [0xff, 0xff, 0xff];
 const NATA = [0x08, 0x0f, 0x1a]; // sfondi i thellë i temës së errët
-
-/** Përzien dy ngjyra në pozitën `t` ∈ [0,1]. */
-function perzie(nga, deri, t) {
-  const k = Math.min(1, Math.max(0, t));
-  return [
-    Math.round(nga[0] + (deri[0] - nga[0]) * k),
-    Math.round(nga[1] + (deri[1] - nga[1]) * k),
-    Math.round(nga[2] + (deri[2] - nga[2]) * k),
-  ];
-}
 
 /**
  * Ikonat janë katrore e me sfond të plotë: sistemi operativ i pret vetë qoshet
  * sipas formës që përdor, prandaj s'ka nevojë t'i rrumbullakojmë ne.
  *
- * Fusha ndjek kalimin diagonal të markës — smerald në qoshen e sipërme majtas,
- * cian në atë të poshtme djathtas, si `linear-gradient(135deg, …)` te CSS-i.
+ * Fusha është smeraldi i markës, një ngjyrë e vetme — si te shenja e faqes.
  *
  * @param {number} madhesia  gjerësia/lartësia në piksela
  * @param {number} pjesaEKryqit  sa e gjerë është hapësira e kryqit ndaj kanavacës
@@ -54,9 +42,7 @@ function vizatoIkonen(madhesia, pjesaEKryqit) {
         (Math.abs(x - qendra) <= trashesia && Math.abs(y - qendra) <= gjysma) ||
         (Math.abs(y - qendra) <= trashesia && Math.abs(x - qendra) <= gjysma);
 
-      // Pozita përgjatë diagonales: 0 sipër-majtas, 1 poshtë-djathtas.
-      const sfondi = perzie(SMERALD, CIAN, (x + y) / (2 * (madhesia - 1)));
-      const ngjyra = brendaKryqit ? BARDH : sfondi;
+      const ngjyra = brendaKryqit ? BARDH : SMERALD;
       const pozita = 1 + x * 3;
       rreshti[pozita] = ngjyra[0];
       rreshti[pozita + 1] = ngjyra[1];
@@ -110,9 +96,9 @@ function png(gjeresia, lartesia, pikselat) {
  * Imazhi që shfaqet kur lidhja ndahet në WhatsApp, Viber ose Facebook.
  *
  * Motivi është i njëjtë me ikonën e instaluar, që kartela në bisedë dhe ikona
- * në ekranin kryesor të njihen si një gjë e vetme: kalimi diagonal smerald→cian
- * me kryqin e bardhë në mes. Poshtë rri një vijë me blunë e natës — sfondi i
- * temës së errët, ajo me të cilën faqja hapet më shpesh.
+ * në ekranin kryesor të njihen si një gjë e vetme: fushë smeralde me kryqin e
+ * bardhë në mes. Poshtë rri një vijë me blunë e natës — sfondi i temës së errët,
+ * ajo me të cilën faqja hapet më shpesh.
  */
 function vizatoNdarjen(gjeresia, lartesia) {
   const qendraX = gjeresia / 2;
@@ -129,13 +115,7 @@ function vizatoNdarjen(gjeresia, lartesia) {
         (Math.abs(x - qendraX) <= trashesia && Math.abs(y - qendraY) <= gjysma) ||
         (Math.abs(y - qendraY) <= trashesia && Math.abs(x - qendraX) <= gjysma);
 
-      // E njëjta diagonale si te ikonat, e shtrirë mbi kanavacën e gjerë.
-      const sfondi = perzie(
-        SMERALD,
-        CIAN,
-        (x / (gjeresia - 1) + y / (lartesia - 1)) / 2,
-      );
-      const ngjyra = y >= lartesia - vija ? NATA : brendaKryqit ? BARDH : sfondi;
+      const ngjyra = y >= lartesia - vija ? NATA : brendaKryqit ? BARDH : SMERALD;
       const pozita = 1 + x * 3;
       rreshti[pozita] = ngjyra[0];
       rreshti[pozita + 1] = ngjyra[1];
