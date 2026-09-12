@@ -51,6 +51,29 @@ Ikonat janë SVG inline te [`src/ikonat.js`](../src/ikonat.js) e nuk janë emoji
 vizatohen nga fonti i sistemit, dalin me ngjyra e madhësi të ndryshme sipas pajisjes dhe
 nuk marrin ngjyrën e tekstit përreth.
 
+### Fonti dhe sipërfaqet
+
+Fonti është **Quicksand**, e paketuar brenda faqes — jo nga Google Fonts. CSP-ja është
+`font-src 'self'`, dhe faqja duhet të hapet edhe pa internet në ora 02:00: një font i
+jashtëm do të ishte një kërkesë drejt një domeni tjetër pikërisht atëherë kur lidhja është
+më e dobët. Prandaj një skedar i vetëm variabël (300–700, vetëm nënbashkësia latine,
+28 kB), i futur te paracache-i si gjithçka tjetër, me `font-display: swap` që teksti të
+lexohet menjëherë me fontin e sistemit derisa fonti të vijë. Licenca SIL OFL rri te
+[`src/fonts/OFL.txt`](../src/fonts/OFL.txt).
+
+Quicksand nuk ka peshë mbi 700, prandaj titujt që më parë ishin 800 janë 700 — një peshë e
+padeklaruar do të shtypej gjithsesi te 700. Dallimi mes niveleve vjen nga madhësia, hapësira
+e shkronjave dhe ngjyra. Orët e datat mbeten te `--shkronja-numrat` (font me gjerësi të
+njëjtë): te tabela ato duhet të rreshtohen kolonë më kolonë.
+
+Sipërfaqet mbushen me **një ngjyrë të vetme, pa kalime**. Kalimi smerald→cian i dikurshëm —
+te butoni kryesor, te vija e kartelës, te muaji i shtypur, te shenja e faqes dhe te ikonat e
+gjeneruara — i përzinte pikërisht dy ngjyrat që te kjo faqe kanë nga një kuptim: cian është
+kujdestaria e caktuar, smerald ajo që është e hapur tani. Mbi një vijë 3-pikselëshe ose mbi
+një buton, përzierja nuk lexohej si kalim, por si ngjyrë e papërcaktuar. Bashkë me kalimet
+ranë edhe dy shkëlqimet dekorative (ai i sfondit dhe ai pas tekstit të kartelës), që ishin
+gradient-e gjithashtu; hijet mbeten, sepse ato thonë lartësi, jo ngjyrë.
+
 ### Ekranet e vogla
 
 Nën 30rem dita e javës shkurtohet („E mërkurë" → „Mër") në vend që të fshihet, kështu
@@ -67,6 +90,35 @@ Kufijtë e kartelave janë vija të holla dekorative (`--kufiri`), kurse element
 klikohen kanë `--kufiri-veprues` — 3.6:1 mbi të bardhën dhe 3.2:1 mbi sfondin e faqes,
 sepse WCAG 1.4.11 kërkon 3:1 për të dallohet një kontroll. Butonat me vetëm një vijë të
 holluar dukeshin të pandashëm nga sfondi.
+
+### Tema
+
+Faqja e ndjek temën e sistemit, si më parë. Por sistemi jo gjithnjë e thotë të vërtetën për
+dritën përreth: një telefon i mbetur në temën e errët në mesditë, ose një ekran i bardhë i
+hapur në ora 02:00. Prandaj kreu ka tri butona — **sipas sistemit** (parazgjedhja), **e
+çelët**, **e errët** — dhe zgjedhja ruhet te `localStorage`. I shtypuri dallohet nga
+`aria-pressed`, si te shiriti i muajve, prandaj ndërrimi i temës nuk e rivizaton kontrollin
+dhe fokusi mbetet aty ku ishte.
+
+Zgjedhja shkon te `data-tema` i `<html>`, dhe kjo bëhet nga [`public/tema.js`](../public/tema.js)
+— skriptë e zakonshme, bllokuese te `<head>`-i, jashtë paketës së Vite-s. Po ta bënte
+`main.js`, që është modul dhe pra i shtyrë, faqja do të vizatohej një çast me temën e
+sistemit para se zgjedhja të vlente: për dikë që ka zgjedhur terrin, pikërisht ajo ndezje e
+bardhë që tema e errët duhet të parandalojë. Kjo është arsyeja e vetme pse një copë sjellje
+rri jashtë `src/`. Pa JavaScript humbet vetëm zgjedhja me dorë — tema e sistemit punon njësoj.
+
+Ngjyra e shiritit të shfletuesit e ndjek zgjedhjen: te `<head>`-i rrinë dy
+`<meta name="theme-color">` me `media`, dhe kur përdoruesi zgjedh vetë, `media`-ja e asaj që
+duhet bëhet `all` e tjetra `not all`. Bashkë me të shkon `color-scheme`, që shiritat e
+rrëshqitjes dhe kontrollet e shfletuesit të mos mbeten të temës së sistemit mbi një faqe të
+temës tjetër.
+
+Paleta e natës rri një herë të vetme te tokenat `--n-*`; dy rregulla e ndezin — një për
+sistemin, një për zgjedhjen — sepse CSS-ja nuk e ndan dot një bllok mes një `@media`-je dhe
+një përzgjedhësi. Përsëritet lista e emrave, kurrë vlerat, dhe
+[`test/tema.test.mjs`](../test/tema.test.mjs) i mban të dyja listat të njëjta e të plota. Në
+shtypje vlen `:root[data-tema]` bashkë me `:root`, që letra të dalë e bardhë edhe kur në
+ekran është zgjedhur terri.
 
 ### Njoftimi për gabim
 
@@ -103,6 +155,17 @@ sezoni që ndërron te data e duhur, dhe lidhjet e hartave që kalojnë validimi
 gatshme i mban të gjitha netët e orarit dhe asnjë shenjë „tani" të ngrirë, se grafi JSON-LD
 del JSON i vlefshëm me `@id`-të e veta dhe pa fusha të zbrazëta, dhe se çdo përgjigje e
 `FAQPage`-it shfaqet fjalë për fjalë edhe në faqe — Google-i e pranon vetëm ashtu.
+
+[`test/stili.test.mjs`](../test/stili.test.mjs) i mban dy vendime që një rresht i vetëm
+CSS-i i prish pa u vënë re: se fonti vjen nga vetë paketa e jo nga një domen tjetër (me
+`font-display: swap`, pa peshë mbi 700), dhe se asnjë kalim nuk është kthyer — as te CSS-i,
+as te SVG-të, as te ikonat e gjeneruara.
+
+[`test/tema.test.mjs`](../test/tema.test.mjs) provon atë që prishet pa u dukur te tema: se të
+dyja rrugët e natës — ajo e sistemit dhe ajo e zgjedhjes — kalojnë saktësisht të njëjtat
+tokena, se `color-scheme` shkon bashkë me zgjedhjen, se shtypja mbetet e bardhë edhe me
+terrin e zgjedhur, dhe se `public/tema.js` mbetet skriptë bllokuese te `<head>`-i, pa `defer`
+e pa u bërë modul — përndryshe tema do të vinte pas vizatimit të parë.
 
 ## Kërkimi
 

@@ -21,6 +21,8 @@ const SHTIGJET = {
   ora: '<circle cx="12" cy="12" r="8.4"/><path d="M12 7.6V12l3 1.9"/>',
   nate: '<path d="M20 14.3A8.4 8.4 0 0 1 9.7 4a8.4 8.4 0 1 0 10.3 10.3Z"/>',
   dite: '<circle cx="12" cy="12" r="4.1"/><path d="M12 3v1.9M12 19.1V21M3 12h1.9M19.1 12H21M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/>',
+  sistemi:
+    '<rect x="3" y="4.4" width="18" height="12.6" rx="2.2"/><path d="M9.2 20.4h5.6M12 17v3.4"/>',
   info: '<circle cx="12" cy="12" r="8.4"/><path d="M12 11v5.2"/><path d="M12 7.9h.01"/>',
   njofto: '<rect x="3.4" y="5.6" width="17.2" height="12.8" rx="2.2"/><path d="M4.2 7l7.8 5.5L19.8 7"/>',
   shigjeta: '<path d="M6.5 9.75 12 15.25l5.5-5.5"/>',
@@ -49,20 +51,14 @@ export function zemra() {
  * Shenja e faqes: kryqi i barnatores, i njëjti motiv si favicon-i dhe ikonat e
  * PWA-së. Ngjyrat vijnë nga CSS-i, prandaj ndryshon vetë me temën e sistemit.
  *
- * Fusha ka kalimin smerald→cian të FinanCare-s. Kalimi rri këtu si `<linearGradient>`
- * e jo si `background-image` te CSS-i, sepse forma është SVG dhe kështu ndjek
- * qoshet e rrumbullakuara pa u prerë. `id`-ja është e ngurtë sepse shenja
- * vizatohet një herë të vetme në faqe.
+ * Fusha është një ngjyrë e vetme — smeraldi i gjendjes „e hapur". Kalimi i
+ * dikurshëm smerald→cian ra: dy ngjyrat e theksit kanë nga një kuptim te kartela
+ * (cian = e caktuar, smerald = e hapur tani), dhe një fushë që i përzien të dyja
+ * nuk thotë asnjërën.
  */
 export function shenjaEFaqes() {
   return `
     <svg class="marka" viewBox="0 0 44 44" role="img" aria-label="Kujdestaria e barnatoreve">
-      <defs>
-        <linearGradient id="marka-fusha" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" class="marka__nga" />
-          <stop offset="100%" class="marka__deri" />
-        </linearGradient>
-      </defs>
       <rect class="marka__fusha" width="44" height="44" rx="12" />
       <path class="marka__kryqi" d="M18.6 10h6.8v8.6H34v6.8h-8.6V34h-6.8v-8.6H10v-6.8h8.6z" />
     </svg>

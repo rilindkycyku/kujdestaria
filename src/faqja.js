@@ -65,6 +65,41 @@ function data(vlera, teksti = dataShkurt(vlera)) {
 
 /* ── Kreu ──────────────────────────────────────────────────────────────── */
 
+/**
+ * Zgjedhja e temës. Faqja e ndjek sistemin vetvetiu; këta butona janë për rastin
+ * kur ai nuk përputhet me dritën përreth — një telefon i mbetur në temën e errët
+ * në mesditë, ose e kundërta natën.
+ *
+ * Markup-i del i njëjtë te parandërtimi dhe te shfletuesi, prandaj i shtypur këtu
+ * shënohet „sistemi", parazgjedhja e dikujt që ende s'ka zgjedhur. Zgjedhjen e
+ * vërtetë e vendos [`public/tema.js`](../public/tema.js) para vizatimit të parë,
+ * dhe ajo i rregullon edhe `aria-pressed`-at.
+ */
+const TEMAT = [
+  { celesi: 'sistemi', ikona: 'sistemi', emri: 'Sipas sistemit' },
+  { celesi: 'drite', ikona: 'dite', emri: 'E çelët' },
+  { celesi: 'terr', ikona: 'nate', emri: 'E errët' },
+];
+
+function zgjedhjaETemes() {
+  const butonat = TEMAT.map(
+    (tema) => `
+      <button
+        type="button"
+        class="tema__buton"
+        data-tema-zgjedh="${tema.celesi}"
+        aria-pressed="${tema.celesi === 'sistemi'}"
+        title="${tema.emri}"
+      >
+        ${ikona(tema.ikona)}
+        <span class="vetem-lexues">${tema.emri}</span>
+      </button>
+    `,
+  ).join('');
+
+  return `<div class="tema" role="group" aria-label="Pamja e faqes">${butonat}</div>`;
+}
+
 export function kreu() {
   return `
     <header class="kreu">
@@ -77,6 +112,7 @@ export function kreu() {
           <span class="etiketa">${dataShqip(orari.periudha.prej)} – ${dataShqip(orari.periudha.deri)}</span>
         </p>
       </div>
+      ${zgjedhjaETemes()}
     </header>
   `;
 }

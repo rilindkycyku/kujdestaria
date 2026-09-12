@@ -9,12 +9,37 @@
  *
  * Tema e errët nuk është shtojcë: është gjendja e pritur në ora 02:00, prandaj
  * sipërfaqet e errëta janë të thella dhe theksi mbahet i ndritshëm sa duhet për
- * kontrast, pa u bërë verbues.
+ * kontrast, pa u bërë verbues. Parazgjedhja mbetet tema e sistemit; kur përdoruesi
+ * zgjedh vetë, zgjedhja vjen te `data-tema` i `<html>` nga `public/tema.js`.
  *
  * CSP-ja e faqes është `style-src 'self'` — pa `unsafe-inline`. Prandaj asnjë
  * vlerë dinamike nuk kalon nga atributi `style`: shiriti i natës vizatohet me
  * SVG, ku gjerësia është atribut i `<rect>`, jo stil.
  */
+
+/* ── Fonti ──────────────────────────────────────────────────────────────── */
+
+/**
+ * Quicksand, e paketuar brenda faqes — jo nga Google Fonts: CSP-ja është
+ * `font-src 'self'`, dhe faqja duhet të hapet edhe pa internet në ora 02:00.
+ * Prandaj një skedar i vetëm, variabël 300–700, vetëm nënbashkësia latine (28 kB),
+ * i futur te paracache-i si gjithçka tjetër. `font-display: swap` e nxjerr tekstin
+ * menjëherë me fontin e sistemit derisa fonti të vijë — përgjigjja nuk pret font.
+ *
+ * Quicksand nuk ka peshë mbi 700; ajo është më e rënda, prandaj titujt rrinë aty
+ * dhe dallohen nga madhësia e nga hapësira e shkronjave, jo nga një 800 që nuk
+ * ekziston. Numrat mbeten te `--shkronja-numrat`: orët e datat duhet të rreshtohen
+ * kolonë më kolonë, dhe atë e bën vetëm një font me gjerësi të njëjtë.
+ *
+ * Licenca (SIL OFL 1.1) rri te [`fonts/OFL.txt`](fonts/OFL.txt).
+ */
+@font-face {
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('./fonts/quicksand-latin.woff2') format('woff2');
+}
 
 /* ── Tokenat ────────────────────────────────────────────────────────────── */
 
@@ -25,10 +50,10 @@
  * kujdestaria e caktuar por ende jo në fuqi, `--hapur` (smerald) është ajo që
  * është e hapur tani. Kjo ishte ndarja e kaltër/jeshile e dikurshme, e mbajtur.
  *
- * Fonti mbetet ai i sistemit. FinanCare ngarkon Inter nga Google Fonts, por
- * këtu `font-src 'self'` e ndalon, dhe faqja duhet të hapet edhe pa internet
- * në ora 02:00 — një font i jashtëm do të ishte bajt e pritje pa përfitim.
- * Ndjesia merret nga pesha, hapësira e shkronjave dhe numrat tabelorë.
+ * Sipërfaqet mbushen me një ngjyrë të vetme, pa kalime. Kalimi smerald→cian i
+ * dikurshëm i përzinte pikërisht dy ngjyrat që duhet të mbeten të dallueshme, dhe
+ * mbi një buton ose një vijë 3-pikselëshe nuk lexohej si kalim, por si ngjyrë e
+ * papërcaktuar.
  *
  * Ngjyrat e temës së çelët janë një shkallë më të thella se ato të FinanCare-s
  * (smeraldi `#047857` në vend të `#059669`, ciani `#0369a1` në vend të
@@ -40,7 +65,6 @@
   color-scheme: light dark;
 
   --sfond: #f1f5f9;
-  --shkelqimi: rgb(4 120 87 / 10%);
   --siperfaqe: #ffffff;
   --siperfaqe-2: #f8fafc;
   --gjurma: #e2e8f0;
@@ -78,47 +102,120 @@
   --hije-1: 0 1px 2px rgb(15 23 42 / 5%);
   --hije-2:
     0 1px 2px rgb(15 23 42 / 4%), 0 12px 28px -10px rgb(15 23 42 / 14%);
+  --marka-hije: 0 6px 16px rgb(4 120 87 / 30%);
   --hapesira: clamp(1rem, 4vw, 1.5rem);
   /* Numrat e orëve e të datave rreshtohen kolonë më kolonë. */
   --shkronja-numrat: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas,
     monospace;
 }
 
+/**
+ * Paleta e natës. Vlerat rrinë vetëm këtu, një herë të vetme; dy rregullat pas
+ * saj e ndezin temën — njëra kur e kërkon sistemi dhe përdoruesi nuk ka zgjedhur
+ * dritën, tjetra kur e zgjedh vetë terrin te shiriti i temës.
+ *
+ * CSS-ja nuk e ndan dot një bllok mes një `@media`-je dhe një përzgjedhësi,
+ * prandaj përsëritet lista e emrave — kurrë vlerat. `test/tema.test.mjs` i mban
+ * të dyja listat të njëjta dhe të plota.
+ */
+:root {
+  --n-sfond: #080f1a;
+  --n-siperfaqe: #0f1827;
+  --n-siperfaqe-2: #162033;
+  --n-gjurma: #1e2d45;
+
+  --n-teksti: #f1f5f9;
+  /* 6.9:1 mbi sipërfaqe, 7.5:1 mbi sfond. */
+  --n-teksti-zbehte: #94a3b8;
+
+  --n-kufiri: rgb(255 255 255 / 10%);
+  /* 3.2:1 mbi sipërfaqe, 3.5:1 mbi sfond. */
+  --n-kufiri-veprues: #5a6a80;
+
+  /* 7.3:1 mbi sipërfaqe, 6.7:1 mbi mbushjen e vet të zbehtë. */
+  --n-theks: #06b6d4;
+  --n-theks-zbehte: #0d2233;
+  /* 7.0:1 mbi sipërfaqe, 6.1:1 mbi mbushjen e vet të zbehtë. */
+  --n-hapur: #10b981;
+  --n-hapur-zbehte: #0d2a20;
+  --n-theks-shkelqim: rgb(6 182 212 / 32%);
+  --n-hapur-shkelqim: rgb(16 185 129 / 32%);
+  /* 8.3:1 mbi sipërfaqe, 7.4:1 mbi mbushjen e vet të zbehtë. */
+  --n-projektim: #f59e0b;
+  --n-projektim-zbehte: #2a2113;
+  --n-zemra: #ef4444;
+  /* Sipërfaqet e ndritshme në temën e errët kërkojnë bojë të errët:
+     7.6:1 mbi smeraldin, 7.9:1 mbi cianin. */
+  --n-mbi-gjendje: #06101a;
+
+  --n-hije-1: 0 1px 2px rgb(0 0 0 / 40%);
+  --n-hije-2: 0 1px 2px rgb(0 0 0 / 40%), 0 20px 50px -12px rgb(0 0 0 / 75%);
+  --n-marka-hije: 0 6px 18px rgb(16 185 129 / 35%);
+}
+
+/* Nata sipas sistemit — veç kur përdoruesi ka kërkuar shprehimisht dritën. */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --sfond: #080f1a;
-    --shkelqimi: rgb(16 185 129 / 12%);
-    --siperfaqe: #0f1827;
-    --siperfaqe-2: #162033;
-    --gjurma: #1e2d45;
-
-    --teksti: #f1f5f9;
-    /* 6.9:1 mbi sipërfaqe, 7.5:1 mbi sfond. */
-    --teksti-zbehte: #94a3b8;
-
-    --kufiri: rgb(255 255 255 / 10%);
-    /* 3.2:1 mbi sipërfaqe, 3.5:1 mbi sfond. */
-    --kufiri-veprues: #5a6a80;
-
-    /* 7.3:1 mbi sipërfaqe, 6.7:1 mbi mbushjen e vet të zbehtë. */
-    --theks: #06b6d4;
-    --theks-zbehte: #0d2233;
-    /* 7.0:1 mbi sipërfaqe, 6.1:1 mbi mbushjen e vet të zbehtë. */
-    --hapur: #10b981;
-    --hapur-zbehte: #0d2a20;
-    --theks-shkelqim: rgb(6 182 212 / 32%);
-    --hapur-shkelqim: rgb(16 185 129 / 32%);
-    /* 8.3:1 mbi sipërfaqe, 7.4:1 mbi mbushjen e vet të zbehtë. */
-    --projektim: #f59e0b;
-    --projektim-zbehte: #2a2113;
-    --zemra: #ef4444;
-    /* Sipërfaqet e ndritshme në temën e errët kërkojnë bojë të errët:
-       7.6:1 mbi smeraldin, 7.9:1 mbi cianin. */
-    --mbi-gjendje: #06101a;
-
-    --hije-1: 0 1px 2px rgb(0 0 0 / 40%);
-    --hije-2: 0 1px 2px rgb(0 0 0 / 40%), 0 20px 50px -12px rgb(0 0 0 / 75%);
+  :root:not([data-tema='drite']) {
+    --sfond: var(--n-sfond);
+    --siperfaqe: var(--n-siperfaqe);
+    --siperfaqe-2: var(--n-siperfaqe-2);
+    --gjurma: var(--n-gjurma);
+    --teksti: var(--n-teksti);
+    --teksti-zbehte: var(--n-teksti-zbehte);
+    --kufiri: var(--n-kufiri);
+    --kufiri-veprues: var(--n-kufiri-veprues);
+    --theks: var(--n-theks);
+    --theks-zbehte: var(--n-theks-zbehte);
+    --hapur: var(--n-hapur);
+    --hapur-zbehte: var(--n-hapur-zbehte);
+    --theks-shkelqim: var(--n-theks-shkelqim);
+    --hapur-shkelqim: var(--n-hapur-shkelqim);
+    --projektim: var(--n-projektim);
+    --projektim-zbehte: var(--n-projektim-zbehte);
+    --zemra: var(--n-zemra);
+    --mbi-gjendje: var(--n-mbi-gjendje);
+    --hije-1: var(--n-hije-1);
+    --hije-2: var(--n-hije-2);
+    --marka-hije: var(--n-marka-hije);
   }
+}
+
+/**
+ * Zgjedhja e përdoruesit mbizotëron sistemin. `data-tema` vendoset te `<html>` nga
+ * [`public/tema.js`](../public/tema.js) para se faqja të vizatohet; pa zgjedhje
+ * atributi mungon dhe vlen `prefers-color-scheme`, si më parë.
+ *
+ * `color-scheme` shkon bashkë me paletën, që shiritat e rrëshqitjes dhe kontrollet
+ * e shfletuesit të mos mbeten të temës së sistemit mbi një faqe të temës tjetër.
+ */
+:root[data-tema='drite'] {
+  color-scheme: light;
+}
+
+:root[data-tema='terr'] {
+  color-scheme: dark;
+
+  --sfond: var(--n-sfond);
+  --siperfaqe: var(--n-siperfaqe);
+  --siperfaqe-2: var(--n-siperfaqe-2);
+  --gjurma: var(--n-gjurma);
+  --teksti: var(--n-teksti);
+  --teksti-zbehte: var(--n-teksti-zbehte);
+  --kufiri: var(--n-kufiri);
+  --kufiri-veprues: var(--n-kufiri-veprues);
+  --theks: var(--n-theks);
+  --theks-zbehte: var(--n-theks-zbehte);
+  --hapur: var(--n-hapur);
+  --hapur-zbehte: var(--n-hapur-zbehte);
+  --theks-shkelqim: var(--n-theks-shkelqim);
+  --hapur-shkelqim: var(--n-hapur-shkelqim);
+  --projektim: var(--n-projektim);
+  --projektim-zbehte: var(--n-projektim-zbehte);
+  --zemra: var(--n-zemra);
+  --mbi-gjendje: var(--n-mbi-gjendje);
+  --hije-1: var(--n-hije-1);
+  --hije-2: var(--n-hije-2);
+  --marka-hije: var(--n-marka-hije);
 }
 
 *,
@@ -132,15 +229,9 @@
 body {
   margin: 0;
   background-color: var(--sfond);
-  /* Shkëlqim i lehtë nga kreu i faqes, që sipërfaqja të mos jetë e vdekur. */
-  background-image: radial-gradient(
-    130% 55% at 50% -8%,
-    var(--shkelqimi),
-    transparent 70%
-  );
-  background-repeat: no-repeat;
   color: var(--teksti);
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-family: 'Quicksand', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif;
   font-size: 1rem;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
@@ -204,7 +295,7 @@ h3 {
   gap: 0.55rem;
   margin: 0 0 0.85rem;
   font-size: 0.74rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--teksti-zbehte);
@@ -225,7 +316,8 @@ h3 {
 
 .kreu {
   display: grid;
-  grid-template-columns: auto 1fr;
+  /* Shenja, titulli, shiriti i temës. */
+  grid-template-columns: auto 1fr auto;
   align-items: start;
   gap: 0.9rem;
 }
@@ -234,26 +326,11 @@ h3 {
   width: 2.75rem;
   height: 2.75rem;
   margin-top: 0.15rem;
-  filter: drop-shadow(0 6px 16px rgb(4 120 87 / 30%));
-}
-
-@media (prefers-color-scheme: dark) {
-  .marka {
-    filter: drop-shadow(0 6px 18px rgb(16 185 129 / 35%));
-  }
-}
-
-/* Skajet e kalimit: `stop-color` mbi `<stop>`, që ngjyrat të rrinë te tokenat. */
-.marka__nga {
-  stop-color: var(--hapur);
-}
-
-.marka__deri {
-  stop-color: var(--theks);
+  filter: drop-shadow(var(--marka-hije));
 }
 
 .marka__fusha {
-  fill: url(#marka-fusha);
+  fill: var(--hapur);
 }
 
 .marka__kryqi {
@@ -263,7 +340,7 @@ h3 {
 .kreu__komuna {
   margin: 0;
   font-size: 0.72rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--teksti-zbehte);
@@ -272,7 +349,7 @@ h3 {
 .kreu__titull {
   margin: 0.15rem 0 0;
   font-size: clamp(1.55rem, 5.6vw, 2.1rem);
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.035em;
   text-wrap: balance;
@@ -306,15 +383,59 @@ h3 {
   opacity: 0.85;
 }
 
+/* ── Shiriti i temës ────────────────────────────────────────────────────── */
+
+/**
+ * Tri butona: sipas sistemit, dritë, terr. I shtypuri dallohet nga `aria-pressed`
+ * — i njëjti model si shiriti i muajve, prandaj ndërrimi i temës nuk e rivizaton
+ * kontrollin dhe fokusi mbetet aty ku ishte.
+ */
+.tema {
+  display: inline-flex;
+  gap: 0.15rem;
+  padding: 0.2rem;
+  border: 1px solid var(--kufiri-veprues);
+  border-radius: 999px;
+  background: var(--siperfaqe);
+  box-shadow: var(--hije-1);
+}
+
+.tema__buton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: var(--teksti-zbehte);
+  cursor: pointer;
+}
+
+.tema__buton:hover {
+  background: var(--siperfaqe-2);
+  color: var(--teksti);
+}
+
+.tema__buton[aria-pressed='true'] {
+  background: var(--theks-zbehte);
+  color: var(--theks);
+}
+
+.tema .ikona {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
 /* ── Kartela e gjendjes ─────────────────────────────────────────────────── */
 
 .tani {
   --gjendja: var(--theks);
-  --gjendja-2: var(--hapur);
   --gjendja-zbehte: var(--theks-zbehte);
   --gjendja-shkelqim: var(--theks-shkelqim);
   position: relative;
-  isolation: isolate;
   overflow: hidden;
   padding: clamp(1.25rem, 4.5vw, 1.9rem);
   background: var(--siperfaqe);
@@ -326,28 +447,17 @@ h3 {
 /* Gjatë natës gjendja është „e hapur" — smerald; ditën është pritje — cian. */
 .tani--nate {
   --gjendja: var(--hapur);
-  --gjendja-2: var(--theks);
   --gjendja-zbehte: var(--hapur-zbehte);
   --gjendja-shkelqim: var(--hapur-shkelqim);
 }
 
-/* Vija e sipërme e ngjyrës së gjendjes: lexohet para çdo teksti. Kalimi te
-   ngjyra e dytë e theksit është ai i FinanCare-s (smerald→cian). */
+/* Vija e sipërme e ngjyrës së gjendjes: lexohet para çdo teksti. */
 .tani::before {
   content: '';
   position: absolute;
   inset: 0 0 auto;
   height: 3px;
-  background: linear-gradient(90deg, var(--gjendja), var(--gjendja-2) 55%, transparent 92%);
-}
-
-/* Shkëlqim i butë pas tekstit, në ngjyrën e gjendjes. */
-.tani::after {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  inset: -45% 35% 50% -15%;
-  background: radial-gradient(closest-side, var(--gjendja-zbehte), transparent);
+  background: var(--gjendja);
 }
 
 .tani__krye {
@@ -369,7 +479,7 @@ h3 {
   background: var(--gjendja-zbehte);
   color: var(--gjendja);
   font-size: 0.72rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.11em;
   text-transform: uppercase;
 }
@@ -425,7 +535,7 @@ h3 {
 .tani__emri {
   margin: 0.45rem 0 0;
   font-size: clamp(2.2rem, 11vw, 3.4rem);
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.02;
   letter-spacing: -0.045em;
   text-wrap: balance;
@@ -559,15 +669,10 @@ h3 {
   transform: translateY(0);
 }
 
-/* Veprimi kryesor mban kalimin smerald→cian të FinanCare-s, në drejtimin e
-   gjendjes së çastit: natën niset nga smeraldi, ditën nga ciani. */
+/* Veprimi kryesor mbush me ngjyrën e gjendjes së çastit: jeshile natën, e kaltër ditën. */
 .buton--kryesor,
 .buton--kryesor:hover {
-  background: linear-gradient(
-    135deg,
-    var(--gjendja, var(--hapur)),
-    var(--gjendja-2, var(--theks))
-  );
+  background: var(--gjendja, var(--hapur));
   border-color: transparent;
   color: var(--mbi-gjendje);
   box-shadow: 0 6px 18px -4px var(--gjendja-shkelqim, var(--hapur-shkelqim));
@@ -750,7 +855,7 @@ h3 {
 
 .muaj-buton[aria-pressed='true'],
 .muaj-buton[aria-pressed='true']:hover {
-  background: linear-gradient(135deg, var(--hapur), var(--theks));
+  background: var(--hapur);
   border-color: transparent;
   border-style: solid;
   color: var(--mbi-gjendje);
@@ -775,7 +880,7 @@ h3 {
   position: relative;
   text-align: left;
   font-size: 0.66rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--teksti-zbehte);
@@ -862,7 +967,7 @@ h3 {
   padding: 0.05rem 0.5rem;
   border-radius: 999px;
   font-size: 0.64rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.09em;
   text-transform: uppercase;
   vertical-align: 0.09em;
@@ -925,7 +1030,7 @@ h3 {
   background: var(--theks-zbehte);
   color: var(--theks);
   font-size: 1.05rem;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .barnatorja--kujdestare .barnatorja__shkronja {
@@ -1184,6 +1289,16 @@ h3 {
 /* ── Ekrane të ngushta ──────────────────────────────────────────────────── */
 
 @media (max-width: 30rem) {
+  /* Titulli e do tërë gjerësinë; shiriti i temës zbret në rreshtin e vet. */
+  .kreu {
+    grid-template-columns: auto 1fr;
+  }
+
+  .tema {
+    grid-column: 1 / -1;
+    justify-self: end;
+  }
+
   /* „E mërkurë" → „Mër": data dhe emri i barnatores kanë përparësi mbi ditën. */
   .qeliza-dita__plote {
     display: none;
@@ -1211,7 +1326,10 @@ h3 {
 /* ── Shtypja ────────────────────────────────────────────────────────────── */
 
 @media print {
-  :root {
+  /* Edhe kur përdoruesi ka zgjedhur terrin: në letër shkon bojë e zezë mbi të bardhë.
+     `:root[data-tema]` e barazon specifikën me zgjedhjen, dhe fiton se vjen pas saj. */
+  :root,
+  :root[data-tema] {
     --sfond: #fff;
     --siperfaqe: #fff;
     --siperfaqe-2: #fff;
@@ -1229,17 +1347,14 @@ h3 {
     --hapur-shkelqim: transparent;
   }
 
-  body {
-    background-image: none;
-  }
-
-  /* Shenja e faqes e humb kalimin: në letër del si fushë e zezë e plotë. */
+  /* Hija e shenjës është bojë e harxhuar në letër. */
   .marka {
     filter: none;
   }
 
   .veprimet,
   .muaj-shirit,
+  .tema,
   .barnatorja__veprimet {
     display: none;
   }
