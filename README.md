@@ -25,6 +25,7 @@ më e dobët.
 | **Periudha** | 01.07.2026 – 31.12.2026, zyrtare deri më 31.08.2026 |
 | **Barnatoret** | 7, në rotacion 10-ditor |
 | **Pa internet** | Po — PWA me service worker, orari brenda paketës |
+| **Tema** | sipas sistemit, ose e zgjedhur vetë — e çelët / e errët |
 | **Provat** | `node --test`, pa framework provash |
 
 | | |
@@ -66,6 +67,10 @@ scripts/
   parafaqja.mjs          faqja e gatshme, head-i, robots.txt dhe sitemap.xml
   pergatit-sw.mjs        lista e paracache-it te sw.js, pas ndërtimit
   gjenero-ikonat.mjs     ikonat PNG dhe imazhi i ndarjes
+
+public/
+  tema.js                tema e zgjedhur — bllokuese te <head>-i, para vizatimit
+  sw.js                  service worker-i; paracache-i shkruhet gjatë ndërtimit
 ```
 
 ## Orari

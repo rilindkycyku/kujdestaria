@@ -68,6 +68,35 @@ klikohen kanë `--kufiri-veprues` — 3.6:1 mbi të bardhën dhe 3.2:1 mbi sfond
 sepse WCAG 1.4.11 kërkon 3:1 për të dallohet një kontroll. Butonat me vetëm një vijë të
 holluar dukeshin të pandashëm nga sfondi.
 
+### Tema
+
+Faqja e ndjek temën e sistemit, si më parë. Por sistemi jo gjithnjë e thotë të vërtetën për
+dritën përreth: një telefon i mbetur në temën e errët në mesditë, ose një ekran i bardhë i
+hapur në ora 02:00. Prandaj kreu ka tri butona — **sipas sistemit** (parazgjedhja), **e
+çelët**, **e errët** — dhe zgjedhja ruhet te `localStorage`. I shtypuri dallohet nga
+`aria-pressed`, si te shiriti i muajve, prandaj ndërrimi i temës nuk e rivizaton kontrollin
+dhe fokusi mbetet aty ku ishte.
+
+Zgjedhja shkon te `data-tema` i `<html>`, dhe kjo bëhet nga [`public/tema.js`](../public/tema.js)
+— skriptë e zakonshme, bllokuese te `<head>`-i, jashtë paketës së Vite-s. Po ta bënte
+`main.js`, që është modul dhe pra i shtyrë, faqja do të vizatohej një çast me temën e
+sistemit para se zgjedhja të vlente: për dikë që ka zgjedhur terrin, pikërisht ajo ndezje e
+bardhë që tema e errët duhet të parandalojë. Kjo është arsyeja e vetme pse një copë sjellje
+rri jashtë `src/`. Pa JavaScript humbet vetëm zgjedhja me dorë — tema e sistemit punon njësoj.
+
+Ngjyra e shiritit të shfletuesit e ndjek zgjedhjen: te `<head>`-i rrinë dy
+`<meta name="theme-color">` me `media`, dhe kur përdoruesi zgjedh vetë, `media`-ja e asaj që
+duhet bëhet `all` e tjetra `not all`. Bashkë me të shkon `color-scheme`, që shiritat e
+rrëshqitjes dhe kontrollet e shfletuesit të mos mbeten të temës së sistemit mbi një faqe të
+temës tjetër.
+
+Paleta e natës rri një herë të vetme te tokenat `--n-*`; dy rregulla e ndezin — një për
+sistemin, një për zgjedhjen — sepse CSS-ja nuk e ndan dot një bllok mes një `@media`-je dhe
+një përzgjedhësi. Përsëritet lista e emrave, kurrë vlerat, dhe
+[`test/tema.test.mjs`](../test/tema.test.mjs) i mban të dyja listat të njëjta e të plota. Në
+shtypje vlen `:root[data-tema]` bashkë me `:root`, që letra të dalë e bardhë edhe kur në
+ekran është zgjedhur terri.
+
 ### Njoftimi për gabim
 
 Orari transkriptohet me dorë nga një skanim, dhe rotacioni pas 31.08.2026 është i
@@ -103,6 +132,12 @@ sezoni që ndërron te data e duhur, dhe lidhjet e hartave që kalojnë validimi
 gatshme i mban të gjitha netët e orarit dhe asnjë shenjë „tani" të ngrirë, se grafi JSON-LD
 del JSON i vlefshëm me `@id`-të e veta dhe pa fusha të zbrazëta, dhe se çdo përgjigje e
 `FAQPage`-it shfaqet fjalë për fjalë edhe në faqe — Google-i e pranon vetëm ashtu.
+
+[`test/tema.test.mjs`](../test/tema.test.mjs) provon atë që prishet pa u dukur te tema: se të
+dyja rrugët e natës — ajo e sistemit dhe ajo e zgjedhjes — kalojnë saktësisht të njëjtat
+tokena, se `color-scheme` shkon bashkë me zgjedhjen, se shtypja mbetet e bardhë edhe me
+terrin e zgjedhur, dhe se `public/tema.js` mbetet skriptë bllokuese te `<head>`-i, pa `defer`
+e pa u bërë modul — përndryshe tema do të vinte pas vizatimit të parë.
 
 ## Kërkimi
 
