@@ -88,11 +88,13 @@ adresë hapet edhe nga një tabletë a një kompjuter, dhe atje një kolonë 47r
 ekranit linte dy pëllëmbë të zbrazëta anash dhe e shtynte tabelën një ekran poshtë —
 pikërisht atë që dikush e hapi faqen ta shihte.
 
-Mbi 62rem faqja hapet te 72rem dhe tri seksione ndahen në dy shtylla: netët në vijim dhe
-barnatoret te shtylla e ngushtë, tabela e muajit te ajo e gjera, sepse tabela e do
+Mbi 62rem faqja hapet te 72rem dhe katër seksione ndahen në dy shtylla: netët në vijim,
+barnatoret dhe njoftimi i projeksionit te shtylla e ngushtë, tabela e muajit te ajo e gjera, sepse tabela e do
 gjerësinë dhe listat jo. Barnatoret hyjnë atje sepse tabela e një muaji është tridhjetë
 rreshta e gjatë kurse netët katër kartela — pa to, shtylla e majtë mbaronte pas një të
-pestës së lartësisë dhe pjesa tjetër rrinte e zbrazët krah saj. Vendosja bëhet me rrjet
+pestës së lartësisë dhe pjesa tjetër rrinte e zbrazët krah saj. Njoftimi i projeksionit shkon
+atje sepse shpjegon pikërisht shenjën „E projektuar" që del te çdo rresht i tabelës: krah saj
+nuk është vetëm hapësirë e mbushur, është vendi i tij. Vendosja bëhet me rrjet
 (`grid-row`) e jo me radhë te HTML-ja, prandaj te telefoni radha mbetet ajo që ishte:
 netët, orari, barnatoret. Ndarja bëhet mes dy seksioneve që rrinë ngjitur edhe ashtu (`.dyshja` te `skeleti()`),
 prandaj radha e leximit nuk ndryshon aspak: sapo shtyllat bien njëra nën tjetrën, faqja

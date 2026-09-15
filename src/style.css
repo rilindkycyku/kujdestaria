@@ -304,11 +304,12 @@ h3 {
   }
 
   .dyshja {
-    grid-template-columns: minmax(17rem, 0.82fr) minmax(0, 1.18fr);
-    /* `1fr` te rreshti i dytë e mban të parin sa netët në vijim: pa të, lartësia
-       e tabelës që i kalon të dy rreshtat ndahet mes tyre, dhe barnatoret niseshin
-       një pëllëmbë poshtë netëve pa asgjë në mes. */
-    grid-template-rows: auto 1fr;
+    grid-template-columns: minmax(16rem, 0.72fr) minmax(0, 1.28fr);
+    /* `1fr` te rreshti i fundit i mban të tjerët sa përmbajtja e vet: pa të,
+       lartësia e tabelës që i kalon të tri rreshtat ndahet mes tyre, dhe blloqet e
+       shtyllës së majtë niseshin një pëllëmbë poshtë njëri-tjetrit, pa asgjë në
+       mes. */
+    grid-template-rows: auto auto 1fr;
     align-items: start;
   }
 
@@ -335,9 +336,17 @@ h3 {
     grid-row: 2;
   }
 
+  /* Njoftimi i projeksionit shpjegon pikërisht shenjën „E projektuar" që del te
+     çdo rresht i tabelës, prandaj krah saj nuk është vetëm hapësirë e mbushur —
+     është vendi i tij. */
+  .dyshja > .njoftim {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
   .dyshja > .orari-plote {
     grid-column: 2;
-    grid-row: 1 / span 2;
+    grid-row: 1 / span 3;
   }
 
   /* Pyetjet janë të shkurtra dhe të pavarura nga njëra-tjetra: dy për rresht

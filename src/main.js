@@ -309,8 +309,8 @@ function skeleti() {
           <div id="tabela"></div>
         </section>
         <section class="barnatoret" id="barnatoret"></section>
+        ${njoftimiIProjeksionit()}
       </div>
-      ${njoftimiIProjeksionit()}
       ${seksioniIPyetjeve()}
       ${fundfaqja()}
     </main>
