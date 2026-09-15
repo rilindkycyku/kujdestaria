@@ -216,6 +216,14 @@ Logjika e re shkon me prova. Një `npm run gjenero` i gabuar duhet të bjerë te
   edhe ashtu, prandaj radha e leximit te telefoni nuk ndryshon fare. Kartela „tani" mbetet e tërë
   gjerësia mbi to — ajo është përgjigjja. Grupimi bëhet te `skeleti()` i `main.js`; parandërtimi nuk
   e ka fare atë shtyllë, sepse netët në vijim nuk parandërtohen (rregulli 2).
+- **Mbi 85rem muaji ndahet më dysh** (`tabelatEMuajit`) dhe faqja hapet te 84rem: tridhjetë rreshta
+  bëhen dy herë pesëmbëdhjetë dhe muaji shihet i tëri pa rrëshqitur. Kufiri është 85rem e jo 62rem
+  sepse nën të secila gjysmë rrëshqet brenda vetes. Gjerësinë e pyet `main.js` me `matchMedia` dhe ia
+  kalon si argument — `faqja.js` nuk e njeh ekranin (rregulli 2) — dhe parandërtimi merr gjithmonë
+  tabelën e plotë. Ndërrimi i gjerësisë rivizaton; pa atë dëgjues tabela do ta priste minutën tjetër.
+- **Kartela „tani" ndahet brenda vetes mbi 62rem**: emri, adresa dhe butonat majtas, koha djathtas
+  (`.tani__pjeset`, me `grid-row`). Radha e HTML-së mbetet ajo e telefonit — emri, adresa, koha,
+  butonat — dhe vija mbi bllokun e kohës hiqet atje ku ai nuk rri më poshtë emrit.
 - `env(safe-area-inset-*)` me `viewport-fit=cover` për pamjen e instaluar. Ka edhe stil për shtypje.
 - Numërimi thotë **kujdestaria** mbaron/fillon, jo barnatorja mbyllet/hapet: në ora 08:00 barnatorja
   nuk mbyllet, kalon në orarin e rregullt.

@@ -101,8 +101,20 @@ prandaj radha e leximit nuk ndryshon aspak: sapo shtyllat bien njëra nën tjetr
 del pikërisht ajo e dikurshmja. Pyetjet e shpeshta dalin dy për rresht me të njëjtin
 kufi, dhe barnatoret e kishin këtë sjellje që nga fillimi (`auto-fit`).
 
-Kartela «tani» mbetet e tërë gjerësia mbi to. Ajo është përgjigjja e faqes, dhe
-përgjigjja nuk ndan ekran me asnjë.
+Kartela «tani» mbetet e tërë gjerësia mbi to, sepse ajo është përgjigjja e faqes — por
+brenda saj ndahet më dysh: emri, adresa dhe butonat majtas, koha djathtas. Te 72rem emri
+zinte një të tretën e kartelës dhe pjesa tjetër rrinte e bardhë, kurse shiriti i natës
+shtrihej sa tërë gjerësia dhe lexohej si vijë zbukurimi.
+
+Muaji ndahet më dysh nga 85rem e tutje, dhe faqja hapet te 84rem: një muaj është tridhjetë
+rreshta, dhe dy gjysma krah për krah e nxjerrin të tërin në ekran pa asnjë rrëshqitje. Kufiri
+është 85rem e jo 62rem sepse nën të secila gjysmë do të rrëshqiste brenda vetes — dy tabela që
+rrëshqasin në vend të njërës. Ndarjen e vendos `main.js` me `matchMedia` dhe ia kalon
+`tabelatEMuajit` si përgjigje, sepse `faqja.js` nuk e njeh ekranin (rregulli 2); parandërtimi e
+merr gjithmonë tabelën e plotë, pra robotët shohin muajin të tërë te një tabelë e vetme.
+
+Te ajo gjerësi shiriti i muajve nuk rrëshqet më: të gjashtë muajt hyjnë në një rresht, dhe një
+listë që rrëshqet fsheh gjysmën e zgjedhjeve pa e thënë.
 
 ### Kontrasti
 

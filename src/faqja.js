@@ -160,6 +160,35 @@ export function shpjegimiIOrarit() {
   `;
 }
 
+/**
+ * Muaji si një tabelë, ose si dy gjysma krah për krah.
+ *
+ * Një muaj është tridhjetë rreshta, dhe te një ekran i gjerë ata i japin faqes
+ * një metër rrëshqitje për një tabelë që do të hynte e tëra në ekran po të
+ * ndahej më dysh. Prandaj mbi 62rem shtypet një gjysmë majtas e një djathtas:
+ * i tërë muaji shihet pa lëvizur, dhe nata e sotme rri aty ku bie.
+ *
+ * Ndarja vendoset nga thirrësi e jo këtu: ky skedar nuk e njeh as ekranin, as
+ * `matchMedia` (rregulli 2). `main.js` e pyet gjerësinë dhe e kalon përgjigjen.
+ *
+ * Dy tabela e jo një e ndarë me CSS, sepse një `<table>` nuk ndahet dot në dy
+ * shtylla pa pushuar së qeni tabelë; dhe secila e mban kokën e vet, që gjysma e
+ * djathtë të lexohet pa u kthyer te e majta.
+ */
+export function tabelatEMuajit(celesiIMuajit, nataNeFuqi = null, dyGjysma = false) {
+  if (!dyGjysma) return tabelaEMuajit(celesiIMuajit, nataNeFuqi);
+
+  const muaji = muajt.find((m) => m.celes === celesiIMuajit) ?? muajt[0];
+  const mesi = Math.ceil(muaji.ditet.length / 2);
+
+  return `
+    <div class="tabela-dyshe">
+      ${tabelaEMuajit(celesiIMuajit, nataNeFuqi, { nga: 0, deri: mesi })}
+      ${tabelaEMuajit(celesiIMuajit, nataNeFuqi, { nga: mesi, deri: muaji.ditet.length })}
+    </div>
+  `;
+}
+
 export function butonatEMuajve(muajiAktiv) {
   return muajt
     .map((m) => {
@@ -180,10 +209,13 @@ export function butonatEMuajve(muajiAktiv) {
  * Tabela e një muaji. `nataNeFuqi` mund të jetë `null` — atëherë asnjë rresht nuk
  * shënohet si „tani", çka i duhet ndërtimit: HTML-ja e ruajtur nuk e di se kur lexohet.
  */
-export function tabelaEMuajit(celesiIMuajit, nataNeFuqi = null) {
+export function tabelaEMuajit(celesiIMuajit, nataNeFuqi = null, pjesa = null) {
   const muaji = muajt.find((m) => m.celes === celesiIMuajit) ?? muajt[0];
+  // `pjesa` jepet vetëm kur muaji ndahet më dysh (`tabelatEMuajit`); pa të,
+  // tabela mbetet e tërë — dhe ashtu e do parandërtimi.
+  const ditet = pjesa ? muaji.ditet.slice(pjesa.nga, pjesa.deri) : muaji.ditet;
 
-  const rreshtat = muaji.ditet
+  const rreshtat = ditet
     .map((dita) => {
       const tani = dita.data === nataNeFuqi;
       const klasa = [
@@ -216,7 +248,11 @@ export function tabelaEMuajit(celesiIMuajit, nataNeFuqi = null) {
     <div class="tabela-mbeshtjellese">
       <table class="tabela">
         <caption class="vetem-lexues">
-          Kujdestaria e barnatoreve për ${emriIMuajit(muaji.celes)}
+          Kujdestaria e barnatoreve për ${emriIMuajit(muaji.celes)}${
+            pjesa
+              ? `, netët ${pjesa.nga + 1}–${Math.min(pjesa.deri, muaji.ditet.length)}`
+              : ''
+          }
         </caption>
         <thead>
           <tr>
