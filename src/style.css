@@ -256,6 +256,7 @@ h3 {
 }
 
 .faqja {
+  --rreshtimi: clamp(1.6rem, 4.5vw, 2.4rem);
   max-width: 47rem;
   margin-inline: auto;
   padding-block: clamp(1.5rem, 5vw, 2.75rem) 4rem;
@@ -264,12 +265,195 @@ h3 {
   padding-right: max(var(--hapesira), env(safe-area-inset-right, 0px));
   display: flex;
   flex-direction: column;
-  gap: clamp(1.6rem, 4.5vw, 2.4rem);
+  gap: var(--rreshtimi);
 }
 
 /* Seksionet pa përmbajtje (pa harta, pa netë të mbetura) të mos lënë hapësirë. */
-.faqja > section:empty {
+.faqja > section:empty,
+.dyshja > section:empty {
   display: none;
+}
+
+/**
+ * Netët në vijim dhe orari i plotë, krah për krah sapo ka ku.
+ *
+ * Faqja u shkrua për një telefon në ora 02:00, dhe ajo mbetet matja e parë: një
+ * kolonë, kartela e natës sa gjysma e ekranit, asgjë tjetër. Por e njëjta faqe
+ * hapet edhe nga një tabletë a një kompjuter, dhe atje një kolonë 47rem në mes
+ * lë dy pëllëmbë të zbrazëta majtas e djathtas dhe e shtyn tabelën një ekran
+ * poshtë — pikërisht atë që dikush hapi faqen ta shihte.
+ *
+ * Ndarja bëhet mes dy seksioneve që rrinë ngjitur edhe ashtu, prandaj radha e
+ * leximit nuk ndryshon aspak: netët e afërta majtas te shtylla e ngushtë,
+ * tabela e muajit djathtas te ajo e gjera, sepse tabela e do gjerësinë dhe
+ * lista jo.
+ *
+ * Kartela «tani» mbetet e tërë gjerësia mbi to: ajo është përgjigjja, dhe
+ * përgjigjja nuk ndan ekran me asnjë.
+ */
+.dyshja {
+  display: grid;
+  /* `minmax(0, …)` që tabela të rrëshqasë brenda vetes e të mos e zgjerojë faqen. */
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--rreshtimi);
+}
+
+@media (min-width: 62rem) {
+  .faqja {
+    max-width: 72rem;
+  }
+
+  /* Mbi 85rem faqja hapet edhe pak, dhe pikërisht aq sa dy gjysmat e muajit të
+     hyjnë pa rrëshqitur brenda vetes: ndarja pa atë gjerësi do të ishte dy
+     tabela që rrëshqasin në vend të njërës që rrëshqet. */
+  @media (min-width: 85rem) {
+    .faqja {
+      max-width: 84rem;
+    }
+  }
+
+  .dyshja {
+    grid-template-columns: minmax(16rem, 0.72fr) minmax(0, 1.28fr);
+    /* `1fr` te rreshti i fundit i mban të tjerët sa përmbajtja e vet: pa të,
+       lartësia e tabelës që i kalon të tri rreshtat ndahet mes tyre, dhe blloqet e
+       shtyllës së majtë niseshin një pëllëmbë poshtë njëri-tjetrit, pa asgjë në
+       mes. */
+    grid-template-rows: auto auto 1fr;
+    align-items: start;
+  }
+
+  /**
+   * Barnatoret rrinë nën netët, e jo nën tabelë.
+   *
+   * Tabela e një muaji është tridhjetë rreshta e gjatë, kurse netët në vijim
+   * katër kartela: pa këtë, shtylla e majtë mbaronte pas një të pestës së
+   * lartësisë dhe pjesa tjetër rrinte e zbrazët krah saj. Lista e barnatoreve
+   * është pikërisht sa duhet për atë vend — kartela të vogla, që te një shtyllë
+   * e ngushtë dalin njëra nën tjetrën pa u ngushtuar.
+   *
+   * Vendosja bëhet me rrjet e jo me radhë te HTML-ja: te telefoni radha mbetet
+   * ajo që ishte — netët, orari, barnatoret — dhe ajo radhë ka kuptimin e vet
+   * (tabela pyetet më shpesh se lista e adresave).
+   */
+  .dyshja > .ardhshme {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .dyshja > .barnatoret {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  /* Njoftimi i projeksionit shpjegon pikërisht shenjën „E projektuar" që del te
+     çdo rresht i tabelës, prandaj krah saj nuk është vetëm hapësirë e mbushur —
+     është vendi i tij. */
+  .dyshja > .njoftim {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .dyshja > .orari-plote {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+  }
+
+  /* Pyetjet janë të shkurtra dhe të pavarura nga njëra-tjetra: dy për rresht
+     lexohen po aq lehtë, dhe nuk e zgjatin faqen sa një shtyllë e vetme. */
+  .pyetjet__lista {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  /**
+   * Muaji ndahet më dysh — dhe atëherë hyn i tëri në ekran.
+   *
+   * Dy gjysma krah për krah e presin tabelën nga tridhjetë rreshta në
+   * pesëmbëdhjetë, pra faqja nuk rrëshqitet fare për ta parë muajin e plotë.
+   * Ndarja bëhet te `tabelatEMuajit`; këtu rri vetëm rregullimi i tyre.
+   */
+  .tabela-dyshe {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.7rem;
+    align-items: start;
+  }
+
+  /* Te gjysma e ngushtë dita shkurtohet, si te telefoni: data dhe emri i
+     barnatores kanë përparësi mbi ditën e javës. */
+  .tabela-dyshe .qeliza-dita__plote {
+    display: none;
+  }
+
+  .tabela-dyshe .qeliza-dita__shkurt {
+    display: inline;
+  }
+
+  .tabela-dyshe .tabela {
+    font-size: 0.88rem;
+  }
+
+  .tabela-dyshe .tabela th,
+  .tabela-dyshe .tabela td {
+    padding-inline: 0.45rem;
+  }
+
+  /* Rreshti i sotëm mban dy shenja njëherësh («tani» dhe «e projektuar»), dhe
+     gjerësinë e shtyllës e vendos pikërisht ai. Të lejuara të bien njëra nën
+     tjetrën, shtylla bie te gjerësia e një shenje të vetme — pa hequr asnjë
+     fjalë nga të dyja. */
+  .tabela-dyshe .qeliza-shenja {
+    white-space: normal;
+  }
+
+  .tabela-dyshe .shenja {
+    margin-left: 0.3rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.06em;
+  }
+
+  /* Të gjashtë muajt hyjnë në një rresht, prandaj shiriti nuk ka pse të rrëshqasë:
+     një listë që rrëshqet fsheh gjysmën e zgjedhjeve pa e thënë. */
+  .muaj-shirit {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+
+  /**
+   * Kartela e natës ndahet më dysh: emri majtas, koha djathtas.
+   *
+   * Te 72rem emri, adresa dhe butonat zinin një të tretën e kartelës dhe pjesa
+   * tjetër rrinte e bardhë, kurse shiriti i natës — ai që thotë sa ka mbetur —
+   * shtrihej sa tërë gjerësia dhe lexohej si vijë zbukurimi. Tani secila merr
+   * atë që i duhet: emri mbetet elementi më i madh, dhe koha rri krah tij në
+   * lartësinë e syrit.
+   *
+   * Vendosja bëhet me rrjet, pra radha e HTML-së nuk ndryshon: te telefoni del
+   * emri, adresa, koha, butonat — pikërisht si më parë.
+   */
+  .tani__pjeset {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    column-gap: clamp(1.5rem, 4vw, 2.5rem);
+    align-items: start;
+  }
+
+  .tani__pjeset > .tani__emri,
+  .tani__pjeset > .tani__vendi,
+  .tani__pjeset > .veprimet {
+    grid-column: 1;
+  }
+
+  .tani__pjeset > .koha {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    align-self: center;
+    /* Vija e ndarjes ka kuptim vetëm kur koha rri nën emrin; krah tij ajo do të
+       ishte vijë pa asgjë mbi vete. */
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
 }
 
 .vetem-lexues {

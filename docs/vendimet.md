@@ -81,6 +81,41 @@ tabela mbetet e plotë edhe në 320px. Shiriti i muajve rrëshqet horizontalisht
 te muaji aktual. `env(safe-area-inset-*)` bashkë me `viewport-fit=cover` mbajnë faqen
 larg qosheve të rrumbullakuara kur ekzekutohet e instaluar. Ka edhe stil për shtypje.
 
+### Ekranet e mëdha
+
+Faqja u shkrua për një telefon në ora 02:00, dhe ajo mbetet matja e parë. Por e njëjta
+adresë hapet edhe nga një tabletë a një kompjuter, dhe atje një kolonë 47rem në mes të
+ekranit linte dy pëllëmbë të zbrazëta anash dhe e shtynte tabelën një ekran poshtë —
+pikërisht atë që dikush e hapi faqen ta shihte.
+
+Mbi 62rem faqja hapet te 72rem dhe katër seksione ndahen në dy shtylla: netët në vijim,
+barnatoret dhe njoftimi i projeksionit te shtylla e ngushtë, tabela e muajit te ajo e gjera, sepse tabela e do
+gjerësinë dhe listat jo. Barnatoret hyjnë atje sepse tabela e një muaji është tridhjetë
+rreshta e gjatë kurse netët katër kartela — pa to, shtylla e majtë mbaronte pas një të
+pestës së lartësisë dhe pjesa tjetër rrinte e zbrazët krah saj. Njoftimi i projeksionit shkon
+atje sepse shpjegon pikërisht shenjën „E projektuar" që del te çdo rresht i tabelës: krah saj
+nuk është vetëm hapësirë e mbushur, është vendi i tij. Vendosja bëhet me rrjet
+(`grid-row`) e jo me radhë te HTML-ja, prandaj te telefoni radha mbetet ajo që ishte:
+netët, orari, barnatoret. Ndarja bëhet mes dy seksioneve që rrinë ngjitur edhe ashtu (`.dyshja` te `skeleti()`),
+prandaj radha e leximit nuk ndryshon aspak: sapo shtyllat bien njëra nën tjetrën, faqja
+del pikërisht ajo e dikurshmja. Pyetjet e shpeshta dalin dy për rresht me të njëjtin
+kufi, dhe barnatoret e kishin këtë sjellje që nga fillimi (`auto-fit`).
+
+Kartela «tani» mbetet e tërë gjerësia mbi to, sepse ajo është përgjigjja e faqes — por
+brenda saj ndahet më dysh: emri, adresa dhe butonat majtas, koha djathtas. Te 72rem emri
+zinte një të tretën e kartelës dhe pjesa tjetër rrinte e bardhë, kurse shiriti i natës
+shtrihej sa tërë gjerësia dhe lexohej si vijë zbukurimi.
+
+Muaji ndahet më dysh nga 85rem e tutje, dhe faqja hapet te 84rem: një muaj është tridhjetë
+rreshta, dhe dy gjysma krah për krah e nxjerrin të tërin në ekran pa asnjë rrëshqitje. Kufiri
+është 85rem e jo 62rem sepse nën të secila gjysmë do të rrëshqiste brenda vetes — dy tabela që
+rrëshqasin në vend të njërës. Ndarjen e vendos `main.js` me `matchMedia` dhe ia kalon
+`tabelatEMuajit` si përgjigje, sepse `faqja.js` nuk e njeh ekranin (rregulli 2); parandërtimi e
+merr gjithmonë tabelën e plotë, pra robotët shohin muajin të tërë te një tabelë e vetme.
+
+Te ajo gjerësi shiriti i muajve nuk rrëshqet më: të gjashtë muajt hyjnë në një rresht, dhe një
+listë që rrëshqet fsheh gjysmën e zgjedhjeve pa e thënë.
+
 ### Kontrasti
 
 Të gjitha çiftet e tekstit kalojnë WCAG AA në dritë e në terr; më i ngushti është pilula

@@ -15,6 +15,7 @@ import {
   shpjegimiIOrarit,
   sig,
   tabelaEMuajit,
+  tabelatEMuajit,
 } from './faqja.js';
 import {
   instalo,
@@ -33,6 +34,18 @@ const { iRregullt, kujdestaria: orariINates } = orari.orari;
 
 /** Muaji i shfaqur në tabelë; ndryshohet nga butonat e muajve. */
 let muajiAktiv = null;
+
+/*
+ * A ka ekrani gjerësi sa për dy gjysma muaji krah për krah.
+ *
+ * Kufiri është 85rem e jo 62rem: dy gjysma kërkojnë gjerësi të vërtetë, dhe nën
+ * të ato do të rrëshqisnin secila brenda vetes — dy tabela që rrëshqasin në vend
+ * të njërës. I njëjti numër si te CSS-ja, dhe kjo është e vetmja kopje e tij te JS-ja:
+ * gjerësinë e pyet `main.js` sepse `faqja.js` nuk e njeh ekranin (rregulli 2).
+ * Ndërrimi i gjendjes rivizaton — përndryshe një dritare e zgjeruar do ta mbante
+ * tabelën një shtyllë derisa të kalonte minuta.
+ */
+const iGjere = window.matchMedia('(min-width: 85rem)');
 
 /** Mesazh i shkurtër pas një veprimi, p.sh. „Lidhja u kopjua". */
 let mesazhi = null;
@@ -123,10 +136,12 @@ function kartelaTani(sot, gjendja) {
       </p>
       <p class="tani__dritare">${ikona('nate')} Nata ${nata}</p>
     </div>
-    <h2 class="tani__emri">${sig(dita.barnatorja)}</h2>
-    ${b.adresa ? `<p class="tani__vendi">${ikona('harta')} ${sig(b.adresa)}</p>` : ''}
-    ${blokuIKohes(gjendja)}
-    ${veprimet(b)}
+    <div class="tani__pjeset">
+      <h2 class="tani__emri">${sig(dita.barnatorja)}</h2>
+      ${b.adresa ? `<p class="tani__vendi">${ikona('harta')} ${sig(b.adresa)}</p>` : ''}
+      ${blokuIKohes(gjendja)}
+      ${veprimet(b)}
+    </div>
     ${mesazhiDheUdhezimet()}
     ${paralajmerimProjektimi(dita)}
   `;
@@ -292,15 +307,25 @@ function skeleti() {
     <main class="faqja faqja--hyrje">
       ${kreu()}
       <section class="tani" id="tani"></section>
-      <section class="ardhshme" id="ardhshme"></section>
-      <section class="orari-plote" id="orari-plote">
-        <h2 class="titull-seksioni">Orari i plotë</h2>
-        ${shpjegimiIOrarit()}
-        <div class="muaj-shirit" role="group" aria-label="Zgjidh muajin">${butonatEMuajve(muajiAktiv)}</div>
-        <div id="tabela"></div>
-      </section>
-      <section class="barnatoret" id="barnatoret"></section>
-      ${njoftimiIProjeksionit()}
+
+      <!--
+        Netët në vijim dhe orari i plotë janë e njëjta pyetje në dy thellësi:
+        «cila natë vjen radhës» dhe «cila natë është data ime». Te telefoni rrinë
+        njëra nën tjetrën, si më parë; sapo ekrani ka gjerësi, ato dy dhe
+        hapësira e zbrazët anash bëhen dy shtylla — e ngushta për netët, e gjera
+        për tabelën, e cila e do gjerësinë.
+      -->
+      <div class="dyshja">
+        <section class="ardhshme" id="ardhshme"></section>
+        <section class="orari-plote" id="orari-plote">
+          <h2 class="titull-seksioni">Orari i plotë</h2>
+          ${shpjegimiIOrarit()}
+          <div class="muaj-shirit" role="group" aria-label="Zgjidh muajin">${butonatEMuajve(muajiAktiv)}</div>
+          <div id="tabela"></div>
+        </section>
+        <section class="barnatoret" id="barnatoret"></section>
+        ${njoftimiIProjeksionit()}
+      </div>
       ${seksioniIPyetjeve()}
       ${fundfaqja()}
     </main>
@@ -327,7 +352,7 @@ function vizato() {
   if (kartela) kartela.className = klasaETanit(gjendja);
 
   cakto('#ardhshme', ardhshmet(nataNeFuqi));
-  cakto('#tabela', tabelaEMuajit(muajiAktiv, nataNeFuqi));
+  cakto('#tabela', tabelatEMuajit(muajiAktiv, nataNeFuqi, iGjere.matches));
   cakto('#barnatoret', seksioniIBarnatoreve(gjendja.dita?.barnatorja ?? null, gjendja.faza));
 
   // Përgjigjja shihet edhe pa u hapur faqja, kur skeda është një nga të shumtat.
@@ -420,6 +445,13 @@ tikuIMinutes();
 // Kur skeda kthehet pas disa orësh, gjendja rifreskohet menjëherë, pa ringarkim.
 document.addEventListener('visibilitychange', () => {
   if (!document.hidden) vizato();
+});
+
+// Dritarja që zgjerohet mbi 62rem e ndan muajin më dysh — dhe ajo që ngushtohet
+// e bashkon prapë. Pa këtë, tabela do ta priste ndërrimin deri te minuta tjetër.
+iGjere.addEventListener('change', () => {
+  vizato();
+  qendroNeMuajinAktiv();
 });
 
 // Vercel Analytics. Skripta shërbehet nga vetë domeni (/_vercel/insights), prandaj
