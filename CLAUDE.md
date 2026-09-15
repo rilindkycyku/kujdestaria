@@ -208,6 +208,11 @@ Logjika e re shkon me prova. Një `npm run gjenero` i gabuar duhet të bjerë te
   vetëm dekorativ. Mos e përdor kufirin dekorativ për një kontroll.
 - Nën 30rem dita e javës shkurtohet („E mërkurë" → „Mër") në vend që të fshihet — tabela mbetet e
   plotë edhe në 320px.
+- **Mbi 62rem faqja hapet te 72rem dhe ndahet në dy shtylla** (`.dyshja`): netët në vijim majtas,
+  tabela e muajit djathtas, sepse ajo e do gjerësinë. Ndarja rri mes dy seksioneve që janë ngjitur
+  edhe ashtu, prandaj radha e leximit te telefoni nuk ndryshon fare. Kartela „tani" mbetet e tërë
+  gjerësia mbi to — ajo është përgjigjja. Grupimi bëhet te `skeleti()` i `main.js`; parandërtimi nuk
+  e ka fare atë shtyllë, sepse netët në vijim nuk parandërtohen (rregulli 2).
 - `env(safe-area-inset-*)` me `viewport-fit=cover` për pamjen e instaluar. Ka edhe stil për shtypje.
 - Numërimi thotë **kujdestaria** mbaron/fillon, jo barnatorja mbyllet/hapet: në ora 08:00 barnatorja
   nuk mbyllet, kalon në orarin e rregullt.

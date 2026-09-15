@@ -81,6 +81,23 @@ tabela mbetet e plotë edhe në 320px. Shiriti i muajve rrëshqet horizontalisht
 te muaji aktual. `env(safe-area-inset-*)` bashkë me `viewport-fit=cover` mbajnë faqen
 larg qosheve të rrumbullakuara kur ekzekutohet e instaluar. Ka edhe stil për shtypje.
 
+### Ekranet e mëdha
+
+Faqja u shkrua për një telefon në ora 02:00, dhe ajo mbetet matja e parë. Por e njëjta
+adresë hapet edhe nga një tabletë a një kompjuter, dhe atje një kolonë 47rem në mes të
+ekranit linte dy pëllëmbë të zbrazëta anash dhe e shtynte tabelën një ekran poshtë —
+pikërisht atë që dikush e hapi faqen ta shihte.
+
+Mbi 62rem faqja hapet te 72rem dhe dy seksione kalojnë krah për krah: netët në vijim te
+shtylla e ngushtë, tabela e muajit te ajo e gjera, sepse tabela e do gjerësinë dhe lista
+jo. Ndarja bëhet mes dy seksioneve që rrinë ngjitur edhe ashtu (`.dyshja` te `skeleti()`),
+prandaj radha e leximit nuk ndryshon aspak: sapo shtyllat bien njëra nën tjetrën, faqja
+del pikërisht ajo e dikurshmja. Pyetjet e shpeshta dalin dy për rresht me të njëjtin
+kufi, dhe barnatoret e kishin këtë sjellje që nga fillimi (`auto-fit`).
+
+Kartela «tani» mbetet e tërë gjerësia mbi to. Ajo është përgjigjja e faqes, dhe
+përgjigjja nuk ndan ekran me asnjë.
+
 ### Kontrasti
 
 Të gjitha çiftet e tekstit kalojnë WCAG AA në dritë e në terr; më i ngushti është pilula

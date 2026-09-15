@@ -256,6 +256,7 @@ h3 {
 }
 
 .faqja {
+  --rreshtimi: clamp(1.6rem, 4.5vw, 2.4rem);
   max-width: 47rem;
   margin-inline: auto;
   padding-block: clamp(1.5rem, 5vw, 2.75rem) 4rem;
@@ -264,12 +265,55 @@ h3 {
   padding-right: max(var(--hapesira), env(safe-area-inset-right, 0px));
   display: flex;
   flex-direction: column;
-  gap: clamp(1.6rem, 4.5vw, 2.4rem);
+  gap: var(--rreshtimi);
 }
 
 /* Seksionet pa përmbajtje (pa harta, pa netë të mbetura) të mos lënë hapësirë. */
-.faqja > section:empty {
+.faqja > section:empty,
+.dyshja > section:empty {
   display: none;
+}
+
+/**
+ * Netët në vijim dhe orari i plotë, krah për krah sapo ka ku.
+ *
+ * Faqja u shkrua për një telefon në ora 02:00, dhe ajo mbetet matja e parë: një
+ * kolonë, kartela e natës sa gjysma e ekranit, asgjë tjetër. Por e njëjta faqe
+ * hapet edhe nga një tabletë a një kompjuter, dhe atje një kolonë 47rem në mes
+ * lë dy pëllëmbë të zbrazëta majtas e djathtas dhe e shtyn tabelën një ekran
+ * poshtë — pikërisht atë që dikush hapi faqen ta shihte.
+ *
+ * Ndarja bëhet mes dy seksioneve që rrinë ngjitur edhe ashtu, prandaj radha e
+ * leximit nuk ndryshon aspak: netët e afërta majtas te shtylla e ngushtë,
+ * tabela e muajit djathtas te ajo e gjera, sepse tabela e do gjerësinë dhe
+ * lista jo.
+ *
+ * Kartela «tani» mbetet e tërë gjerësia mbi to: ajo është përgjigjja, dhe
+ * përgjigjja nuk ndan ekran me asnjë.
+ */
+.dyshja {
+  display: grid;
+  /* `minmax(0, …)` që tabela të rrëshqasë brenda vetes e të mos e zgjerojë faqen. */
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--rreshtimi);
+}
+
+@media (min-width: 62rem) {
+  .faqja {
+    max-width: 72rem;
+  }
+
+  .dyshja {
+    grid-template-columns: minmax(17rem, 0.8fr) minmax(0, 1.2fr);
+    align-items: start;
+  }
+
+  /* Pyetjet janë të shkurtra dhe të pavarura nga njëra-tjetra: dy për rresht
+     lexohen po aq lehtë, dhe nuk e zgjatin faqen sa një shtyllë e vetme. */
+  .pyetjet__lista {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
 }
 
 .vetem-lexues {

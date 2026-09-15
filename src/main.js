@@ -292,13 +292,23 @@ function skeleti() {
     <main class="faqja faqja--hyrje">
       ${kreu()}
       <section class="tani" id="tani"></section>
-      <section class="ardhshme" id="ardhshme"></section>
-      <section class="orari-plote" id="orari-plote">
-        <h2 class="titull-seksioni">Orari i plotë</h2>
-        ${shpjegimiIOrarit()}
-        <div class="muaj-shirit" role="group" aria-label="Zgjidh muajin">${butonatEMuajve(muajiAktiv)}</div>
-        <div id="tabela"></div>
-      </section>
+
+      <!--
+        Netët në vijim dhe orari i plotë janë e njëjta pyetje në dy thellësi:
+        «cila natë vjen radhës» dhe «cila natë është data ime». Te telefoni rrinë
+        njëra nën tjetrën, si më parë; sapo ekrani ka gjerësi, ato dy dhe
+        hapësira e zbrazët anash bëhen dy shtylla — e ngushta për netët, e gjera
+        për tabelën, e cila e do gjerësinë.
+      -->
+      <div class="dyshja">
+        <section class="ardhshme" id="ardhshme"></section>
+        <section class="orari-plote" id="orari-plote">
+          <h2 class="titull-seksioni">Orari i plotë</h2>
+          ${shpjegimiIOrarit()}
+          <div class="muaj-shirit" role="group" aria-label="Zgjidh muajin">${butonatEMuajve(muajiAktiv)}</div>
+          <div id="tabela"></div>
+        </section>
+      </div>
       <section class="barnatoret" id="barnatoret"></section>
       ${njoftimiIProjeksionit()}
       ${seksioniIPyetjeve()}
