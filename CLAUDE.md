@@ -208,8 +208,11 @@ Logjika e re shkon me prova. Një `npm run gjenero` i gabuar duhet të bjerë te
   vetëm dekorativ. Mos e përdor kufirin dekorativ për një kontroll.
 - Nën 30rem dita e javës shkurtohet („E mërkurë" → „Mër") në vend që të fshihet — tabela mbetet e
   plotë edhe në 320px.
-- **Mbi 62rem faqja hapet te 72rem dhe ndahet në dy shtylla** (`.dyshja`): netët në vijim majtas,
-  tabela e muajit djathtas, sepse ajo e do gjerësinë. Ndarja rri mes dy seksioneve që janë ngjitur
+- **Mbi 62rem faqja hapet te 72rem dhe ndahet në dy shtylla** (`.dyshja`): netët në vijim dhe
+  barnatoret majtas, tabela e muajit djathtas, sepse ajo e do gjerësinë. Vendosja e të trave bëhet
+  me `grid-row`/`grid-column` e jo me radhë te HTML-ja, që radha e telefonit të mbetet e paprekur;
+  rreshti i dytë është `1fr`, përndryshe lartësia e tabelës që i kalon të dy rreshtat ndahet mes
+  tyre dhe barnatoret nisen një pëllëmbë poshtë netëve. Ndarja rri mes dy seksioneve që janë ngjitur
   edhe ashtu, prandaj radha e leximit te telefoni nuk ndryshon fare. Kartela „tani" mbetet e tërë
   gjerësia mbi to — ajo është përgjigjja. Grupimi bëhet te `skeleti()` i `main.js`; parandërtimi nuk
   e ka fare atë shtyllë, sepse netët në vijim nuk parandërtohen (rregulli 2).

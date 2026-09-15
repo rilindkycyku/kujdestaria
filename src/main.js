@@ -308,8 +308,8 @@ function skeleti() {
           <div class="muaj-shirit" role="group" aria-label="Zgjidh muajin">${butonatEMuajve(muajiAktiv)}</div>
           <div id="tabela"></div>
         </section>
+        <section class="barnatoret" id="barnatoret"></section>
       </div>
-      <section class="barnatoret" id="barnatoret"></section>
       ${njoftimiIProjeksionit()}
       ${seksioniIPyetjeve()}
       ${fundfaqja()}

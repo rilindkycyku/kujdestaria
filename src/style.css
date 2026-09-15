@@ -304,8 +304,40 @@ h3 {
   }
 
   .dyshja {
-    grid-template-columns: minmax(17rem, 0.8fr) minmax(0, 1.2fr);
+    grid-template-columns: minmax(17rem, 0.82fr) minmax(0, 1.18fr);
+    /* `1fr` te rreshti i dytë e mban të parin sa netët në vijim: pa të, lartësia
+       e tabelës që i kalon të dy rreshtat ndahet mes tyre, dhe barnatoret niseshin
+       një pëllëmbë poshtë netëve pa asgjë në mes. */
+    grid-template-rows: auto 1fr;
     align-items: start;
+  }
+
+  /**
+   * Barnatoret rrinë nën netët, e jo nën tabelë.
+   *
+   * Tabela e një muaji është tridhjetë rreshta e gjatë, kurse netët në vijim
+   * katër kartela: pa këtë, shtylla e majtë mbaronte pas një të pestës së
+   * lartësisë dhe pjesa tjetër rrinte e zbrazët krah saj. Lista e barnatoreve
+   * është pikërisht sa duhet për atë vend — kartela të vogla, që te një shtyllë
+   * e ngushtë dalin njëra nën tjetrën pa u ngushtuar.
+   *
+   * Vendosja bëhet me rrjet e jo me radhë te HTML-ja: te telefoni radha mbetet
+   * ajo që ishte — netët, orari, barnatoret — dhe ajo radhë ka kuptimin e vet
+   * (tabela pyetet më shpesh se lista e adresave).
+   */
+  .dyshja > .ardhshme {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .dyshja > .barnatoret {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .dyshja > .orari-plote {
+    grid-column: 2;
+    grid-row: 1 / span 2;
   }
 
   /* Pyetjet janë të shkurtra dhe të pavarura nga njëra-tjetra: dy për rresht
