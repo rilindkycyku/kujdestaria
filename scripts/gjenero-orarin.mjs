@@ -26,11 +26,9 @@ const ROTACIONI = [
 ];
 
 const FILLIMI = '2026-07-01';
-// Deri ku e projektojmë rotacionin: dy muaj përtej dokumentit të fundit, sa një
-// periudhë e zakonshme e komunës, që faqja të mos mbetet bosh më 1 janar nëse
-// orari i ri vonohet. Mos e kalo të dielën e fundit të Marsit 2027 pa e bërë
-// edhe ndërrimin e sezonit (`fundiIVeres` më poshtë njeh vetëm vitin 2026).
-const FUNDI = '2027-02-28';
+// Deri ku e projektojmë rotacionin: tërë viti 2027, që faqja të mos mbetet bosh
+// nëse orari i ri i komunës vonohet. Çdo datë jashtë DOKUMENTET mbetet „e projektuar".
+const FUNDI = '2027-12-31';
 
 /**
  * Dokumentet e publikuara, sipas radhës; i fundit është burimi kryesor i faqes.
@@ -130,7 +128,14 @@ function eDielaEFundit(viti, muaji) {
   return shtoDite(fundi, -fundi.getUTCDay());
 }
 
-const fundiIVeres = eDielaEFundit(2026, 10); // e diela e fundit e Tetorit
+/**
+ * Sezoni i një date sipas rregullores: secila periudhë përfundon me të dielën e
+ * saj të fundit (Tetori për verën, Marsi për dimrin), dhe tjetra nis të nesërmen.
+ */
+function sezoniI(d) {
+  const viti = d.getUTCFullYear();
+  return eDielaEFundit(viti, 3) < d && d <= eDielaEFundit(viti, 10) ? 'veror' : 'dimeror';
+}
 
 const kujdestaria = [];
 for (let d = dt(FILLIMI), i = 0; d <= dt(FUNDI); d = shtoDite(d, 1), i++) {
@@ -140,7 +145,7 @@ for (let d = dt(FILLIMI), i = 0; d <= dt(FUNDI); d = shtoDite(d, 1), i++) {
     dita: DITET[d.getUTCDay()],
     barnatorja: ROTACIONI[pozita],
     pozitaNeCikel: pozita + 1,
-    sezoni: d <= fundiIVeres ? 'veror' : 'dimeror',
+    sezoni: sezoniI(d),
     // Nata që fillon këtë datë në ora 22:00 dhe mbaron në ora 08:00 të nesërmen.
     kujdestaria: { ...ORARI_I_KUJDESTARISE, mbaronMe: iso(shtoDite(d, 1)) },
     zyrtare: eZyrtare(iso(d)),
@@ -148,6 +153,17 @@ for (let d = dt(FILLIMI), i = 0; d <= dt(FUNDI); d = shtoDite(d, 1), i++) {
 }
 
 const dataShqip = (s) => s.split('-').reverse().join('.');
+
+/** Periudhat e njëpasnjëshme të një sezoni brenda orarit, si `[{ prej, deri }]`. */
+const periudhatESezonit = (sezoni) => {
+  const periudhat = [];
+  kujdestaria.forEach((dita, i) => {
+    if (dita.sezoni !== sezoni) return;
+    if (kujdestaria[i - 1]?.sezoni === sezoni) periudhat.at(-1).deri = dita.data;
+    else periudhat.push({ prej: dita.data, deri: dita.data });
+  });
+  return periudhat;
+};
 
 /** Hapësirat pa dokument, si `[{ prej, deri }]` — ato që faqja i shënon „e projektuar". */
 const projektuara = [];
@@ -216,7 +232,7 @@ const doc = {
         'Fillon nga e diela e fundit e muajit Mars dhe përfundon me të dielën e fundit të muajit Tetor.',
       prej: '08:00',
       deri: '22:00',
-      mbaron: iso(fundiIVeres),
+      periudhat: periudhatESezonit('veror'),
     },
     dimeror: {
       pershkrimi:
@@ -225,7 +241,7 @@ const doc = {
         'të Kryetarit të komunës është zgjatur në 08:00–22:00.',
       prej: '08:00',
       deri: '22:00',
-      fillon: iso(shtoDite(fundiIVeres, 1)),
+      periudhat: periudhatESezonit('dimeror'),
       orariBazeSipasRregullores: { prej: '08:00', deri: '20:00' },
     },
   },

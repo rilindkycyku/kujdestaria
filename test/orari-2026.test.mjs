@@ -94,12 +94,34 @@ test('dokumenti kryesor është më i riu dhe projeksioni i mbulon hapësirat', 
   assert.ok(orari.kujdestaria.filter((d) => d.zyrtare).every((d) => !brenda(d.data)));
 });
 
-test('sezoni ndërron te data e shpallur', () => {
+test('sezoni ndërron pas të dielës së fundit të Tetorit dhe të Marsit', () => {
   for (const dita of orari.kujdestaria) {
-    const pritej = dita.data <= orari.sezonet.veror.mbaron ? 'veror' : 'dimeror';
-    assert.equal(dita.sezoni, pritej, `sezoni i ${dita.data}`);
+    const [viti, muaji, dt] = dita.data.split('-').map(Number);
+    // Dita e fundit e muajit — dhe e diela e fundit e tij — për Marsin dhe Tetorin.
+    const eDiela = (m) => {
+      const fundi = new Date(Date.UTC(viti, m, 0));
+      return fundi.getUTCDate() - fundi.getUTCDay();
+    };
+    const pasMarsit = muaji > 3 || (muaji === 3 && dt > eDiela(3));
+    const deriTetorin = muaji < 10 || (muaji === 10 && dt <= eDiela(10));
+    assert.equal(dita.sezoni, pasMarsit && deriTetorin ? 'veror' : 'dimeror', `sezoni i ${dita.data}`);
   }
-  assert.equal(zhvendosDite(orari.sezonet.veror.mbaron, 1), orari.sezonet.dimeror.fillon);
+});
+
+test('periudhat e sezoneve i mbulojnë ditët pa mbivendosje', () => {
+  const periudhat = [
+    ...orari.sezonet.veror.periudhat.map((p) => ({ ...p, sezoni: 'veror' })),
+    ...orari.sezonet.dimeror.periudhat.map((p) => ({ ...p, sezoni: 'dimeror' })),
+  ].sort((a, b) => a.prej.localeCompare(b.prej));
+  assert.equal(periudhat.at(0).prej, orari.periudha.prej);
+  assert.equal(periudhat.at(-1).deri, orari.periudha.deri);
+  periudhat.forEach((p, i) => {
+    if (i > 0) assert.equal(p.prej, zhvendosDite(periudhat[i - 1].deri, 1), `pas ${periudhat[i - 1].deri}`);
+  });
+  for (const dita of orari.kujdestaria) {
+    const p = periudhat.find((x) => x.prej <= dita.data && dita.data <= x.deri);
+    assert.equal(dita.sezoni, p.sezoni, `periudha e ${dita.data}`);
+  }
 });
 
 test('lidhjet e hartave kalojnë validimin e faqes', () => {

@@ -412,8 +412,8 @@ h3 {
     letter-spacing: 0.06em;
   }
 
-  /* Të gjashtë muajt hyjnë në një rresht, prandaj shiriti nuk ka pse të rrëshqasë:
-     një listë që rrëshqet fsheh gjysmën e zgjedhjeve pa e thënë. */
+  /* Në ekran të gjerë muajt mbështillen në rreshta, prandaj shiriti nuk ka pse të
+     rrëshqasë: një listë që rrëshqet fsheh gjysmën e zgjedhjeve pa e thënë. */
   .muaj-shirit {
     flex-wrap: wrap;
     overflow-x: visible;
@@ -1030,6 +1030,13 @@ h3 {
 .muaj-buton:hover {
   color: var(--teksti);
   border-color: var(--theks);
+}
+
+/* Viti, vetëm te muaji i parë dhe aty ku ndërron. */
+.muaj-buton__viti {
+  font-family: var(--shkronja-numrat);
+  font-weight: 500;
+  opacity: 0.75;
 }
 
 /* Muajt që mbulohen vetëm nga projeksioni, jo nga dokumenti. */

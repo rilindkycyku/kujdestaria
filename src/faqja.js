@@ -189,17 +189,23 @@ export function tabelatEMuajit(celesiIMuajit, nataNeFuqi = null, dyGjysma = fals
   `;
 }
 
+/**
+ * Orari kalon një vit, prandaj i njëjti emër muaji del dy herë. Viti shkruhet te
+ * butoni i parë dhe aty ku ndërron; te të tjerët e dëgjon vetëm lexuesi i ekranit.
+ */
 export function butonatEMuajve(muajiAktiv) {
   return muajt
-    .map((m) => {
+    .map((m, i) => {
       const projektim = m.ditet.every((d) => !d.zyrtare);
+      const viti = m.celes.slice(0, 4);
+      const iRi = i === 0 || muajt[i - 1].celes.slice(0, 4) !== viti;
       return `
         <button
           type="button"
           class="muaj-buton${projektim ? ' muaj-buton--projektim' : ''}"
           data-muaji="${m.celes}"
           aria-pressed="${m.celes === muajiAktiv}"
-        >${emriIMuajitShkurt(m.celes)}</button>
+        >${emriIMuajitShkurt(m.celes)}<span class="${iRi ? 'muaj-buton__viti' : 'vetem-lexues'}"> ${viti}</span></button>
       `;
     })
     .join('');
@@ -433,6 +439,12 @@ function raportoGabim() {
   `;
 }
 
+/** `[{ prej, deri }, ...]` → `'01.07.2026 – 25.10.2026 dhe 29.03.2027 – 31.10.2027'` */
+function periudhatShqip(periudhat) {
+  const pjeset = periudhat.map((p) => `${dataShqip(p.prej)} – ${dataShqip(p.deri)}`);
+  return pjeset.length < 2 ? pjeset.join('') : `${pjeset.slice(0, -1).join(', ')} dhe ${pjeset.at(-1)}`;
+}
+
 export function fundfaqja() {
   const bazat = orari.bazaLigjore.map((b) => `<li>${sig(b)}</li>`).join('');
   return `
@@ -454,12 +466,12 @@ export function fundfaqja() {
             ${sig(orariINates.shpjegimi)}
           </p>
           <p>
-            <strong>Sezoni veror</strong> (deri më ${dataShqip(orari.sezonet.veror.mbaron)}):
+            <strong>Sezoni veror</strong> (${periudhatShqip(orari.sezonet.veror.periudhat)}):
             ${sig(orari.sezonet.veror.pershkrimi)}
             Orari ${orari.sezonet.veror.prej}–${orari.sezonet.veror.deri}.
           </p>
           <p>
-            <strong>Sezoni dimëror</strong> (nga ${dataShqip(orari.sezonet.dimeror.fillon)}):
+            <strong>Sezoni dimëror</strong> (${periudhatShqip(orari.sezonet.dimeror.periudhat)}):
             ${sig(orari.sezonet.dimeror.pershkrimi)}
           </p>
           <ul class="detaje__lista">${bazat}</ul>

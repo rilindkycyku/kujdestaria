@@ -32,7 +32,7 @@ npm install
 npm run dev       # serveri i zhvillimit
 npm run build     # vite build && node scripts/parafaqja.mjs && node scripts/pergatit-sw.mjs
 npm run preview
-npm test          # node --test — 46 prova, pa framework provash
+npm test          # node --test — 47 prova, pa framework provash
 npm run gjenero   # rigjeneron src/data/orari-2026.json
 npm run ikonat    # rigjeneron ikonat PNG dhe imazhin e ndarjes te public/
 ```
@@ -132,7 +132,7 @@ pastaj `npm run gjenero` dhe `npm test`.
 
 Rregulli i `zyrtare`: zyrtare janë vetëm datat brenda `prej`–`deri` të njërit prej `DOKUMENTET`
 (tani Korrik–Gusht dhe Nëntor–Dhjetor 2026; Shtator–Tetor nuk ka dokument, dhe rotacioni
-vazhdohet me llogaritje deri më 28.02.2027); pjesa tjetër
+vazhdohet me llogaritje deri më 31.12.2027); pjesa tjetër
 është i njëjti rotacion i vazhduar me llogaritje, me `"zyrtare": false`, dhe faqja e shënon
 **„e projektuar"**. Ky dallim duhet të mbetet i dukshëm — orari është transkriptuar me dorë nga një
 skanim pa shtresë teksti.
