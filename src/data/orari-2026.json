@@ -15,7 +15,7 @@
   },
   "periudha": {
     "prej": "2026-07-01",
-    "deri": "2026-12-31",
+    "deri": "2027-02-28",
     "zyrtarePrej": "2026-11-01",
     "zyrtareDeri": "2026-12-31",
     "titulliZyrtar": "Nëntor – Dhjetor 2026"
@@ -43,10 +43,14 @@
       {
         "prej": "2026-09-01",
         "deri": "2026-10-31"
+      },
+      {
+        "prej": "2027-01-01",
+        "deri": "2027-02-28"
       }
     ],
-    "pershkrimi": "01.09.2026 – 31.10.2026",
-    "shpjegimi": "Dokumentet zyrtare mbulojnë Korrik – Gusht 2026 dhe Nëntor – Dhjetor 2026. Datat 01.09.2026 – 31.10.2026 nuk mbulohen nga asnjë dokument i publikuar: janë vazhdim i llogaritur i të njëjtit rotacion 10-ditor dhe nuk janë konfirmuar nga komuna. Kur komuna publikon orarin e tyre, ai ka përparësi.",
+    "pershkrimi": "01.09.2026 – 31.10.2026 dhe 01.01.2027 – 28.02.2027",
+    "shpjegimi": "Dokumentet zyrtare mbulojnë Korrik – Gusht 2026 dhe Nëntor – Dhjetor 2026. Datat 01.09.2026 – 31.10.2026 dhe 01.01.2027 – 28.02.2027 nuk mbulohen nga asnjë dokument i publikuar: janë vazhdim i llogaritur i të njëjtit rotacion 10-ditor dhe nuk janë konfirmuar nga komuna. Kur komuna publikon orarin e tyre, ai ka përparësi.",
     "gjatesiaECiklit": 10
   },
   "bazaLigjore": [
@@ -2538,6 +2542,773 @@
         "mbaronMe": "2027-01-01"
       },
       "zyrtare": true
+    },
+    {
+      "data": "2027-01-01",
+      "dita": "E premte",
+      "barnatorja": "Dielli",
+      "pozitaNeCikel": 5,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-02"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-02",
+      "dita": "E shtunë",
+      "barnatorja": "Rigoni-2",
+      "pozitaNeCikel": 6,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-03"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-03",
+      "dita": "E diel",
+      "barnatorja": "Rigoni",
+      "pozitaNeCikel": 7,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-04"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-04",
+      "dita": "E hënë",
+      "barnatorja": "Riga",
+      "pozitaNeCikel": 8,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-05"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-05",
+      "dita": "E martë",
+      "barnatorja": "Riga-2",
+      "pozitaNeCikel": 9,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-06"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-06",
+      "dita": "E mërkurë",
+      "barnatorja": "Flora",
+      "pozitaNeCikel": 10,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-07"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-07",
+      "dita": "E enjte",
+      "barnatorja": "Flora",
+      "pozitaNeCikel": 1,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-08"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-08",
+      "dita": "E premte",
+      "barnatorja": "Liampharm",
+      "pozitaNeCikel": 2,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-09"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-09",
+      "dita": "E shtunë",
+      "barnatorja": "Rigoni-2",
+      "pozitaNeCikel": 3,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-10"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-10",
+      "dita": "E diel",
+      "barnatorja": "Rigoni",
+      "pozitaNeCikel": 4,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-11"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-11",
+      "dita": "E hënë",
+      "barnatorja": "Dielli",
+      "pozitaNeCikel": 5,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-12"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-12",
+      "dita": "E martë",
+      "barnatorja": "Rigoni-2",
+      "pozitaNeCikel": 6,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-13"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-13",
+      "dita": "E mërkurë",
+      "barnatorja": "Rigoni",
+      "pozitaNeCikel": 7,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-14"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-14",
+      "dita": "E enjte",
+      "barnatorja": "Riga",
+      "pozitaNeCikel": 8,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-15"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-15",
+      "dita": "E premte",
+      "barnatorja": "Riga-2",
+      "pozitaNeCikel": 9,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-16"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-16",
+      "dita": "E shtunë",
+      "barnatorja": "Flora",
+      "pozitaNeCikel": 10,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-17"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-17",
+      "dita": "E diel",
+      "barnatorja": "Flora",
+      "pozitaNeCikel": 1,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-18"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-18",
+      "dita": "E hënë",
+      "barnatorja": "Liampharm",
+      "pozitaNeCikel": 2,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-19"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-19",
+      "dita": "E martë",
+      "barnatorja": "Rigoni-2",
+      "pozitaNeCikel": 3,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-20"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-20",
+      "dita": "E mërkurë",
+      "barnatorja": "Rigoni",
+      "pozitaNeCikel": 4,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-21"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-21",
+      "dita": "E enjte",
+      "barnatorja": "Dielli",
+      "pozitaNeCikel": 5,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-22"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-22",
+      "dita": "E premte",
+      "barnatorja": "Rigoni-2",
+      "pozitaNeCikel": 6,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-23"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-23",
+      "dita": "E shtunë",
+      "barnatorja": "Rigoni",
+      "pozitaNeCikel": 7,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-24"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-24",
+      "dita": "E diel",
+      "barnatorja": "Riga",
+      "pozitaNeCikel": 8,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-25"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-25",
+      "dita": "E hënë",
+      "barnatorja": "Riga-2",
+      "pozitaNeCikel": 9,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-26"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-26",
+      "dita": "E martë",
+      "barnatorja": "Flora",
+      "pozitaNeCikel": 10,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-27"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-27",
+      "dita": "E mërkurë",
+      "barnatorja": "Flora",
+      "pozitaNeCikel": 1,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-28"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-28",
+      "dita": "E enjte",
+      "barnatorja": "Liampharm",
+      "pozitaNeCikel": 2,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-29"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-29",
+      "dita": "E premte",
+      "barnatorja": "Rigoni-2",
+      "pozitaNeCikel": 3,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-30"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-30",
+      "dita": "E shtunë",
+      "barnatorja": "Rigoni",
+      "pozitaNeCikel": 4,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-01-31"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-01-31",
+      "dita": "E diel",
+      "barnatorja": "Dielli",
+      "pozitaNeCikel": 5,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-02-01"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-02-01",
+      "dita": "E hënë",
+      "barnatorja": "Rigoni-2",
+      "pozitaNeCikel": 6,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-02-02"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-02-02",
+      "dita": "E martë",
+      "barnatorja": "Rigoni",
+      "pozitaNeCikel": 7,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-02-03"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-02-03",
+      "dita": "E mërkurë",
+      "barnatorja": "Riga",
+      "pozitaNeCikel": 8,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-02-04"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-02-04",
+      "dita": "E enjte",
+      "barnatorja": "Riga-2",
+      "pozitaNeCikel": 9,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-02-05"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-02-05",
+      "dita": "E premte",
+      "barnatorja": "Flora",
+      "pozitaNeCikel": 10,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-02-06"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-02-06",
+      "dita": "E shtunë",
+      "barnatorja": "Flora",
+      "pozitaNeCikel": 1,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-02-07"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-02-07",
+      "dita": "E diel",
+      "barnatorja": "Liampharm",
+      "pozitaNeCikel": 2,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-02-08"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-02-08",
+      "dita": "E hënë",
+      "barnatorja": "Rigoni-2",
+      "pozitaNeCikel": 3,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-02-09"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-02-09",
+      "dita": "E martë",
+      "barnatorja": "Rigoni",
+      "pozitaNeCikel": 4,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-02-10"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-02-10",
+      "dita": "E mërkurë",
+      "barnatorja": "Dielli",
+      "pozitaNeCikel": 5,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-02-11"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-02-11",
+      "dita": "E enjte",
+      "barnatorja": "Rigoni-2",
+      "pozitaNeCikel": 6,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-02-12"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-02-12",
+      "dita": "E premte",
+      "barnatorja": "Rigoni",
+      "pozitaNeCikel": 7,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-02-13"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-02-13",
+      "dita": "E shtunë",
+      "barnatorja": "Riga",
+      "pozitaNeCikel": 8,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-02-14"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-02-14",
+      "dita": "E diel",
+      "barnatorja": "Riga-2",
+      "pozitaNeCikel": 9,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-02-15"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-02-15",
+      "dita": "E hënë",
+      "barnatorja": "Flora",
+      "pozitaNeCikel": 10,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-02-16"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-02-16",
+      "dita": "E martë",
+      "barnatorja": "Flora",
+      "pozitaNeCikel": 1,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-02-17"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-02-17",
+      "dita": "E mërkurë",
+      "barnatorja": "Liampharm",
+      "pozitaNeCikel": 2,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-02-18"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-02-18",
+      "dita": "E enjte",
+      "barnatorja": "Rigoni-2",
+      "pozitaNeCikel": 3,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-02-19"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-02-19",
+      "dita": "E premte",
+      "barnatorja": "Rigoni",
+      "pozitaNeCikel": 4,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-02-20"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-02-20",
+      "dita": "E shtunë",
+      "barnatorja": "Dielli",
+      "pozitaNeCikel": 5,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-02-21"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-02-21",
+      "dita": "E diel",
+      "barnatorja": "Rigoni-2",
+      "pozitaNeCikel": 6,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-02-22"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-02-22",
+      "dita": "E hënë",
+      "barnatorja": "Rigoni",
+      "pozitaNeCikel": 7,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-02-23"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-02-23",
+      "dita": "E martë",
+      "barnatorja": "Riga",
+      "pozitaNeCikel": 8,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-02-24"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-02-24",
+      "dita": "E mërkurë",
+      "barnatorja": "Riga-2",
+      "pozitaNeCikel": 9,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-02-25"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-02-25",
+      "dita": "E enjte",
+      "barnatorja": "Flora",
+      "pozitaNeCikel": 10,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-02-26"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-02-26",
+      "dita": "E premte",
+      "barnatorja": "Flora",
+      "pozitaNeCikel": 1,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-02-27"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-02-27",
+      "dita": "E shtunë",
+      "barnatorja": "Liampharm",
+      "pozitaNeCikel": 2,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-02-28"
+      },
+      "zyrtare": false
+    },
+    {
+      "data": "2027-02-28",
+      "dita": "E diel",
+      "barnatorja": "Rigoni-2",
+      "pozitaNeCikel": 3,
+      "sezoni": "dimeror",
+      "kujdestaria": {
+        "prej": "22:00",
+        "deri": "08:00",
+        "mbaronMe": "2027-03-01"
+      },
+      "zyrtare": false
     }
   ]
 }

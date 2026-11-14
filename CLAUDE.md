@@ -131,7 +131,8 @@ riu i fundit — ai bëhet burimi kryesor i faqes), përditëso `ROTACIONI` e `F
 pastaj `npm run gjenero` dhe `npm test`.
 
 Rregulli i `zyrtare`: zyrtare janë vetëm datat brenda `prej`–`deri` të njërit prej `DOKUMENTET`
-(tani Korrik–Gusht dhe Nëntor–Dhjetor; Shtator–Tetor nuk ka dokument); pjesa tjetër
+(tani Korrik–Gusht dhe Nëntor–Dhjetor 2026; Shtator–Tetor nuk ka dokument, dhe rotacioni
+vazhdohet me llogaritje deri më 28.02.2027); pjesa tjetër
 është i njëjti rotacion i vazhduar me llogaritje, me `"zyrtare": false`, dhe faqja e shënon
 **„e projektuar"**. Ky dallim duhet të mbetet i dukshëm — orari është transkriptuar me dorë nga një
 skanim pa shtresë teksti.

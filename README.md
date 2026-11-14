@@ -22,7 +22,7 @@ më e dobët.
 | | |
 | --- | --- |
 | **Ndërtimi** | Vite — pa framework për ndërfaqen |
-| **Periudha** | 01.07.2026 – 31.12.2026; zyrtare Korrik–Gusht dhe Nëntor–Dhjetor, e projektuar Shtator–Tetor |
+| **Periudha** | 01.07.2026 – 28.02.2027; zyrtare Korrik–Gusht dhe Nëntor–Dhjetor 2026, e projektuar Shtator–Tetor 2026 dhe Janar–Shkurt 2027 |
 | **Barnatoret** | 7, në rotacion 10-ditor |
 | **Pa internet** | Po — PWA me service worker, orari brenda paketës |
 | **Tema** | sipas sistemit, ose e zgjedhur vetë — e çelët / e errët |
@@ -101,7 +101,7 @@ si punon paracache-i dhe si vendoset në Vercel — është te [**docs/vendimet.
 ## A ka gabim në orar?
 
 Orari është transkriptuar me dorë nga një skanim pa shtresë teksti, dhe rotacioni për
-Shtator–Tetor 2026 është i llogaritur — prandaj një datë e shkëmbyer është e mundshme.
+Shtator–Tetor 2026 dhe Janar–Shkurt 2027 është i llogaritur — prandaj një datë e shkëmbyer është e mundshme.
 
 - Nëse e vëreni një gabim, shkruani te [kontaktet](https://www.rilindkycyku.dev/contacts)
   ose hapni një *issue*. Fundfaqja e faqes e ka të njëjtën lidhje, që të mos duhet GitHub-i.

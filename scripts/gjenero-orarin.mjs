@@ -26,7 +26,11 @@ const ROTACIONI = [
 ];
 
 const FILLIMI = '2026-07-01';
-const FUNDI = '2026-12-31'; // deri ku e projektojmë rotacionin
+// Deri ku e projektojmë rotacionin: dy muaj përtej dokumentit të fundit, sa një
+// periudhë e zakonshme e komunës, që faqja të mos mbetet bosh më 1 janar nëse
+// orari i ri vonohet. Mos e kalo të dielën e fundit të Marsit 2027 pa e bërë
+// edhe ndërrimin e sezonit (`fundiIVeres` më poshtë njeh vetëm vitin 2026).
+const FUNDI = '2027-02-28';
 
 /**
  * Dokumentet e publikuara, sipas radhës; i fundit është burimi kryesor i faqes.

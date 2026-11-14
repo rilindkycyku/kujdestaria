@@ -157,8 +157,8 @@ ekran është zgjedhur terri.
 
 ### Njoftimi për gabim
 
-Orari transkriptohet me dorë nga një skanim, dhe rotacioni për Shtator–Tetor 2026 është i
-llogaritur — prandaj një datë e shkëmbyer është e mundshme. Fundfaqja ka një kartelë me
+Orari transkriptohet me dorë nga një skanim, dhe rotacioni për Shtator–Tetor 2026 dhe Janar–Shkurt 2027
+është i llogaritur — prandaj një datë e shkëmbyer është e mundshme. Fundfaqja ka një kartelë me
 lidhjen te [kontaktet e autorit](https://www.rilindkycyku.dev/contacts), që personi i
 cili e vë re gabimin të ketë ku ta thotë pa hapur GitHub. Adresa ndryshohet te `AUTORI`
 në [`src/faqja.js`](../src/faqja.js).
@@ -455,7 +455,8 @@ Si merret lidhja: hape vendin në Google Maps → **Share** → **Copy link**.
 Dokumentet e publikuara mbulojnë **01.07.2026 – 31.08.2026** dhe **01.11.2026 –
 31.12.2026**. Për Shtator–Tetor nuk kemi dokument, prandaj ato ditë janë i njëjti
 rotacion 10-ditor i vazhduar me llogaritje (dokumenti i Nëntorit e konfirmon që radha
-nuk u ndërpre: 01.11 bie pikërisht te Rigoni, pozita 4). Këto ditë kanë `"zyrtare": false` në JSON dhe shënohen si
+nuk u ndërpre: 01.11 bie pikërisht te Rigoni, pozita 4). Po ashtu, që faqja të mos mbetet
+bosh më 1 janar nëse orari i ri vonohet, rotacioni vazhdohet deri më **28.02.2027**. Këto ditë kanë `"zyrtare": false` në JSON dhe shënohen si
 **„e projektuar"** në faqe.
 
 > Projeksioni supozon që rotacioni vazhdon i pandërprerë. Nëse komuna e ndryshon radhën
@@ -467,9 +468,9 @@ nuk u ndërpre: 01.11 bie pikërisht te Rigoni, pozita 4). Këto ditë kanë `"z
 
 ```jsonc
 {
-  "periudha":    { "prej": "2026-07-01", "deri": "2026-12-31", "zyrtarePrej": "2026-11-01", "zyrtareDeri": "2026-12-31" },
+  "periudha":    { "prej": "2026-07-01", "deri": "2027-02-28", "zyrtarePrej": "2026-11-01", "zyrtareDeri": "2026-12-31" },
   "dokumentet":  [{ "titulli": "Korrik – Gusht 2026", "prej": "2026-07-01", "deri": "2026-08-31", "...": "..." }, "..."],
-  "projeksioni": { "periudhat": [{ "prej": "2026-09-01", "deri": "2026-10-31" }], "...": "..." },
+  "projeksioni": { "periudhat": [{ "prej": "2026-09-01", "deri": "2026-10-31" }, { "prej": "2027-01-01", "deri": "2027-02-28" }], "...": "..." },
   "orari": {
     "iRregullt":   { "prej": "08:00", "deri": "22:00" },  // të gjitha barnatoret
     "kujdestaria": { "prej": "22:00", "deri": "08:00" }   // vetëm kujdestarja
