@@ -189,16 +189,24 @@ export function tabelatEMuajit(celesiIMuajit, nataNeFuqi = null, dyGjysma = fals
   `;
 }
 
+/** Muajt e një viti; nëse orari nuk e ka atë vit, të gjithë muajt. */
+export function muajtEVitit(viti) {
+  const teVitit = muajt.filter((m) => m.celes.startsWith(`${viti}-`));
+  return teVitit.length ? teVitit : muajt;
+}
+
 /**
- * Orari kalon një vit, prandaj i njëjti emër muaji del dy herë. Viti shkruhet te
- * butoni i parë dhe aty ku ndërron; te të tjerët e dëgjon vetëm lexuesi i ekranit.
+ * Shiriti tregon vetëm muajt e vitit të natës në fuqi: orari vazhdon në vitin tjetër,
+ * por një „Korrik" i dytë do ta ngatërronte zgjedhjen. Vitin e jep `main.js` —
+ * `faqja.js` nuk e njeh „tani"-në (rregulli 2). Viti shkruhet te butoni i parë;
+ * te të tjerët e dëgjon vetëm lexuesi i ekranit.
  */
-export function butonatEMuajve(muajiAktiv) {
-  return muajt
+export function butonatEMuajve(muajiAktiv, vitiAktiv) {
+  return muajtEVitit(vitiAktiv)
     .map((m, i) => {
       const projektim = m.ditet.every((d) => !d.zyrtare);
       const viti = m.celes.slice(0, 4);
-      const iRi = i === 0 || muajt[i - 1].celes.slice(0, 4) !== viti;
+      const iRi = i === 0;
       return `
         <button
           type="button"

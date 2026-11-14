@@ -109,6 +109,11 @@ përndryshe numërimi rri i ngrirë sa mbushet intervali i parë.
 Shiriti i muajve nuk rivizatohet kur ndërron muaji: përditësohet `aria-pressed`, dhe stili varet
 nga ai atribut, prandaj fokusi mbetet mbi butonin e shtypur.
 
+Shiriti tregon **vetëm muajt e vitit të natës në fuqi** (`muajtEVitit`), edhe pse orari vazhdon në
+vitin tjetër. Viti merret nga nata, jo nga kalendari: në ora 02:00 të 1 janarit kujdestare është
+ende nata e 31 dhjetorit. Kur ndërron viti, `vizato()` e rishkruan shiritin dhe kalon te muaji i
+ri. Parandërtimi i mban të gjithë muajt, sepse nuk e di kur lexohet (rregulli 2).
+
 ### 4. CSP-ja `style-src 'self'` — pa asnjë atribut `style`
 
 Headers-at te [`vercel.json`](vercel.json) janë të rreptë: `default-src 'self'`, pa

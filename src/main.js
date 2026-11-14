@@ -1,12 +1,13 @@
 import './style.css';
 import { inject } from '@vercel/analytics';
-import { orari, barnatorja, kujdestariaTani, sipasMuajve } from './orari.js';
+import { orari, barnatorja, kujdestariaTani } from './orari.js';
 import { dataSot, dataShkurt, dataShqip, kohaShkurt } from './koha.js';
 import { ikona } from './ikonat.js';
 import {
   TITULLI,
   ardhshmet,
   butonatEMuajve,
+  muajtEVitit,
   fundfaqja,
   kreu,
   njoftimiIProjeksionit,
@@ -29,11 +30,13 @@ import {
 } from './veprimet.js';
 
 const app = document.querySelector('#app');
-const muajt = sipasMuajve();
 const { iRregullt, kujdestaria: orariINates } = orari.orari;
 
 /** Muaji i shfaqur në tabelë; ndryshohet nga butonat e muajve. */
 let muajiAktiv = null;
+
+/** Viti i natës në fuqi — shiriti tregon vetëm muajt e tij, dhe ndërron pas Vitit të Ri. */
+let vitiAktiv = null;
 
 /*
  * A ka ekrani gjerësi sa për dy gjysma muaji krah për krah.
@@ -320,7 +323,7 @@ function skeleti() {
         <section class="orari-plote" id="orari-plote">
           <h2 class="titull-seksioni">Orari i plotë</h2>
           ${shpjegimiIOrarit()}
-          <div class="muaj-shirit" role="group" aria-label="Zgjidh muajin">${butonatEMuajve(muajiAktiv)}</div>
+          <div class="muaj-shirit" role="group" aria-label="Zgjidh muajin">${butonatEMuajve(muajiAktiv, vitiAktiv)}</div>
           <div id="tabela"></div>
         </section>
         <section class="barnatoret" id="barnatoret"></section>
@@ -340,11 +343,20 @@ function vizato() {
   // dhe netët në vijim ndjekin natën në fuqi, jo datën kalendarike.
   const nataNeFuqi = gjendja.natenIsFilloi;
 
-  if (!ndertuar) {
-    const iCakti = muajt.find((m) => m.celes === nataNeFuqi.slice(0, 7));
-    muajiAktiv = (iCakti ?? muajt[0]).celes;
-    app.innerHTML = skeleti();
-    ndertuar = true;
+  // Viti merret nga nata në fuqi, jo nga kalendari: në ora 02:00 të 1 janarit
+  // kujdestare është ende nata e 31 dhjetorit, dhe shiriti mbetet te viti i saj.
+  const viti = nataNeFuqi.slice(0, 4);
+  if (!ndertuar || viti !== vitiAktiv) {
+    vitiAktiv = viti;
+    const teVitit = muajtEVitit(viti);
+    const iCakti = teVitit.find((m) => m.celes === nataNeFuqi.slice(0, 7));
+    muajiAktiv = (iCakti ?? teVitit[0]).celes;
+    if (ndertuar) {
+      app.querySelector('.muaj-shirit').innerHTML = butonatEMuajve(muajiAktiv, vitiAktiv);
+    } else {
+      app.innerHTML = skeleti();
+      ndertuar = true;
+    }
     qendroNeMuajinAktiv();
   }
 
