@@ -157,7 +157,7 @@ ekran është zgjedhur terri.
 
 ### Njoftimi për gabim
 
-Orari transkriptohet me dorë nga një skanim, dhe rotacioni pas 31.08.2026 është i
+Orari transkriptohet me dorë nga një skanim, dhe rotacioni për Shtator–Tetor 2026 është i
 llogaritur — prandaj një datë e shkëmbyer është e mundshme. Fundfaqja ka një kartelë me
 lidhjen te [kontaktet e autorit](https://www.rilindkycyku.dev/contacts), që personi i
 cili e vë re gabimin të ketë ku ta thotë pa hapur GitHub. Adresa ndryshohet te `AUTORI`
@@ -380,9 +380,10 @@ po aty; nuk është shtuar sepse nuk u kërkua.
 Të gjitha të dhënat janë në [`src/data/orari-2026.json`](../src/data/orari-2026.json), i
 gjeneruar nga [`scripts/gjenero-orarin.mjs`](../scripts/gjenero-orarin.mjs).
 
-Burimi është njoftimi zyrtar i Komunës së Kaçanikut, `03Nr. 500/01-15606/26` i datës
-29.06.2026 — [PDF-ja e skanuar][pdf], e publikuar te [shpalljet e komunës][shpalljet].
-Dokumenti është skanim pa shtresë teksti, prandaj tabela është transkriptuar me dorë dhe
+Burimi është njoftimi zyrtar i Komunës së Kaçanikut, `03Nr. 104/02-29253/26` i datës
+30.10.2026 për Nëntor–Dhjetor — [PDF-ja e skanuar][pdf], e publikuar te [shpalljet e
+komunës][shpalljet]. Para tij vlente `03Nr. 500/01-15606/26` i datës 29.06.2026 për
+Korrik–Gusht ([PDF][pdf-korrik]). Të dy listohen te `DOKUMENTET` e skriptës. Secili dokument është skanim pa shtresë teksti, prandaj tabela është transkriptuar me dorë dhe
 është kontrolluar rresht për rresht kundrejt skanimit.
 
 ### Rotacioni
@@ -451,21 +452,24 @@ Si merret lidhja: hape vendin në Google Maps → **Share** → **Copy link**.
 
 ### Datat zyrtare dhe ato të projektuara
 
-Dokumenti i publikuar mbulon vetëm **01.07.2026 – 31.08.2026**. Që faqja të mos mbetet
-bosh çdo dy muaj, i njëjti rotacion 10-ditor është vazhduar me llogaritje deri më
-**31.12.2026**. Këto ditë kanë `"zyrtare": false` në JSON dhe shënohen si
+Dokumentet e publikuara mbulojnë **01.07.2026 – 31.08.2026** dhe **01.11.2026 –
+31.12.2026**. Për Shtator–Tetor nuk kemi dokument, prandaj ato ditë janë i njëjti
+rotacion 10-ditor i vazhduar me llogaritje (dokumenti i Nëntorit e konfirmon që radha
+nuk u ndërpre: 01.11 bie pikërisht te Rigoni, pozita 4). Këto ditë kanë `"zyrtare": false` në JSON dhe shënohen si
 **„e projektuar"** në faqe.
 
 > Projeksioni supozon që rotacioni vazhdon i pandërprerë. Nëse komuna e ndryshon radhën
 > ose shton/heq një barnatore, projeksioni shtrembërohet. Kur del orari i ri te
-> [shpalljet][shpalljet], përditëso `ROTACIONI`, `FILLIMI`, `FUNDI_ZYRTAR` dhe `FUNDI` në
-> skriptën e gjenerimit dhe ekzekuto `npm run gjenero`.
+> [shpalljet][shpalljet], shtoje te `DOKUMENTET` (dhe përditëso `ROTACIONI` e `FUNDI` nëse
+> duhet) në skriptën e gjenerimit dhe ekzekuto `npm run gjenero`.
 
 ### Struktura e JSON-it
 
 ```jsonc
 {
-  "periudha":    { "prej": "2026-07-01", "deri": "2026-12-31", "zyrtareDeri": "2026-08-31" },
+  "periudha":    { "prej": "2026-07-01", "deri": "2026-12-31", "zyrtarePrej": "2026-11-01", "zyrtareDeri": "2026-12-31" },
+  "dokumentet":  [{ "titulli": "Korrik – Gusht 2026", "prej": "2026-07-01", "deri": "2026-08-31", "...": "..." }, "..."],
+  "projeksioni": { "periudhat": [{ "prej": "2026-09-01", "deri": "2026-10-31" }], "...": "..." },
   "orari": {
     "iRregullt":   { "prej": "08:00", "deri": "22:00" },  // të gjitha barnatoret
     "kujdestaria": { "prej": "22:00", "deri": "08:00" }   // vetëm kujdestarja
@@ -486,5 +490,6 @@ bosh çdo dy muaj, i njëjti rotacion 10-ditor është vazhduar me llogaritje de
 }
 ```
 
-[pdf]: https://kacanik.rks-gov.net/wp-content/uploads/2026/06/Orari-Korrik-Gusht-2026.pdf
+[pdf]: https://kacanik.rks-gov.net/wp-content/uploads/2026/11/Orari-i-kujdesatarise-se-barnatoreve-nentor-dhjetor-2026.pdf
+[pdf-korrik]: https://kacanik.rks-gov.net/wp-content/uploads/2026/06/Orari-Korrik-Gusht-2026.pdf
 [shpalljet]: https://kacanik.rks-gov.net/shpalljet/

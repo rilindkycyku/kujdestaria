@@ -32,7 +32,7 @@ npm install
 npm run dev       # serveri i zhvillimit
 npm run build     # vite build && node scripts/parafaqja.mjs && node scripts/pergatit-sw.mjs
 npm run preview
-npm test          # node --test — 45 prova, pa framework provash
+npm test          # node --test — 46 prova, pa framework provash
 npm run gjenero   # rigjeneron src/data/orari-2026.json
 npm run ikonat    # rigjeneron ikonat PNG dhe imazhin e ndarjes te public/
 ```
@@ -126,10 +126,12 @@ ngjyra e madhësi të ndryshme dhe nuk e marrin ngjyrën e tekstit përreth.
 ### 5. Orari është i gjeneruar — mos e redakto JSON-in me dorë
 
 `src/data/orari-2026.json` del nga `scripts/gjenero-orarin.mjs`. Kur komuna publikon orarin e ri te
-[shpalljet](https://kacanik.rks-gov.net/shpalljet/), përditëso konstantet `ROTACIONI`, `FILLIMI`,
-`FUNDI_ZYRTAR` dhe `FUNDI` te ajo skriptë, pastaj `npm run gjenero` dhe `npm test`.
+[shpalljet](https://kacanik.rks-gov.net/shpalljet/), shtoje te `DOKUMENTET` te ajo skriptë (më i
+riu i fundit — ai bëhet burimi kryesor i faqes), përditëso `ROTACIONI` e `FUNDI` nëse duhet,
+pastaj `npm run gjenero` dhe `npm test`.
 
-Rregulli i `zyrtare`: dokumenti mbulon vetëm një periudhë (tani deri më `FUNDI_ZYRTAR`); pjesa tjetër
+Rregulli i `zyrtare`: zyrtare janë vetëm datat brenda `prej`–`deri` të njërit prej `DOKUMENTET`
+(tani Korrik–Gusht dhe Nëntor–Dhjetor; Shtator–Tetor nuk ka dokument); pjesa tjetër
 është i njëjti rotacion i vazhduar me llogaritje, me `"zyrtare": false`, dhe faqja e shënon
 **„e projektuar"**. Ky dallim duhet të mbetet i dukshëm — orari është transkriptuar me dorë nga një
 skanim pa shtresë teksti.

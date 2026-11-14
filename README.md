@@ -22,7 +22,7 @@ më e dobët.
 | | |
 | --- | --- |
 | **Ndërtimi** | Vite — pa framework për ndërfaqen |
-| **Periudha** | 01.07.2026 – 31.12.2026, zyrtare deri më 31.08.2026 |
+| **Periudha** | 01.07.2026 – 31.12.2026; zyrtare Korrik–Gusht dhe Nëntor–Dhjetor, e projektuar Shtator–Tetor |
 | **Barnatoret** | 7, në rotacion 10-ditor |
 | **Pa internet** | Po — PWA me service worker, orari brenda paketës |
 | **Tema** | sipas sistemit, ose e zgjedhur vetë — e çelët / e errët |
@@ -100,18 +100,20 @@ si punon paracache-i dhe si vendoset në Vercel — është te [**docs/vendimet.
 
 ## A ka gabim në orar?
 
-Orari është transkriptuar me dorë nga një skanim pa shtresë teksti, dhe rotacioni pas
-31.08.2026 është i llogaritur — prandaj një datë e shkëmbyer është e mundshme.
+Orari është transkriptuar me dorë nga një skanim pa shtresë teksti, dhe rotacioni për
+Shtator–Tetor 2026 është i llogaritur — prandaj një datë e shkëmbyer është e mundshme.
 
 - Nëse e vëreni një gabim, shkruani te [kontaktet](https://www.rilindkycyku.dev/contacts)
   ose hapni një *issue*. Fundfaqja e faqes e ka të njëjtën lidhje, që të mos duhet GitHub-i.
-- Kur komuna publikon orarin e ri te [shpalljet][shpalljet], përditësohen `ROTACIONI`,
-  `FILLIMI`, `FUNDI_ZYRTAR` dhe `FUNDI` te
+- Kur komuna publikon orarin e ri te [shpalljet][shpalljet], shtohet te `DOKUMENTET`
+  (dhe përditësohen `ROTACIONI` e `FUNDI` nëse duhet) te
   [`scripts/gjenero-orarin.mjs`](scripts/gjenero-orarin.mjs), pastaj `npm run gjenero`.
   Provat e kapin një gjenerim të gabuar para se ta kapë faqja.
 
-Burimi zyrtar është njoftimi `03Nr. 500/01-15606/26` i datës 29.06.2026 i Komunës së
-Kaçanikut — [PDF-ja e skanuar][pdf].
+Burimi zyrtar është njoftimi `03Nr. 104/02-29253/26` i datës 30.10.2026 i Komunës së
+Kaçanikut për Nëntor–Dhjetor — [PDF-ja e skanuar][pdf]; para tij,
+`03Nr. 500/01-15606/26` i datës 29.06.2026 për Korrik–Gusht ([PDF][pdf-korrik]).
 
-[pdf]: https://kacanik.rks-gov.net/wp-content/uploads/2026/06/Orari-Korrik-Gusht-2026.pdf
+[pdf]: https://kacanik.rks-gov.net/wp-content/uploads/2026/11/Orari-i-kujdesatarise-se-barnatoreve-nentor-dhjetor-2026.pdf
+[pdf-korrik]: https://kacanik.rks-gov.net/wp-content/uploads/2026/06/Orari-Korrik-Gusht-2026.pdf
 [shpalljet]: https://kacanik.rks-gov.net/shpalljet/

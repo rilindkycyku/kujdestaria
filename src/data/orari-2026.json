@@ -3,24 +3,50 @@
   "komuna": "Kaçanik",
   "komunaGjinore": "Kaçanikut",
   "institucioni": "Drejtoria për Shëndetësi dhe Mirëqenie Sociale",
-  "referenca": "03Nr. 500/01-15606/26",
-  "dataEDokumentit": "2026-06-29",
+  "referenca": "03Nr. 104/02-29253/26",
+  "dataEDokumentit": "2026-10-30",
   "nenshkroi": {
     "emri": "Lumnije Selmanaj – Demnika",
     "pozita": "Drejtoresha e DSHMS-së"
   },
   "burimet": {
-    "dokumenti": "https://kacanik.rks-gov.net/wp-content/uploads/2026/06/Orari-Korrik-Gusht-2026.pdf",
+    "dokumenti": "https://kacanik.rks-gov.net/wp-content/uploads/2026/11/Orari-i-kujdesatarise-se-barnatoreve-nentor-dhjetor-2026.pdf",
     "shpalljet": "https://kacanik.rks-gov.net/shpalljet/"
   },
   "periudha": {
     "prej": "2026-07-01",
     "deri": "2026-12-31",
-    "zyrtareDeri": "2026-08-31",
-    "titulliZyrtar": "Korrik – Gusht 2026"
+    "zyrtarePrej": "2026-11-01",
+    "zyrtareDeri": "2026-12-31",
+    "titulliZyrtar": "Nëntor – Dhjetor 2026"
   },
+  "dokumentet": [
+    {
+      "titulli": "Korrik – Gusht 2026",
+      "prej": "2026-07-01",
+      "deri": "2026-08-31",
+      "referenca": "03Nr. 500/01-15606/26",
+      "data": "2026-06-29",
+      "url": "https://kacanik.rks-gov.net/wp-content/uploads/2026/06/Orari-Korrik-Gusht-2026.pdf"
+    },
+    {
+      "titulli": "Nëntor – Dhjetor 2026",
+      "prej": "2026-11-01",
+      "deri": "2026-12-31",
+      "referenca": "03Nr. 104/02-29253/26",
+      "data": "2026-10-30",
+      "url": "https://kacanik.rks-gov.net/wp-content/uploads/2026/11/Orari-i-kujdesatarise-se-barnatoreve-nentor-dhjetor-2026.pdf"
+    }
+  ],
   "projeksioni": {
-    "shpjegimi": "Dokumenti zyrtar mbulon vetëm Korrik–Gusht 2026. Datat pas 31.08.2026 janë vazhdim i llogaritur i të njëjtit rotacion 10-ditor dhe nuk janë konfirmuar nga komuna. Kur komuna publikon orarin e ri, ai ka përparësi.",
+    "periudhat": [
+      {
+        "prej": "2026-09-01",
+        "deri": "2026-10-31"
+      }
+    ],
+    "pershkrimi": "01.09.2026 – 31.10.2026",
+    "shpjegimi": "Dokumentet zyrtare mbulojnë Korrik – Gusht 2026 dhe Nëntor – Dhjetor 2026. Datat 01.09.2026 – 31.10.2026 nuk mbulohen nga asnjë dokument i publikuar: janë vazhdim i llogaritur i të njëjtit rotacion 10-ditor dhe nuk janë konfirmuar nga komuna. Kur komuna publikon orarin e tyre, ai ka përparësi.",
     "gjatesiaECiklit": 10
   },
   "bazaLigjore": [
@@ -1731,7 +1757,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-11-02"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-11-02",
@@ -1744,7 +1770,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-11-03"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-11-03",
@@ -1757,7 +1783,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-11-04"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-11-04",
@@ -1770,7 +1796,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-11-05"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-11-05",
@@ -1783,7 +1809,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-11-06"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-11-06",
@@ -1796,7 +1822,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-11-07"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-11-07",
@@ -1809,7 +1835,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-11-08"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-11-08",
@@ -1822,7 +1848,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-11-09"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-11-09",
@@ -1835,7 +1861,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-11-10"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-11-10",
@@ -1848,7 +1874,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-11-11"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-11-11",
@@ -1861,7 +1887,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-11-12"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-11-12",
@@ -1874,7 +1900,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-11-13"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-11-13",
@@ -1887,7 +1913,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-11-14"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-11-14",
@@ -1900,7 +1926,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-11-15"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-11-15",
@@ -1913,7 +1939,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-11-16"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-11-16",
@@ -1926,7 +1952,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-11-17"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-11-17",
@@ -1939,7 +1965,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-11-18"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-11-18",
@@ -1952,7 +1978,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-11-19"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-11-19",
@@ -1965,7 +1991,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-11-20"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-11-20",
@@ -1978,7 +2004,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-11-21"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-11-21",
@@ -1991,7 +2017,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-11-22"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-11-22",
@@ -2004,7 +2030,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-11-23"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-11-23",
@@ -2017,7 +2043,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-11-24"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-11-24",
@@ -2030,7 +2056,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-11-25"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-11-25",
@@ -2043,7 +2069,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-11-26"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-11-26",
@@ -2056,7 +2082,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-11-27"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-11-27",
@@ -2069,7 +2095,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-11-28"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-11-28",
@@ -2082,7 +2108,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-11-29"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-11-29",
@@ -2095,7 +2121,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-11-30"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-11-30",
@@ -2108,7 +2134,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-01"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-01",
@@ -2121,7 +2147,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-02"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-02",
@@ -2134,7 +2160,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-03"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-03",
@@ -2147,7 +2173,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-04"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-04",
@@ -2160,7 +2186,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-05"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-05",
@@ -2173,7 +2199,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-06"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-06",
@@ -2186,7 +2212,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-07"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-07",
@@ -2199,7 +2225,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-08"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-08",
@@ -2212,7 +2238,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-09"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-09",
@@ -2225,7 +2251,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-10"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-10",
@@ -2238,7 +2264,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-11"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-11",
@@ -2251,7 +2277,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-12"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-12",
@@ -2264,7 +2290,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-13"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-13",
@@ -2277,7 +2303,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-14"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-14",
@@ -2290,7 +2316,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-15"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-15",
@@ -2303,7 +2329,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-16"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-16",
@@ -2316,7 +2342,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-17"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-17",
@@ -2329,7 +2355,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-18"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-18",
@@ -2342,7 +2368,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-19"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-19",
@@ -2355,7 +2381,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-20"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-20",
@@ -2368,7 +2394,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-21"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-21",
@@ -2381,7 +2407,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-22"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-22",
@@ -2394,7 +2420,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-23"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-23",
@@ -2407,7 +2433,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-24"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-24",
@@ -2420,7 +2446,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-25"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-25",
@@ -2433,7 +2459,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-26"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-26",
@@ -2446,7 +2472,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-27"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-27",
@@ -2459,7 +2485,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-28"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-28",
@@ -2472,7 +2498,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-29"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-29",
@@ -2485,7 +2511,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-30"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-30",
@@ -2498,7 +2524,7 @@
         "deri": "08:00",
         "mbaronMe": "2026-12-31"
       },
-      "zyrtare": false
+      "zyrtare": true
     },
     {
       "data": "2026-12-31",
@@ -2511,7 +2537,7 @@
         "deri": "08:00",
         "mbaronMe": "2027-01-01"
       },
-      "zyrtare": false
+      "zyrtare": true
     }
   ]
 }

@@ -26,6 +26,7 @@ test('periudha përputhet me rreshtat e vërtetë', () => {
   assert.ok(ditet.length > 0);
   assert.equal(ditet.at(0).data, orari.periudha.prej);
   assert.equal(ditet.at(-1).data, orari.periudha.deri);
+  assert.ok(orari.periudha.prej <= orari.periudha.zyrtarePrej);
   assert.ok(orari.periudha.zyrtareDeri <= orari.periudha.deri);
 });
 
@@ -68,17 +69,29 @@ test('çdo barnatore e orarit ekziston te lista e barnatoreve', () => {
   }
 });
 
-test('vetëm datat brenda dokumentit janë zyrtare', () => {
+test('vetëm datat brenda dokumenteve janë zyrtare', () => {
   for (const dita of orari.kujdestaria) {
     assert.equal(
       dita.zyrtare,
-      dita.data <= orari.periudha.zyrtareDeri,
+      orari.dokumentet.some((d) => d.prej <= dita.data && dita.data <= d.deri),
       `flamuri „zyrtare" i ${dita.data}`,
     );
   }
   // Duhet të ketë nga të dyja, përndryshe paralajmërimi i projeksionit nuk ka kuptim.
   assert.ok(orari.kujdestaria.some((d) => d.zyrtare));
   assert.ok(orari.kujdestaria.some((d) => !d.zyrtare));
+});
+
+test('dokumenti kryesor është më i riu dhe projeksioni i mbulon hapësirat', () => {
+  const fundit = orari.dokumentet.at(-1);
+  assert.equal(orari.referenca, fundit.referenca);
+  assert.equal(orari.burimet.dokumenti, fundit.url);
+  assert.equal(orari.periudha.zyrtarePrej, fundit.prej);
+  assert.equal(orari.periudha.zyrtareDeri, fundit.deri);
+  const projektuara = orari.kujdestaria.filter((d) => !d.zyrtare).map((d) => d.data);
+  const brenda = (data) => orari.projeksioni.periudhat.some((p) => p.prej <= data && data <= p.deri);
+  assert.ok(projektuara.every(brenda));
+  assert.ok(orari.kujdestaria.filter((d) => d.zyrtare).every((d) => !brenda(d.data)));
 });
 
 test('sezoni ndërron te data e shpallur', () => {

@@ -187,7 +187,7 @@ export function skema({ baza = null, dataENdryshimit = null } = {}) {
         inLanguage: 'sq',
         publisher: { '@id': id('#komuna') },
         author: { '@type': 'Person', name: orari.nenshkroi.emri, jobTitle: orari.nenshkroi.pozita },
-        temporalCoverage: `${orari.periudha.prej}/${orari.periudha.zyrtareDeri}`,
+        temporalCoverage: `${orari.periudha.zyrtarePrej}/${orari.periudha.zyrtareDeri}`,
       },
       {
         '@type': 'Person',

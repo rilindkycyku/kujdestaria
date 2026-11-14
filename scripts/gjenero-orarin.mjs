@@ -3,8 +3,8 @@
  *
  * Përdorimi:  node scripts/gjenero-orarin.mjs
  *
- * Kur komuna publikon orarin e ri, përditëso konstantet më poshtë (ROTACIONI,
- * FILLIMI, FUNDI_ZYRTAR, FUNDI) dhe ekzekuto skriptën përsëri.
+ * Kur komuna publikon orarin e ri, shtoje te DOKUMENTET (më i riu i fundit),
+ * përditëso ROTACIONI e FUNDI nëse duhet, dhe ekzekuto skriptën përsëri.
  */
 import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -26,8 +26,33 @@ const ROTACIONI = [
 ];
 
 const FILLIMI = '2026-07-01';
-const FUNDI_ZYRTAR = '2026-08-31'; // deri ku e mbulon dokumenti i publikuar
 const FUNDI = '2026-12-31'; // deri ku e projektojmë rotacionin
+
+/**
+ * Dokumentet e publikuara, sipas radhës; i fundit është burimi kryesor i faqes.
+ * Vetëm datat brenda `prej`–`deri` të njërit prej tyre janë `zyrtare` — pjesa
+ * tjetër (p.sh. një hapësirë mes dy dokumenteve) është rotacion i llogaritur.
+ */
+const DOKUMENTET = [
+  {
+    titulli: 'Korrik – Gusht 2026',
+    prej: '2026-07-01',
+    deri: '2026-08-31',
+    referenca: '03Nr. 500/01-15606/26',
+    data: '2026-06-29',
+    url: 'https://kacanik.rks-gov.net/wp-content/uploads/2026/06/Orari-Korrik-Gusht-2026.pdf',
+  },
+  {
+    titulli: 'Nëntor – Dhjetor 2026',
+    prej: '2026-11-01',
+    deri: '2026-12-31',
+    referenca: '03Nr. 104/02-29253/26',
+    data: '2026-10-30',
+    url: 'https://kacanik.rks-gov.net/wp-content/uploads/2026/11/Orari-i-kujdesatarise-se-barnatoreve-nentor-dhjetor-2026.pdf',
+  },
+];
+const DOKUMENTI = DOKUMENTET.at(-1);
+const eZyrtare = (data) => DOKUMENTET.some((d) => d.prej <= data && data <= d.deri);
 
 // Orari i rregullt vlen për të gjitha barnatoret; kujdestaria fillon kur ai mbaron
 // dhe vazhdon tërë natën deri në mëngjes.
@@ -114,39 +139,54 @@ for (let d = dt(FILLIMI), i = 0; d <= dt(FUNDI); d = shtoDite(d, 1), i++) {
     sezoni: d <= fundiIVeres ? 'veror' : 'dimeror',
     // Nata që fillon këtë datë në ora 22:00 dhe mbaron në ora 08:00 të nesërmen.
     kujdestaria: { ...ORARI_I_KUJDESTARISE, mbaronMe: iso(shtoDite(d, 1)) },
-    zyrtare: iso(d) <= FUNDI_ZYRTAR,
+    zyrtare: eZyrtare(iso(d)),
   });
 }
 
 const dataShqip = (s) => s.split('-').reverse().join('.');
+
+/** Hapësirat pa dokument, si `[{ prej, deri }]` — ato që faqja i shënon „e projektuar". */
+const projektuara = [];
+for (const dita of kujdestaria) {
+  if (dita.zyrtare) continue;
+  const fundi = projektuara.at(-1);
+  if (fundi && iso(shtoDite(dt(fundi.deri), 1)) === dita.data) fundi.deri = dita.data;
+  else projektuara.push({ prej: dita.data, deri: dita.data });
+}
+const listaShqip = (a) => (a.length < 2 ? a.join('') : `${a.slice(0, -1).join(', ')} dhe ${a.at(-1)}`);
+const periudhaShqip = ({ prej, deri }) => `${dataShqip(prej)} – ${dataShqip(deri)}`;
 
 const doc = {
   titulli: 'Orari i kujdestarisë së barnatoreve — Komuna e Kaçanikut',
   komuna: 'Kaçanik',
   komunaGjinore: 'Kaçanikut',
   institucioni: 'Drejtoria për Shëndetësi dhe Mirëqenie Sociale',
-  referenca: '03Nr. 500/01-15606/26',
-  dataEDokumentit: '2026-06-29',
+  referenca: DOKUMENTI.referenca,
+  dataEDokumentit: DOKUMENTI.data,
   nenshkroi: {
     emri: 'Lumnije Selmanaj – Demnika',
     pozita: 'Drejtoresha e DSHMS-së',
   },
   burimet: {
-    dokumenti:
-      'https://kacanik.rks-gov.net/wp-content/uploads/2026/06/Orari-Korrik-Gusht-2026.pdf',
+    dokumenti: DOKUMENTI.url,
     shpalljet: 'https://kacanik.rks-gov.net/shpalljet/',
   },
   periudha: {
     prej: FILLIMI,
     deri: FUNDI,
-    zyrtareDeri: FUNDI_ZYRTAR,
-    titulliZyrtar: 'Korrik – Gusht 2026',
+    zyrtarePrej: DOKUMENTI.prej,
+    zyrtareDeri: DOKUMENTI.deri,
+    titulliZyrtar: DOKUMENTI.titulli,
   },
+  dokumentet: DOKUMENTET,
   projeksioni: {
+    periudhat: projektuara,
+    pershkrimi: listaShqip(projektuara.map(periudhaShqip)),
     shpjegimi:
-      `Dokumenti zyrtar mbulon vetëm Korrik–Gusht 2026. Datat pas ${dataShqip(FUNDI_ZYRTAR)} ` +
-      'janë vazhdim i llogaritur i të njëjtit rotacion 10-ditor dhe nuk janë konfirmuar nga ' +
-      'komuna. Kur komuna publikon orarin e ri, ai ka përparësi.',
+      `Dokumentet zyrtare mbulojnë ${listaShqip(DOKUMENTET.map((d) => d.titulli))}. ` +
+      `Datat ${listaShqip(projektuara.map(periudhaShqip))} nuk mbulohen nga asnjë dokument i ` +
+      'publikuar: janë vazhdim i llogaritur i të njëjtit rotacion 10-ditor dhe nuk janë ' +
+      'konfirmuar nga komuna. Kur komuna publikon orarin e tyre, ai ka përparësi.',
     gjatesiaECiklit: ROTACIONI.length,
   },
   bazaLigjore: [

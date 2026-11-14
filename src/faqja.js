@@ -370,9 +370,9 @@ export function pyetjet() {
       pergjigjja:
         `Orari është transkriptim i dokumentit zyrtar „${orari.titulli}“ (${orari.referenca}, ` +
         `${dataShqip(orari.dataEDokumentit)}), lëshuar nga ${orari.institucioni} e Komunës së ` +
-        `${orari.komunaGjinore}. Dokumenti mbulon ${orari.periudha.titulliZyrtar}; datat pas ` +
-        `${dataShqip(orari.periudha.zyrtareDeri)} janë vazhdim i llogaritur i të njëjtit rotacion dhe ` +
-        `shënohen si të projektuara.`,
+        `${orari.komunaGjinore}. Dokumenti mbulon ${orari.periudha.titulliZyrtar}; datat ` +
+        `${orari.projeksioni.pershkrimi}, që nuk i mbulon asnjë dokument i publikuar, janë vazhdim ` +
+        `i llogaritur i të njëjtit rotacion dhe shënohen si të projektuara.`,
     },
   ];
 }
@@ -402,7 +402,7 @@ export function seksioniIPyetjeve() {
 export function njoftimiIProjeksionit() {
   return `
     <section class="njoftim">
-      <h2 class="titull-seksioni">Për datat pas ${dataShqip(orari.periudha.zyrtareDeri)}</h2>
+      <h2 class="titull-seksioni">Për datat e projektuara</h2>
       <p>${sig(orari.projeksioni.shpjegimi)}</p>
       <p>
         <a class="lidhje-jashtme" href="${orari.burimet.shpalljet}" target="_blank" rel="noopener noreferrer">
@@ -415,7 +415,7 @@ export function njoftimiIProjeksionit() {
 
 /**
  * Njoftimi për gabim. Orari transkriptohet me dorë nga një skanim, dhe rotacioni
- * pas 31.08 është i llogaritur — prandaj një datë e shkëmbyer është e mundshme,
+ * jashtë dokumenteve është i llogaritur — prandaj një datë e shkëmbyer është e mundshme,
  * dhe personi që e vë re duhet të ketë ku ta thotë pa u dashur të hapë GitHub.
  */
 function raportoGabim() {
